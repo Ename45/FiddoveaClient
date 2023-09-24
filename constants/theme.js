@@ -1,4 +1,5 @@
 import { Dimensions } from "react-native";
+import { useFonts } from "expo-font";
 
 const { height, width } = Dimensions.get('window')
 
@@ -54,9 +55,16 @@ export const COLORS = {
 };
 
 export const FONT = {
-  regular: "DMRegular",
-  medium: "DMMedium",
-  bold: "DMBold",
+  croissantOneRegular: require("../assets/fonts/CroissantOne-Regular.ttf"),
+  playFairRegular: require("../assets/fonts/PlayfairDisplay-Regular.ttf"),
+  playFairMedium: require("../assets/fonts/PlayfairDisplay-Medium.ttf"),
+  playFairBold: require("../assets/fonts/PlayfairDisplay-Bold.ttf"),
+  poppinsRegular: require("../assets/fonts/Poppins-Regular.ttf"),
+  poppinsMedium: require("../assets/fonts/Poppins-Medium.ttf"),
+  poppinsBold: require("../assets/fonts/Poppins-Bold.ttf"),
+  robotoRegular: require("../assets/fonts/RobotoCondensed-Regular.ttf"),
+  robotoLight: require("../assets/fonts/RobotoCondensed-Light.ttf"),
+  robotoBold: require("../assets/fonts/RobotoCondensed-Bold.ttf"),
 };
 
 export const SIZES = {
