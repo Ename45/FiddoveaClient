@@ -7,6 +7,7 @@ import register from '../../../../styles/components/auth/register/register.js'
 import InputField from '../../reusable/inputField/InputField.jsx';
 import CustomButton from '../../reusable/button/CustomButton.jsx'
 import { customerUrl, ngrokBaseUrl } from '../../../../api/Api.jsx';
+import { COLORS } from '../../../../constants/theme.js';
 
 
 const Login = () => {
@@ -36,7 +37,7 @@ const Login = () => {
       try {
         await axios.post(URL, customerData)
           .then((response) => {    
-          navigation.navigate("HomePage")
+          navigation.navigate("BottomTabNav")
           return response.data;
           })
       } catch (error) {

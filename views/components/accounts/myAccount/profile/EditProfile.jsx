@@ -1,7 +1,7 @@
 import { View, Text, SafeAreaView, Pressable, ScrollView, TouchableOpacity, Image } from "react-native";
 import React, { useState } from "react";
 import { COLORS, SIZES } from "../../../../../constants/theme";
-import { MaterialIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 import CustomButton from "../../../reusable/button/CustomButton";
 import { imagesDataUrl, photos } from "../../../../../constants/data";
 
@@ -51,7 +51,8 @@ const EditProfile = ({ navigation }) => {
           <ScrollView>
             <View style={{
               alignItems: "center",
-              marginVertical: 22
+              marginVertical: 22,
+              position: "relative"
             }}>
               <TouchableOpacity onPress={handleImageSelection}>
                 <Image
@@ -64,6 +65,26 @@ const EditProfile = ({ navigation }) => {
                     borderColor: COLORS.primary,
                   }}
                 />
+
+                <View
+                style={{
+                  position: "absolute",
+                  bottom: 3,
+                  right: 9,
+                  zIndex: 9999,                  
+                  borderRadius: 50,
+                  backgroundColor: COLORS.pageBackgroundBrown
+                }}
+                >
+
+              <MaterialIcons
+                name="photo-camera"
+                size={32}
+                color={COLORS.gray3}
+              />
+
+                </View>
+
               </TouchableOpacity>
             </View>
           </ScrollView>
@@ -79,36 +100,9 @@ export default EditProfile;
 
 
 {/* <View
-          style={{
-            alignItems: "center",
-            marginVertical: 22,
-          }}
-        >
-          <TouchableOpacity onPress={handleImageSelection}>
-            <Image
-              source={{ uri: selectedImage }}
-              style={{
-                height: 170,
-                width: 170,
-                borderRadius: 85,
-                borderWidth: 2,
-                borderColor: COLORS.primary,
-              }}
-            />
+          
 
-            <View
-              style={{
-                position: "absolute",
-                bottom: 0,
-                right: 10,
-                zIndex: 9999,
-              }}
-            >
-              <MaterialIcons
-                name="photo-camera"
-                size={32}
-                color={COLORS.primary}
-              />
+              
             </View>
           </TouchableOpacity>
         </View>
