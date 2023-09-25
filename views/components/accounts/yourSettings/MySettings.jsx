@@ -4,10 +4,11 @@ import {
   SafeAreaView,
   TouchableOpacity,
   Pressable,
+  ScrollView,
 } from "react-native";
 import React from "react";
 import { COLORS, FONT, SIZES } from "../../../../constants/theme";
-import { MaterialIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 
 const MySettings = ({ navigation }) => {
   const navigateToEditProfile = () => {
@@ -15,52 +16,57 @@ const MySettings = ({ navigation }) => {
   };
 
   const navigateToLogin = () => {
-    navigation.navigate("Login");
+    navigation.navigate("Register");
   };
 
-  // const navigateToNotifications = () => {
-  //   console.log("Notifications function");
-  // };
+  const navigateToNotification = () => {
+    navigation.navigate("Notification");
+  };
 
-  // const navigateToPrivacy = () => {
-  //   console.log("Privacy function");
-  // };
+  const navigateToBecomeVendor = () => {
+    console.log("Become a vendor function");
+  };
 
-  // const navigateToSubscription = () => {
-  //   console.log("Subscription function");
-  // };
+  const navigateToSubscription = () => {
+    console.log("Subscription function");
+  };
 
-  // const navigateToSupport = () => {
-  //   console.log("Support function");
-  // };
+  const navigateToSupport = () => {
+    console.log("Support function");
+  };
 
-  // const navigateToTermsAndPolicies = () => {
-  //   console.log("Terms and Policies function");
-  // };
+  const navigateToTermsAndPolicies = () => {
+    console.log("Terms and conditions function");
+  };
 
-  // const navigateToFreeSpace = () => {
-  //   console.log("Free Space function");
-  // };
+  const navigateFAQ = () => {
+    console.log("FAQ function");
+  };
 
-  // const navigateToDateSaver = () => {
-  //   console.log("Date saver");
-  // };
+  const navigateToFreeSpace = () => {
+    console.log("Free up space function");
+  };
 
-  // const navigateToReportProblem = () => {
-  //   console.log("Report a problem");
-  // };
+  const navigateToDateSaver  = () => {
+    console.log("Data saver function");
+  };
 
-  // const addAccount = () => {
-  //   console.log("Add account ");
-  // };
+  const navigateToReportProblem = () => {
+    navigation.navigate("LiveChat") ;
+  };
 
-  // const logout = () => {
-  //   console.log("Logout");
-  // };
+  const addAccount = () => {
+    console.log("Add account function");
+  };
+
+  const logout = () => {
+    console.log("Logout");
+  };
+
 
   const accountItems = [
     {
-      icon: "person-outline",
+      icon: "head-outline",
       text: "Edit Profile",
       action: navigateToEditProfile,
     },
@@ -69,42 +75,69 @@ const MySettings = ({ navigation }) => {
       text: "Log In or Create Account",
       action: navigateToLogin,
     },
+    {
+      icon: "bell-outline",
+      text: "Notification",
+      action: navigateToNotification,
+    },
+    {
+      icon: "details",
+      text: "Become a Vendor",
+      action: navigateToBecomeVendor,
+    },
   ];
 
-  // const supportItems = [
-  //   {
-  //     icon: "credit-card",
-  //     text: "My Subscription",
-  //     action: navigateToSubscription,
-  //   },
-  //   { icon: "help-outline",
-  //     text: "Help & Support",
-  //     action: navigateToSupport },
-  //   {
-  //     icon: "info-outline",
-  //     text: "Terms and Policies",
-  //     action: navigateToTermsAndPolicies,
-  //   },
-  // ];
+  const supportItems = [
+    {
+      icon: "credit-card-outline",
+      text: "My Subscription",
+      action: navigateToSubscription,
+    },
+    { icon: "folder-open-outline",
+      text: "Help & Support",
+      action: navigateToSupport },
+    {
+      icon: "simple-icons",
+      text: "Terms and Policies",
+      action: navigateToTermsAndPolicies,
+    },
+    {
+      icon: "speaker",
+      text: "FAQ",
+      action: navigateFAQ,
+    },
+  ];
 
-  // const cacheAndCellularItems = [
-  //   {
-  //     icon: "delete-outline",
-  //     text: "Free up space",
-  //     action: navigateToFreeSpace,
-  //   },
-  //   { icon: "save-alt", text: "Date Saver", action: navigateToDateSaver },
-  // ];
+  const cacheAndCellularItems = [
+    {
+      icon: "delete-outline",
+      text: "Free up space",
+      action: navigateToFreeSpace,
+    },
+    { 
+      icon: "phone-outline", 
+      text: "Data Saver", 
+      action: navigateToDateSaver 
+    },
+  ];
 
-  // const actionsItems = [
-  //   {
-  //     icon: "outlined-flag",
-  //     text: "Report a problem",
-  //     action: navigateToReportProblem,
-  //   },
-  //   { icon: "people-outline", text: "Add Account", action: addAccount },
-  //   { icon: "logout", text: "Log out", action: logout },
-  // ];
+  const actionsItems = [
+    {
+      icon: "message-outline",
+      text: "Live Chat",
+      action: navigateToReportProblem,
+    },
+    { 
+      icon: "mail", 
+      text: "Add Account", 
+      action: addAccount 
+    },
+    { 
+      icon: "logout", 
+      text: "Log out", 
+      action: logout 
+    },
+  ];
 
   const renderSettingsItem = ({ icon, text, action }) => (
     <Pressable
@@ -116,7 +149,7 @@ const MySettings = ({ navigation }) => {
         paddingLeft: 12,
       }}
     >
-      <MaterialIcons name={icon} size={24} color="black" />
+      <MaterialCommunityIcons name={icon} size={24} color="black" />
       <Text
         style={{
           marginLeft: 36,
@@ -140,7 +173,8 @@ const MySettings = ({ navigation }) => {
         // alignContent: "center",
       }}
     >
-      <View
+      <ScrollView>
+        <View
         style={{
           marginHorizontal: 12,
         }}
@@ -153,12 +187,12 @@ const MySettings = ({ navigation }) => {
             justifyContent: "space-between"
           }}
         >
-          <View>
+          <View style={{ backgroundColor: COLORS.tabBarBrown, borderRadius: 50}}>
             <Pressable>
             <MaterialIcons
               name="keyboard-arrow-left"
               size={24}
-              color={COLORS.black}
+              color={COLORS.white}
             />
           </Pressable>
           </View>
@@ -170,11 +204,11 @@ const MySettings = ({ navigation }) => {
         </View>
 
         {/* AccountSettings */}
-        <View style={{ marginBottom: 12 }}>
+        <View>
           <Text
             style={{
               fontSize: SIZES.large,
-              marginVertical: 25,
+              marginVertical: 5,
               fontStyle: "italic",
             }}
           >
@@ -193,7 +227,87 @@ const MySettings = ({ navigation }) => {
             ))}
           </View>
         </View>
+
+
+        {/* SupportAndAboutSettings */}
+        <View>
+          <Text
+            style={{
+              fontSize: SIZES.large,
+              marginVertical: 5,
+              fontStyle: "italic",
+            }}
+          >
+            Support & About
+          </Text>
+          <View
+            style={{
+              borderRadius: 12,
+              backgroundColor: COLORS.burlyWoodBrown,
+            }}
+          >
+            {supportItems.map((item, index) => (
+              <React.Fragment key={index}>
+                {renderSettingsItem(item)}
+              </React.Fragment>
+            ))}
+          </View>
+        </View>
+
+
+        {/* CacheAndCellularSettings */}
+        <View>
+          <Text
+            style={{
+              fontSize: SIZES.large,
+              marginVertical: 5,
+              fontStyle: "italic",
+            }}
+          >
+            Cache & cellular
+          </Text>
+          <View
+            style={{
+              borderRadius: 12,
+              backgroundColor: COLORS.burlyWoodBrown,
+            }}
+          >
+            {cacheAndCellularItems.map((item, index) => (
+              <React.Fragment key={index}>
+                {renderSettingsItem(item)}
+              </React.Fragment>
+            ))}
+          </View>
+        </View>
+
+
+        {/* ActionsSettings */}
+        <View>
+          <Text
+            style={{
+              fontSize: SIZES.large,
+              marginVertical: 5,
+              fontStyle: "italic",
+            }}
+          >
+            Actions
+          </Text>
+          <View
+            style={{
+              borderRadius: 12,
+              backgroundColor: COLORS.burlyWoodBrown,
+            }}
+          >
+            {actionsItems.map((item, index) => (
+              <React.Fragment key={index}>
+                {renderSettingsItem(item)}
+              </React.Fragment>
+            ))}
+          </View>
+        </View>
+        
       </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };

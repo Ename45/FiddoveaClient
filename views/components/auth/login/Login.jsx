@@ -6,12 +6,14 @@ import login from '../../../../styles/components/auth/login/login.js'
 import register from '../../../../styles/components/auth/register/register.js'
 import InputField from '../../reusable/inputField/InputField.jsx';
 import CustomButton from '../../reusable/button/CustomButton.jsx'
+import { customerUrl, ngrokBaseUrl } from '../../../../api/Api.jsx';
 
 
 const Login = () => {
 
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState('');  
+  const [buttonClicked, setButtonClicked] = useState(false);
 
   const navigation = useNavigation()
 
@@ -21,7 +23,9 @@ const Login = () => {
 
   const handleSubmit = async(e)=>{  
     e.preventDefault();
-    const URL = "https://e895-102-89-46-66.ngrok-free.app/api/v1/customer/login";
+    setButtonClicked(true)
+    const URL = `${ngrokBaseUrl}/${customerUrl}/login`
+    
     let customerData = {
       email,
       password,
@@ -58,7 +62,13 @@ const Login = () => {
           secureTextEntry
         />
         <View>
-        <CustomButton buttonName="Login" onPress={handleSubmit} />
+        <CustomButton 
+        buttonName="Login" 
+        onPress={handleSubmit} 
+        style={{
+            backgroundColor: buttonClicked ? COLORS.rosyBrown : COLORS.silverGray
+          }} 
+        />
         </View>
         <View>
           <Text onPress={() => navigateToPage("ForgotPassword")}>

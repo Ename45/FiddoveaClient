@@ -3,6 +3,7 @@ import React from 'react'
 import customButton from '../../../../styles/components/reusable/button/customButton.js'
 
 const CustomButton = ({ buttonName, onPress, style }) => {
+  
   return (
     <View style={customButton.buttonContainer}>
       <Pressable style={ [customButton.button, style] } onPress={onPress}>

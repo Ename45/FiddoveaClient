@@ -36,6 +36,7 @@ export const COLORS = {
   lightBrown: "#f9c3c3",
   pageBackgroundBrown: "#FFFBF2",
   darkBrown: "#a52a2a",
+  tabBarBrown: "#3C2113",
   darkChocolateBrown: "#785036",
   darkBrown2: '#654321',
   saddleBrown: "#8B4513",

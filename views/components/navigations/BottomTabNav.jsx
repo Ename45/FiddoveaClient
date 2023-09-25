@@ -13,7 +13,7 @@ import HomePage from "../homepage/HomePage";
 import Categories from "../categories/Categories";
 import Cart from "../cart/Cart";
 import MySettings from "../accounts/yourSettings/MySettings.jsx";
-import Profile from "../accounts/profile/Profile";
+import Profile from "../accounts/myAccount/profile/Profile";
 
 const Tab = createBottomTabNavigator();
 
@@ -22,7 +22,7 @@ const screenOptions = {
   headerShown: false,
   tabBarHideOnKeyBoard: true,
   tabBarStyle: {
-    backgroundColor: "#3C2113",
+    backgroundColor: COLORS.tabBarBrown,
     borderTopRightRadius: 18,
     borderTopLeftRadius: 18,
     top: 0,
@@ -117,28 +117,31 @@ const BottomTabNav = () => {
           },
         }}
       />
-      <Tab.Screen
-        name="Profile"
-        component={Profile}
-        options={{
-          tabBarIcon: ({ focused }) => {
-            return (
-              <View>
-                <SimpleLineIcons
-                  name="user"
-                  size={24}
-                  color={focused ? COLORS.black : COLORS.white}
-                />
-                {/* <View>
-                  <Text>Account</Text>
-                </View> */}
-              </View>
-            );
-          },
-        }}
-      />
+      
     </Tab.Navigator>
   );
 };
 
 export default BottomTabNav;
+
+
+// <Tab.Screen
+//         name="Profile"
+//         component={Profile}
+//         options={{
+//           tabBarIcon: ({ focused }) => {
+//             return (
+//               <View>
+//                 <SimpleLineIcons
+//                   name="user"
+//                   size={24}
+//                   color={focused ? COLORS.black : COLORS.white}
+//                 />
+//                 {/* <View>
+//                   <Text>Account</Text>
+//                 </View> */}
+//               </View>
+//             );
+//           },
+//         }}
+//       />

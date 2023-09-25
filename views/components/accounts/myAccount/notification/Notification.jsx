@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const EditProfile = () => {
+const Notification = () => {
   return (
     <View>
-      <Text>EditProfile</Text>
+      <Text>Notification</Text>
     </View>
   )
 }
 
-export default EditProfile
+export default Notification
