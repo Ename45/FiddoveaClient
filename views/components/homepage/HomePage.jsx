@@ -2,7 +2,7 @@ import { View, SafeAreaView, Text, TouchableOpacity, ScrollView } from 'react-na
 import React, { useState } from 'react'
 import homepage from '../../../styles/components/homepage/homepage.js'
 import { MaterialCommunityIcons, MaterialIcons, Ionicons, Fontisto } from '@expo/vector-icons'
-import { COLORS } from '../../../constants/theme.js'
+import { COLORS, SIZES } from '../../../constants/theme.js'
 import HomePageWelcome from './homePageWelcome/HomePageWelcome.jsx'
 
 const HomePage = ({navigation}) => {
@@ -24,7 +24,7 @@ const HomePage = ({navigation}) => {
         <View style={homepage.appBar}>
           <Ionicons
           name="location-outline"
-          size={24}
+          size={(9 / 100) * SIZES.width}
           color={COLORS.darkChocolateBrown}
           />
           <Text 
@@ -36,19 +36,20 @@ const HomePage = ({navigation}) => {
           style={homepage.notificationButton}
           >
             <View 
-          style={ homepage.cartOuterContainer }
+          style={ homepage.notificationOuterContainer }
           
           >
-            <View style={homepage.cartCount}>
-              <Text style={homepage.cartNumberText}>
+            <View style={homepage.notificationCount}>
+              <Text style={homepage.notificationNumberText}>
                 {notificationCount}
               </Text>
             </View>
 
             <Fontisto
             name='bell'
-            size={24}
+            size={(9 / 100) * SIZES.width}
             color={COLORS.darkChocolateBrown}
+            style={{ position: "relative" }}
             />
           </View>
           </TouchableOpacity>

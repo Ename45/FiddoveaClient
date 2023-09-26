@@ -16,9 +16,11 @@ export default StyleSheet.create({
   topBarWrap: {
     marginHorizontal: 22,
     width: "100%",
+    height: (8 / 100) * SIZES.height,
     // borderWidth: 3,
     // borderColor: "blue",
     // borderStyle: "solid",
+    paddingBottom: 10,
     position: "relative",
   },
   appBar: {
@@ -26,10 +28,14 @@ export default StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     flexDirection: "row",
+    // borderWidth: 3,
+    // borderColor: "red",
+    // borderStyle: "solid",
+    height: (8 / 100) * SIZES.height,
   },
   location: {
     fontWeight: "bold",
-    fontSize: SIZES.medium,
+    fontSize: (5 / 100) * SIZES.width,
     color: COLORS.gray3,
   },
   notificationButton: {
@@ -39,7 +45,7 @@ export default StyleSheet.create({
     // borderStyle: "solid",
     // // width: "8%",
   },
-  cartOuterContainer: {
+  notificationOuterContainer: {
     alignItems: "flex-end",
     // borderWidth: 3,
     // borderColor: "green",
@@ -47,12 +53,12 @@ export default StyleSheet.create({
     width: "100%",
     position: "relative",
   },
-  cartCount: {
+  notificationCount: {
     position: "absolute",
-    bottom: 12,
-    left: 9,
+    // bottom:2,
+    // left: 9,
 
-    width: "80%",
+    width: "60%",
     height: 16,
     borderRadius: 8,
     alignItems: "center",
@@ -60,9 +66,9 @@ export default StyleSheet.create({
     justifyContent: "center",
     zIndex: 999,
   },
-  cartNumberText: {
+  notificationNumberText: {
     color: "green",
     fontWeight: "600",
-    fontSize: SIZES.small,
+    fontSize: SIZES.medium,
   },
 });
