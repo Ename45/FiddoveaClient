@@ -13,7 +13,9 @@ import LoginVendor from "./views/components/auth/login/LoginVendor.jsx";
 import ForgotPassword from "./views/components/auth/forgotPassword/ForgotPassword.jsx";
 import BottomTabNav from "./views/components/navigations/BottomTabNav.jsx";
 import HomePage from "./views/components/homepage/HomePage.jsx";
-import Categories from "./views/components/categories/Categories.jsx";
+import Categories from "./views/components/product/categories/Categories.jsx";
+import Filter from "./views/components/product/filter/Filter.jsx";
+import Search from "./views/components/product/search/Search.jsx";
 import Cart from "./views/components/cart/Cart.jsx";
 import MySettings from "./views/components/accounts/yourSettings/MySettings.jsx";
 import Profile from "./views/components/accounts/myAccount/profile/Profile.jsx";
@@ -28,9 +30,7 @@ export default function App() {
   return (
     <NavigationContainer>
       {/* <Stack.Navigator initialRouteName='BottomTabNav'></Stack.Navigator> */}
-      <Stack.Navigator
-        styles={styles.container}
-      >
+      <Stack.Navigator styles={styles.container}>
         <Stack.Screen
           name="SplashScreen"
           component={Splash}
@@ -97,6 +97,16 @@ export default function App() {
           options={{ headerShown: false }}
         />
         <Stack.Screen
+          name="Filter"
+          component={Filter}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Search"
+          component={Search}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
           name="Cart"
           component={Cart}
           options={{ headerShown: false }}
@@ -105,6 +115,7 @@ export default function App() {
           name="MySettings"
           component={MySettings}
           options={{ headerShown: false }}
+          style={styles.textStyle}
         />
         <Stack.Screen
           name="LiveChat"
@@ -138,10 +149,10 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
-    // backgroundColor: '#fff',
-    // alignItems: 'center',
-    // justifyContent: 'center',
     paddingTop: 20,
+  },
+  textStyle: {
+    fontFamily: "playFairRegular",
+    fontSize: 20,
   },
 });

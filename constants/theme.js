@@ -1,5 +1,5 @@
 import { Dimensions } from "react-native";
-import { useFonts } from "expo-font";
+// import { useFonts } from "expo-font";
 
 const { height, width } = Dimensions.get('window')
 
@@ -55,7 +55,7 @@ export const COLORS = {
   wheatBrown: "#F5DEB3",
 };
 
-export const FONT = {
+export const FAMILY = {
   croissantOneRegular: require("../assets/fonts/CroissantOne-Regular.ttf"),
   playFairRegular: require("../assets/fonts/PlayfairDisplay-Regular.ttf"),
   playFairMedium: require("../assets/fonts/PlayfairDisplay-Medium.ttf"),
@@ -66,7 +66,8 @@ export const FONT = {
   robotoRegular: require("../assets/fonts/RobotoCondensed-Regular.ttf"),
   robotoLight: require("../assets/fonts/RobotoCondensed-Light.ttf"),
   robotoBold: require("../assets/fonts/RobotoCondensed-Bold.ttf"),
-};
+}
+
 
 export const SIZES = {
   xSmall: 10,

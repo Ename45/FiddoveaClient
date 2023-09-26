@@ -95,7 +95,9 @@ const EditProfile = ({navigation}) => {
             </View>
           </View>
 
-          <ScrollView style={{ padding: 15 }}>
+          <ScrollView style={{ padding: 15,
+        backgroundColor: COLORS.pageBackgroundBrown,
+        height: SIZES.height,}}>
             <View
               style={{
                 alignItems: "center",

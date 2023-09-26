@@ -10,7 +10,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { COLORS, SIZES } from "../../../constants/theme";
 import { LinearGradient } from "expo-linear-gradient";
 import HomePage from "../homepage/HomePage";
-import Categories from "../categories/Categories";
+import Categories from "../product/categories/Categories";
 import Cart from "../cart/Cart";
 import MySettings from "../accounts/yourSettings/MySettings.jsx";
 import Profile from "../accounts/myAccount/profile/Profile";
@@ -22,6 +22,8 @@ const screenOptions = {
   headerShown: false,
   tabBarHideOnKeyBoard: true,
   tabBarStyle: {
+    outerWidth: SIZES.width,
+    innerWidth: SIZES.width,
     backgroundColor: COLORS.tabBarBrown,
     borderTopRightRadius: 18,
     borderTopLeftRadius: 18,

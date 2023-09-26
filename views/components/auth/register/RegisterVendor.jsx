@@ -22,16 +22,6 @@ const RegisterVendor = () => {
   const [state, setState] = useState("");
 
   const navigation = useNavigation()
-  // const pickerRef = useRef();
-
-  // function open() {
-  //   pickerRef.current.focus();
-  // }
-
-  // function close() {
-  //   pickerRef.current.blur();
-  // }
-
 
   const handleSubmit = async(e)=>{  
     e.preventDefault();

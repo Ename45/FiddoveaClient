@@ -1,12 +1,12 @@
 import { View, Text, SafeAreaView } from 'react-native'
 import React from 'react'
 
-const Cart = () => {
+const Search = () => {
   return (
     <SafeAreaView>
-      <Text>Cart</Text>
+      <Text>Search</Text>
     </SafeAreaView>
   )
 }
 
-export default Cart
+export default Search

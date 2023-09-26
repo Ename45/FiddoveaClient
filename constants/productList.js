@@ -1,6 +1,6 @@
 
 
-export const feedList = [
+export const productList = [
   {
     productImage: "https://i.ibb.co/0KV6b8n/chocolate-cake.jpg",
     productName: "Chocolate Cake",

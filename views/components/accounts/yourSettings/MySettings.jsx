@@ -177,6 +177,7 @@ const MySettings = ({ navigation }) => {
         <View
         style={{
           marginHorizontal: 12,
+          borderStyle: "solid",
         }}
       >
         <View
