@@ -21,6 +21,7 @@ import EditProfile from "./views/components/accounts/myAccount/profile/EditProfi
 import LiveChat from "./views/components/accounts/actions/liveChat/LiveChat.jsx";
 import Notification from "./views/components/accounts/myAccount/notification/Notification.jsx";
 import Logout from "./views/components/accounts/actions/logout/Logout.jsx";
+import OtpNotification from "./views/components/auth/register/OtpNotification.jsx";
 
 const Stack = createNativeStackNavigator();
 
@@ -131,6 +132,11 @@ export default function App() {
           component={Logout}
           options={{ headerShown: false }}
         />
+         <Stack.Screen
+          name="OtpNotification"
+          component={OtpNotification}
+          options={{headerShown: false}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -145,3 +151,4 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
 });
+
