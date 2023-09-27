@@ -21,7 +21,7 @@ const HomePageWelcome = () => {
         <Text
           style={homePageWelcome.welcomeText(
             COLORS.black,
-            (1 / 100) * SIZES.height
+            // (1 / 100) * SIZES.height
           )}
         >
           Dive into a Treasure Trove

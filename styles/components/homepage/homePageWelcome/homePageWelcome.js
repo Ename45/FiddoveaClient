@@ -5,6 +5,11 @@ import { COLORS, SIZES } from "../../../../constants/theme";
 export default StyleSheet.create({
   outerContainer: {
     width: SIZES.width,
+    marginBottom: -10,
+    // borderWidth: 3,
+    // borderColor: "red",
+    // borderStyle: "solid",
+    height: (9 / 100) * SIZES.height,
   },
   welcomeText: (color, top) => ({
     fontFamily: "croissantOneRegular",
@@ -22,6 +27,10 @@ export default StyleSheet.create({
     marginVertical: 12,
     // marginHorizontal: 12,
     width: SIZES.width,
+    height: (8 / 100) * SIZES.height,
+    // borderWidth: 3,
+    // borderColor: "red",
+    // borderStyle: "solid",
   },
   searchIcon: {
     marginHorizontal: 6,
@@ -36,8 +45,12 @@ export default StyleSheet.create({
     backgroundColor: COLORS.gainsBoroGray,
     // marginRight: 10,
     borderRadius: 10,
-    // height: (8 / 100) * SIZES.height,
+    height: (7 / 100) * SIZES.height,
+    width: SIZES.width-20,
     flexDirection: "row",
+    // borderWidth: 3,
+    // borderColor: "green",
+    // borderStyle: "solid",
   },
   searchInput: {
     // position: "absolute",
@@ -49,7 +62,7 @@ export default StyleSheet.create({
     borderWidth: 0,
   },
   searchBtn: {
-    marginHorizontal: (9 / 100) * SIZES.width-20,
+    marginHorizontal: (9 / 100) * SIZES.width - 20,
     color: COLORS.darkChocolateBrown,
     position: "absolute",
     top: (1.5 / 100) * SIZES.height,

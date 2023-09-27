@@ -16,7 +16,7 @@ export default StyleSheet.create({
   topBarWrap: {
     marginHorizontal: 22,
     width: "100%",
-    height: (8 / 100) * SIZES.height,
+    height: (5 / 100) * SIZES.height,
     // borderWidth: 3,
     // borderColor: "blue",
     // borderStyle: "solid",
@@ -31,11 +31,11 @@ export default StyleSheet.create({
     // borderWidth: 3,
     // borderColor: "red",
     // borderStyle: "solid",
-    height: (8 / 100) * SIZES.height,
+    height: (6 / 100) * SIZES.height,
   },
   location: {
     fontFamily: "croissantOneRegular",
-    fontSize: (5 / 100) * SIZES.width,
+    fontSize: (4 / 100) * SIZES.width,
     color: COLORS.gray3,
   },
   notificationButton: {
