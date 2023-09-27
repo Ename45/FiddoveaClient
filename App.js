@@ -25,9 +25,7 @@ import EditProfile from "./views/components/accounts/myAccount/profile/EditProfi
 import LiveChat from "./views/components/accounts/actions/liveChat/LiveChat.jsx";
 import Notification from "./views/components/accounts/myAccount/notification/Notification.jsx";
 import Logout from "./views/components/accounts/actions/logout/Logout.jsx";
-import { useCallback } from "react";
-import { SplashScreen } from "expo-router";
-import { COLORS, FAMILY } from "./constants/theme.js";
+
 
 const Stack = createNativeStackNavigator();
 

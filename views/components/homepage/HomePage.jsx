@@ -4,6 +4,7 @@ import homepage from '../../../styles/components/homepage/homepage.js'
 import { MaterialCommunityIcons, MaterialIcons, Ionicons, Fontisto } from '@expo/vector-icons'
 import { COLORS, SIZES } from '../../../constants/theme.js'
 import HomePageWelcome from './homePageWelcome/HomePageWelcome.jsx'
+import Carousel from './carousel/Carousel.jsx'
 
 const HomePage = ({navigation}) => {
 
@@ -58,9 +59,8 @@ const HomePage = ({navigation}) => {
       </View>
 
       <ScrollView>
-        <HomePageWelcome
-        
-        />
+        <HomePageWelcome/>
+        <Carousel/>
       </ScrollView>
     </SafeAreaView>
   )
