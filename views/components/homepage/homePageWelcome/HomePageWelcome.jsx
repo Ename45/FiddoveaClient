@@ -22,7 +22,13 @@ const HomePageWelcome = () => {
     </View>
 
     <View style={homePageWelcome.searchOuterContainer}>
-      <TouchableOpacity>
+      
+        
+      
+      <View
+      style={homePageWelcome.searchWrapper}
+      >        
+        <TouchableOpacity>
         <Feather
         name='search'
         size={24}
@@ -30,28 +36,23 @@ const HomePageWelcome = () => {
         style={homePageWelcome.searchIcon}
         />
       </TouchableOpacity>
-      <View
-      style={homePageWelcome.searchWrapper}
-      >
         <InputField
         style={homePageWelcome.searchInput}
         value={searchItem}
         onChangeText={(text) => setSearchItem(text)}
-        onPressIn={() => {}}
+        onPress={() => {}}
         placeholder='what are you looking for'
         />
       </View>
-    </View>
-
-    <View>
       <TouchableOpacity style={homePageWelcome.searchBtn}>
         <Ionicons
         name='camera-outline'
-        size={SIZES.xLarge}
-        color={COLORS.azureWhite}
+        size={28}
+        color={COLORS.darkChocolateBrown}
         />
       </TouchableOpacity>
     </View>
+
     </View>
   )
 }

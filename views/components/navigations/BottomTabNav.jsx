@@ -33,6 +33,7 @@ const screenOptions = {
   tabBarLabelStyle: {
     color: COLORS.burlyWoodBrown,
     fontSize: SIZES.mid,
+    fontFamily: "playFairRegular"
   },
 };
 

@@ -1,6 +1,8 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StyleSheet } from "react-native";
+import { useFonts } from "expo-font";
+import { Screen } from "react-native-screens";
 import Splash from "./views/components/screens/splashScreens/Splash.jsx";
 import Splash2 from "./views/components/screens/splashScreens/Splash2.jsx";
 import GetStarted from "./views/components/onboarding/GetStarted.jsx";
@@ -23,10 +25,44 @@ import EditProfile from "./views/components/accounts/myAccount/profile/EditProfi
 import LiveChat from "./views/components/accounts/actions/liveChat/LiveChat.jsx";
 import Notification from "./views/components/accounts/myAccount/notification/Notification.jsx";
 import Logout from "./views/components/accounts/actions/logout/Logout.jsx";
+import { useCallback } from "react";
+import { SplashScreen } from "expo-router";
+import { COLORS, FAMILY } from "./constants/theme.js";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    croissantOneRegular: require("./assets/fonts/CroissantOne-Regular.ttf"),
+    playFairRegular: require("./assets/fonts/PlayfairDisplay-Regular.ttf"),
+    playFairMedium: require("./assets/fonts/PlayfairDisplay-Medium.ttf"),
+    playFairBold: require("./assets/fonts/PlayfairDisplay-Bold.ttf"),
+    poppinsRegular: require("./assets/fonts/Poppins-Regular.ttf"),
+    poppinsMedium: require("./assets/fonts/Poppins-Medium.ttf"),
+    poppinsBold: require("./assets/fonts/Poppins-Bold.ttf"),
+    robotoRegular: require("./assets/fonts/RobotoCondensed-Regular.ttf"),
+    robotoLight: require("./assets/fonts/RobotoCondensed-Light.ttf"),
+    robotoBold: require("./assets/fonts/RobotoCondensed-Bold.ttf"),
+  })
+
+  // const defaultOptions = {
+  //   headerTitleStyle: {
+  //     fontFamily: "playFairRegular",
+  //   },
+  // };
+
+
+
+  // const onLayoutRootView = useCallback(async() => {
+  //   if (fontsLoaded) {
+  //     await SplashScreen.hideAsync();
+  //   }
+  // },[fontsLoaded]);
+
+  // if (!fontsLoaded) {
+  //   return null;
+  // }
+
   return (
     <NavigationContainer>
       {/* <Stack.Navigator initialRouteName='BottomTabNav'></Stack.Navigator> */}
@@ -44,7 +80,9 @@ export default function App() {
         <Stack.Screen
           name="GetStarted"
           component={GetStarted}
-          options={{ headerShown: false }}
+          options={{ 
+            headerShown: false
+          }}
         />
         <Stack.Screen
           name="Register"

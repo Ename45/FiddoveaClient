@@ -7,8 +7,8 @@ export default StyleSheet.create({
     width: SIZES.width,
   },
   welcomeText: (color, top) => ({
-    fontWeight: "bold",
-    fontSize: (7 / 100) * SIZES.width,
+    fontFamily: "croissantOneRegular",
+    fontSize: (6 / 100) * SIZES.width,
     marginTop: top,
     color: color,
     marginHorizontal: 12,
@@ -20,29 +20,38 @@ export default StyleSheet.create({
     color: COLORS.gray3,
     borderRadius: 10,
     marginVertical: 12,
+    marginHorizontal: 12,
+    width: SIZES.width,
   },
   searchIcon: {
     marginHorizontal: 10,
     color: COLORS.darkChocolateBrown,
+    position: "absolute",
+    top: (2/100*("100%"))
+    // marginTop: 10,
   },
   searchWrapper: {
-    // position: "relative",
+    position: "relative",
     flex: 1,
     backgroundColor: COLORS.gainsBoroGray,
-    marginRight: 10,
+    // marginRight: 10,
     borderRadius: 10,
-    height: (8 / 100) * SIZES.height,
+    // height: (8 / 100) * SIZES.height,
+    flexDirection: "row"
   },
   searchInput: {
     // position: "absolute",
-    width: "100%",
+    width: SIZES.width,
     height: (8 / 100) * SIZES.height,
-    paddingHorizontal: 10,
-    fontSize: (3 / 100) * SIZES.height,
+    // paddingHorizontal: 2,
+    fontSize: (2 / 100) * SIZES.height,
+    fontFamily: "croissantOneRegular",
+    borderWidth: 0
   },
   searchBtn: {
     width: 50,
-    backgroundColor: COLORS.primary,
-    height: "100%"
-  }
+    borderRadius: 10,
+    height: "50%",
+    alignItems: "center",
+  },
 });

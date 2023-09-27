@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { COLORS, FONT, SIZES } from "../../../../constants/theme.js";
+import { COLORS, FAMILY, FONT, SIZES } from "../../../../constants/theme.js";
 
 export default StyleSheet.create({
   buttonContainer: {

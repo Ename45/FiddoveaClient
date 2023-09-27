@@ -34,7 +34,7 @@ export default StyleSheet.create({
     height: (8 / 100) * SIZES.height,
   },
   location: {
-    fontWeight: "bold",
+    fontFamily: "croissantOneRegular",
     fontSize: (5 / 100) * SIZES.width,
     color: COLORS.gray3,
   },
@@ -69,6 +69,7 @@ export default StyleSheet.create({
   notificationNumberText: {
     color: "green",
     fontWeight: "600",
-    fontSize: SIZES.medium,
+    fontFamily: "croissantOneRegular",
+    fontSize: SIZES.mid,
   },
 });
