@@ -4,9 +4,9 @@ import { COLORS, SIZES } from "../../../../constants/theme.js";
 export default StyleSheet.create({
   container: {
     flex: 1,
-    // borderWidth: 3,
-    // borderColor: "red",
-    // borderStyle: "solid",
+    borderWidth: 3,
+    borderColor: "purple",
+    borderStyle: "solid",
     marginHorizontal: 4,
   },
   nameText: {

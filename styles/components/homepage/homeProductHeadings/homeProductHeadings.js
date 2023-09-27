@@ -7,9 +7,9 @@ export default StyleSheet.create({
     justifyContent: "center",
     alignContent: "center",
     marginBottom: 0,
-    // borderWidth: 3,
-    // borderColor: "red",
-    // borderStyle: "solid",
+    borderWidth: 3,
+    borderColor: "yellow",
+    borderStyle: "solid",
   },
   header: {
     flexDirection: "row",
