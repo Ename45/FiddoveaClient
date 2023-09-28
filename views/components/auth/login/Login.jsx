@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
-import { View, Text, SafeAreaView } from 'react-native'
+import { View, Text, SafeAreaView, ImageBackground, Image } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 import login from '../../../../styles/components/auth/login/login.js'
-import register from '../../../../styles/components/auth/register/register.js'
 import InputField from '../../reusable/inputField/InputField.jsx';
 import CustomButton from '../../reusable/button/CustomButton.jsx'
 import { customerUrl, ngrokBaseUrl } from '../../../../api/Api.jsx';
@@ -47,18 +46,41 @@ const Login = () => {
     }
 
     return (
-    <SafeAreaView>
-      <View style={register.container}>
-        <Text style={register.title}></Text>
+      <ImageBackground source={require("../../../../assets/images/jpg/backgroundColour3.jpeg")} 
+      style={login.backgroundColor}>
+      <View style={login.logoContainer}>
+    <Image
+        source={require('../../../../assets/images/png/secondLogo.png')} 
+        style={login.logo}
+      />
+    </View>
+
+    <View
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        paddingHorizontal: 20,
+      }}
+    >
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: COLORS.pageBackgroundBrown,
+          borderRadius: 20,
+          padding: 20,
+        }}
+      >
+        <Text style={login.title}>Login</Text>
         <InputField
           placeholder="Email"
-          keyboardType='email-address'
-          onChangeText={text => setEmail(text)}
+          keyboardType="email-address"
+          onChangeText={(text) => setEmail(text)}
           value={email}
+          style={{ marginBottom: 10 }}
         />
         <InputField
           placeholder="Password"
-          onChangeText={text => setPassword(text)}
+          onChangeText={(text) => setPassword(text)}
           value={password}
           secureTextEntry
         />
@@ -77,8 +99,10 @@ const Login = () => {
           </Text>
         </View>
       </View>
-      </SafeAreaView>
+      </View>
+      </ImageBackground>
   )
 }
 
 export default Login
+

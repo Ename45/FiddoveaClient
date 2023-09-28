@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, SafeAreaView } from "react-native";
+import { View, Text, SafeAreaView, styles, Image, ImageBackground} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 
@@ -43,14 +43,37 @@ const Register = () => {
   };
 
   return (
-    <SafeAreaView style={register.container}>
-      <View style={register.container}>
-        <Text style={register.title}></Text>
+    <ImageBackground source={require("../../../../assets/images/jpg/backgroundColour3.jpeg")} 
+      style={register.backgroundColor}>
+      <View style={register.logoContainer}>
+    <Image
+        source={require('../../../../assets/images/png/secondLogo.png')} 
+        style={register.logo}
+      />
+    </View>
+
+    <View
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        paddingHorizontal: 20,
+      }}
+    >
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: COLORS.pageBackgroundBrown,
+          borderRadius: 20,
+          padding: 20,
+        }}
+      >
+        <Text style={register.title}>Registration</Text>
         <InputField
           placeholder="Email"
           keyboardType="email-address"
           onChangeText={(text) => setEmail(text)}
           value={email}
+          style={{ marginBottom: 10 }}
         />
         <InputField
           placeholder="Password"
@@ -58,18 +81,69 @@ const Register = () => {
           value={password}
           secureTextEntry
         />
-        <View>
-          <CustomButton 
-          buttonName="Register" 
-          onPress={handleSubmit}          
-          style={{
-            backgroundColor: buttonClicked ? COLORS.rosyBrown : COLORS.silverGray
-          }} 
-          />
+
+        <View style={{ marginTop: 20 }}>
+          <CustomButton buttonName="Register" onPress={handleSubmit} />
         </View>
       </View>
-    </SafeAreaView>
-  );
+    </View>
+    </ImageBackground>
+  
+);
 };
 
+
+
 export default Register;
+
+
+  // <SafeAreaView style={{ flex: 1 }}>
+  //   <Image
+  //     source={require('../../../../assets/images/jpg/backgroundColour3.jpeg')}
+  //     style={styles.Image}
+  //   />
+
+  //   {/* Add your logo/image */}
+  //   <View style={register.logoContainer}>
+  //     <Image
+  //       source={require('../../../../assets/images/png/secondLogo.png')} 
+  //       style={register.logo}
+  //     />
+  //   </View>
+
+  //   <View
+  //     style={{
+  //       flex: 1,
+  //       justifyContent: 'center',
+  //       paddingHorizontal: 20,
+  //     }}
+  //   >
+  //     <View
+  //       style={{
+  //         flex: 1,
+  //         backgroundColor: COLORS.pageBackgroundBrown,
+  //         borderRadius: 20,
+  //         padding: 20,
+  //       }}
+  //     >
+  //       <Text style={register.title}>Registration</Text>
+  //       <InputField
+  //         placeholder="Email"
+  //         keyboardType="email-address"
+  //         onChangeText={(text) => setEmail(text)}
+  //         value={email}
+  //         style={{ marginBottom: 10 }}
+  //       />
+  //       <InputField
+  //         placeholder="Password"
+  //         onChangeText={(text) => setPassword(text)}
+  //         value={password}
+  //         secureTextEntry
+  //       />
+
+  //       <View style={{ marginTop: 20 }}>
+  //         <CustomButton buttonName="Register" onPress={handleSubmit} />
+  //       </View>
+  //     </View>
+  //   </View>
+  // </SafeAreaView>

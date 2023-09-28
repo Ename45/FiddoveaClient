@@ -1,32 +1,44 @@
 import { StyleSheet } from "react-native";
-import { FONT, SIZES, COLORS } from "../../../../constants/theme.js";
+import { COLORS, FONT, SIZES } from "../../../../constants/theme";
+
 
 export default StyleSheet.create({
-  container: {
-    width: SIZES.width,
-    height: SIZES.height,
-    backgroundColor: COLORS.darkBrown2,
-  },
-  title: {
-    fontSize: 24,
-    marginBottom: 16,
-  },
-  input: {
-    width: "90%",
-    height: 40,
-    borderColor: COLORS.gray,
-    borderWidth: 1,
-    marginBottom: 16,
-    paddingLeft: 8,
-    borderRadius: 20,
-  },
-  buttonBackground: {
-    width: "100%",
-    height: 40,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 20,
-    border: "1px",
-    backgroundColor: COLORS.darkBrown,
-  },
+    container: {
+        flex: 1,
+
+    },
+    backgroundColor: {
+        resizeMode: 'cover',
+        height: "100%",
+        // flex: 1
+
+
+    },
+    title: {
+        fontSize: SIZES.xLarge,
+        fontWeight: 'bold',
+        marginBottom: 50,
+        color: COLORS.darkBrown,
+        marginLeft: 80,
+        height: 5
+    },
+    Image: {
+        flex: 1,
+        resizeMode: 'cover',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+    },
+    logoContainer: {
+        alignItems: 'center',
+        marginTop: 30,
+        marginBottom: 20,
+    },
+    logo: {
+        width: 100,
+        height: 100,
+        borderRadius: 50
+    },
 });

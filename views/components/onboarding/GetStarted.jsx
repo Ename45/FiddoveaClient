@@ -17,32 +17,12 @@ const GetStarted = () => {
   return (
       <ImageBackground source={require("../../../assets/images/jpg/backgroundColour3.jpeg")} 
       style={getStarted.backgroundImage}>
-    {/* <Image
-      source={require("../../../assets/images/jpg/welcomeScreen.jpg")}
-      style={{
-        width: "55%",
-        height: "25%",
-        borderRadius: 60,
-        transform: [{ rotate: '15deg' }],
-        backgroundColor: COLORS.black,
-      }}
-    />
-    <Image
-      source={require("../../../assets/images/png/welcomeScreen.png")}
-      style={{
-        width: "55%",
-        height: "25%",
-        borderRadius: 60,
-        transform: [{ rotate: '-15deg' }],
-        backgroundColor: COLORS.black,
-      }}
-    /> */}
       <View style={getStarted.getStartedContainer}>
         <View style={[getStarted.buttonContainer, 
           getStarted.shadowBox]}>
           <CustomButton 
           buttonName="Register as a Vendor" 
-          onPress={() => navigateToPage("RegisterVendor")}
+          onPress={() => navigateToPage("Login")}
           />
           <CustomButton 
           buttonName="Get Started" 
