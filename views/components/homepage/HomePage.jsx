@@ -7,7 +7,8 @@ import HomePageWelcome from './homePageWelcome/HomePageWelcome.jsx'
 import CarouselSlides from './carousel/CarouselSlides.jsx'
 import HomeProductHeadings from './homeProductHeadings/HomeProductHeadings.jsx'
 import ProductsRow  from '../product/productsRow/ProductsRow.jsx'
-import { productList } from '../../../constants/productList.js'
+import AllProducts from '../product/allProducts/AllProducts.jsx'
+import { productList } from '../../../constants/allProductsList.js'
 
 const HomePage = ({navigation}) => {
 
@@ -64,8 +65,10 @@ const HomePage = ({navigation}) => {
       <ScrollView>
         <HomePageWelcome/>
         <CarouselSlides/>
-        <HomeProductHeadings/>
-        <ProductsRow productList={productList}/>
+        <HomeProductHeadings navigation={navigation}/>
+        <ProductsRow navigation={navigation} />
+        {/* <ProductsRow /> */}
+        {/* <AllProducts /> */}
       </ScrollView>
     </SafeAreaView>
   )

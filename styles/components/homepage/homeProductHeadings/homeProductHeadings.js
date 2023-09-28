@@ -7,17 +7,20 @@ export default StyleSheet.create({
     justifyContent: "center",
     alignContent: "center",
     marginBottom: 0,
-    borderWidth: 3,
-    borderColor: "yellow",
-    borderStyle: "solid",
+    width: SIZES.width-20,
+    height: 5 / 100*(SIZES.height),
+    marginHorizontal: 12,
+    // borderWidth: 3,
+    // borderColor: "yellow",
+    // borderStyle: "solid",
   },
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
   },
   headerTitle: {
-    fontFamily: "croissantOneRegular",
+    fontFamily: "poppinsRegular",
     fontSize: (5 / 100) * SIZES.width,
-    color: COLORS.primary
+    color: COLORS.primary,
   },
 });

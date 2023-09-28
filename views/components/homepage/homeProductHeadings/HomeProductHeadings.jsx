@@ -4,7 +4,12 @@ import homeProductHeadings from '../../../../styles/components/homepage/homeProd
 import { Ionicons } from '@expo/vector-icons'
 import { COLORS, SIZES } from '../../../../constants/theme'
 
-const HomeProductHeadings = () => {
+const HomeProductHeadings = ({navigation}) => {
+
+  const navigateToAllProducts =() =>{
+    navigation.navigate("AllProducts")
+  }
+  
   return (
     <View style={homeProductHeadings.container}>
       <View style={homeProductHeadings.header}>
@@ -17,6 +22,7 @@ const HomeProductHeadings = () => {
             name='ios-grid'
             size={(7 / 100) * SIZES.width}
             color={COLORS.darkChocolateBrown}
+            onPress={navigateToAllProducts}
             />
             {/* <Text style={{fontSize: 12, marginTop: -5}}>All Products</Text> */}
           </TouchableOpacity>

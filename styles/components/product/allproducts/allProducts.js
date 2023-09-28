@@ -3,15 +3,13 @@ import { COLORS, SIZES } from "../../../../constants/theme.js";
 
 export default StyleSheet.create({
   container: {
-    width: SIZES.width,
-    // flex: 1,
+    // flex:1,
+    // marginTop: 10,
+    // justifyContent: "center",
+    // alignContent: "center",
+    // marginBottom: 0,
     // borderWidth: 3,
-    // borderColor: "purple",
+    // borderColor: "yellow",
     // borderStyle: "solid",
-    marginTop: 5,
-    marginHorizontal: 4,
   },
-  nameText: {
-    width: 100
-  }
 });

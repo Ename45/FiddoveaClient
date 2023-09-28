@@ -10,13 +10,14 @@ export default StyleSheet.create({
     // borderColor: "red",
     // borderStyle: "solid",
     height: (9 / 100) * SIZES.height,
+    marginHorizontal: 8
   },
   welcomeText: (color, top) => ({
     fontFamily: "croissantOneRegular",
     fontSize: (6 / 100) * SIZES.width,
     marginTop: top,
     color: color,
-    marginHorizontal: 12,
+    marginHorizontal: 8,
   }),
   searchOuterContainer: {
     flexDirection: "row",
@@ -25,8 +26,9 @@ export default StyleSheet.create({
     color: COLORS.gray3,
     borderRadius: 10,
     marginVertical: 12,
-    // marginHorizontal: 12,
-    width: SIZES.width,
+    marginHorizontal: -12,
+    width: SIZES.width-5,
+    marginLeft: (2 / 100) * SIZES.width,
     height: (8 / 100) * SIZES.height,
     // borderWidth: 3,
     // borderColor: "red",
@@ -46,7 +48,7 @@ export default StyleSheet.create({
     // marginRight: 10,
     borderRadius: 10,
     height: (7 / 100) * SIZES.height,
-    width: SIZES.width-20,
+    width: SIZES.width - 20,
     flexDirection: "row",
     // borderWidth: 3,
     // borderColor: "green",
@@ -58,7 +60,7 @@ export default StyleSheet.create({
     height: (8 / 100) * SIZES.height,
     paddingHorizontal: (10 / 100) * SIZES.width,
     fontSize: (2.4 / 100) * SIZES.height,
-    fontFamily: "croissantOneRegular",
+    fontFamily: "poppinsRegular",
     borderWidth: 0,
   },
   searchBtn: {
@@ -69,3 +71,6 @@ export default StyleSheet.create({
     left: (77 / 100) * SIZES.width,
   },
 });
+
+
+

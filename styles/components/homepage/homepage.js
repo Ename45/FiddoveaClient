@@ -34,7 +34,7 @@ export default StyleSheet.create({
     height: (6 / 100) * SIZES.height,
   },
   location: {
-    fontFamily: "croissantOneRegular",
+    fontFamily: "poppinsRegular",
     fontSize: (4 / 100) * SIZES.width,
     color: COLORS.gray3,
   },

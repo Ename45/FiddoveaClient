@@ -5,9 +5,9 @@ export default StyleSheet.create({
   outerContainer: {
     // flex: 1,
     alignItems: "center",
-    borderWidth: 3,
-    borderColor: "red",
-    borderStyle: "solid",
+    // borderWidth: 3,
+    // borderColor: "red",
+    // borderStyle: "solid",
     height: SIZES.height/3.4
   },
 });

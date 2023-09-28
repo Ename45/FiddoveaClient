@@ -25,7 +25,19 @@ import EditProfile from "./views/components/accounts/myAccount/profile/EditProfi
 import LiveChat from "./views/components/accounts/actions/liveChat/LiveChat.jsx";
 import Notification from "./views/components/accounts/myAccount/notification/Notification.jsx";
 import Logout from "./views/components/accounts/actions/logout/Logout.jsx";
-
+import AllProducts from "./views/components/product/allProducts/AllProducts.jsx";
+import Cake from './views/components/product/categories/cake/Cake.jsx'
+import Cupcake from './views/components/product/categories/cupcake/Cupcake.jsx'
+import Doughnut from './views/components/product/categories/doughnut/Doughnut.jsx'
+import Chocolate from './views/components/product/categories/chocolate/Chocolate.jsx'
+import Candy from './views/components/product/categories/candy/Candy.jsx'
+import Brownie from './views/components/product/categories/brownie/Brownie.jsx'
+import Cookie from './views/components/product/categories/cookie/Cookie.jsx'
+import Dessert from './views/components/product/categories/dessert/Dessert.jsx'
+import Roll from './views/components/product/categories/roll/Roll.jsx'
+import Popcorn from './views/components/product/categories/popcorn/Popcorn.jsx'
+import Bread from './views/components/product/categories/bread/Bread.jsx'
+import Drink from './views/components/product/categories/drink/Drink.jsx'
 
 const Stack = createNativeStackNavigator();
 
@@ -43,23 +55,6 @@ export default function App() {
     robotoBold: require("./assets/fonts/RobotoCondensed-Bold.ttf"),
   })
 
-  // const defaultOptions = {
-  //   headerTitleStyle: {
-  //     fontFamily: "playFairRegular",
-  //   },
-  // };
-
-
-
-  // const onLayoutRootView = useCallback(async() => {
-  //   if (fontsLoaded) {
-  //     await SplashScreen.hideAsync();
-  //   }
-  // },[fontsLoaded]);
-
-  // if (!fontsLoaded) {
-  //   return null;
-  // }
 
   return (
     <NavigationContainer>
@@ -176,6 +171,71 @@ export default function App() {
         <Stack.Screen
           name="Logout"
           component={Logout}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="AllProducts"
+          component={AllProducts}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Cake"
+          component={Cake}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Cupcake"
+          component={Cupcake}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Doughnut"
+          component={Doughnut}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Chocolate"
+          component={Chocolate}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Candy"
+          component={Candy}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Brownie"
+          component={Brownie}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Cookie"
+          component={Cookie}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Dessert"
+          component={Dessert}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Roll"
+          component={Roll}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Popcorn"
+          component={Popcorn}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Bread"
+          component={Bread}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Drink"
+          component={Drink}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

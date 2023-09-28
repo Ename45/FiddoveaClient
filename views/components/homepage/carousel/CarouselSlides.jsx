@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 import { COLORS, SIZES } from '../../../../constants/theme'
-import { SliderBox } from 'react-native-image-slider-box'
+// import { SliderBox } from 'react-native-image-slider-box'
 import carouselSlides from '../../../../styles/components/homepage/carousel/carouselSlides'
 
 const CarouselSlides = () => {
@@ -14,15 +14,15 @@ const CarouselSlides = () => {
 
   return (
     <View style={carouselSlides.outerContainer}>
-      <SliderBox
+      {/* <SliderBox
       images={imageSlides}
       dotColor= {COLORS.primary}
       inactiveDotColor = {COLORS.secondary}
       ImageComponentStyle = {{ borderRadius: 15, width: (94/100*(SIZES.width)), marginTop: 0 }}
       autoplay
       circleLoop
-      />
-      {/* <Text style={{fontSize: 24, textAlign: "center"}}>...CAROUSEL VIEW...</Text> */}
+      /> */}
+      <Text style={{fontSize: 24, textAlign: "center"}}>...CAROUSEL VIEW...</Text>
     </View>
   )
 }
