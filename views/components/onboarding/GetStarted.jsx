@@ -46,7 +46,7 @@ const GetStarted = () => {
           />
           <CustomButton 
           buttonName="Get Started" 
-          onPress={() => navigateToPage("BottomTabNav")} 
+          onPress={() => navigateToPage("OtpNotification")} 
           style={getStarted.button} 
           />
         </View>

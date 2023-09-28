@@ -132,7 +132,7 @@ export default function App() {
           component={Logout}
           options={{ headerShown: false }}
         />
-         <Stack.Screen
+        <Stack.Screen
           name="OtpNotification"
           component={OtpNotification}
           options={{headerShown: false}}
