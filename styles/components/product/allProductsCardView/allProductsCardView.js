@@ -3,15 +3,17 @@ import { COLORS, SIZES } from "../../../../constants/theme";
 
 export default StyleSheet.create({
   container: {
-    width: 182,
+    width: SIZES.width / 2,
     height: 240,
-    marginEnd: 22,
+    // marginEnd: 22,
     borderRadius: 12,
     backgroundColor: COLORS.tanBrown,
+    marginBottom: (2 / 100) * SIZES.height,
+    position: "relative"
   },
   imageContainer: {
     flex: 1,
-    width: 170,
+    width: (47 / 100) * SIZES.width,
     marginLeft: 10 / 2,
     marginTop: 10 / 2,
     borderRadius: 10,
@@ -23,14 +25,26 @@ export default StyleSheet.create({
     resizeMode: "cover",
   },
   details: {
-    padding: 10,
+    padding: 3,
   },
   nameText: {
-    fontFamily: "croissantOneRegular",
-    fontSize: SIZES.large,
+    fontFamily: "poppinsMedium",
+    fontSize: (2.4 / 100) * SIZES.height,
     marginBottom: 2,
+  },
+  price: {
+    fontFamily: "poppinsBold",
+    fontSize: (2.4 / 100) * SIZES.height,
+    // color: COLORS.gray3
   },
   addBtn: {
     position: "absolute",
+    bottom: 193,
+    left: 4
   },
+  addBtn2: {
+    position: "absolute",
+    bottom: 1,
+    left: 148
+  }
 });

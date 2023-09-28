@@ -26,6 +26,7 @@ import LiveChat from "./views/components/accounts/actions/liveChat/LiveChat.jsx"
 import Notification from "./views/components/accounts/myAccount/notification/Notification.jsx";
 import Logout from "./views/components/accounts/actions/logout/Logout.jsx";
 import AllProducts from "./views/components/product/allProducts/AllProducts.jsx";
+import ProductDetails from "./views/components/product/productDetails/ProductDetails.jsx";
 import Cake from './views/components/product/categories/cake/Cake.jsx'
 import Cupcake from './views/components/product/categories/cupcake/Cupcake.jsx'
 import Doughnut from './views/components/product/categories/doughnut/Doughnut.jsx'
@@ -176,6 +177,11 @@ export default function App() {
         <Stack.Screen
           name="AllProducts"
           component={AllProducts}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="ProductDetails"
+          component={ProductDetails}
           options={{ headerShown: false }}
         />
         <Stack.Screen

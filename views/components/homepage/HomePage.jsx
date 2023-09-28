@@ -67,8 +67,6 @@ const HomePage = ({navigation}) => {
         <CarouselSlides/>
         <HomeProductHeadings navigation={navigation}/>
         <ProductsRow navigation={navigation} />
-        {/* <ProductsRow /> */}
-        {/* <AllProducts /> */}
       </ScrollView>
     </SafeAreaView>
   )

@@ -313,7 +313,7 @@ const AllProducts = () => {
     <View style={allProducts.container}>
       <FlatList
     data={allProductsList}
-    renderItem={({ item }) => <AllProductsCardView item={item} />}
+    renderItem={({ item}) => <AllProductsCardView item={item} />}
     keyExtractor = {(item) => item.id.toString()}
     contentContainerStyle={{ columnGap: SIZES.medium}}
     // horizontal

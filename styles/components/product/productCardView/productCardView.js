@@ -4,15 +4,16 @@ import { COLORS, SIZES } from "../../../../constants/theme";
 
 export default StyleSheet.create({
   container: {
-    width: 182,
-    height: 240,
-    marginEnd: 22,
-    borderRadius: 12,
-    backgroundColor: COLORS.tanBrown,
+    // width: SIZES.width / 2,
+    // height: 240,
+    // // marginEnd: 22,
+    // borderRadius: 12,
+    // backgroundColor: COLORS.tanBrown,
+    
   },
   imageContainer: {
     flex: 1,
-    width: (48 / 100) * SIZES.width,
+    width: (47 / 100) * SIZES.width,
     marginLeft: 10 / 2,
     marginTop: 10 / 2,
     borderRadius: 10,
@@ -24,11 +25,11 @@ export default StyleSheet.create({
     resizeMode: "cover",
   },
   details: {
-    padding: 10,
+    padding: 3,
   },
   nameText: {
-    fontFamily: "poppinsRegular",
-    fontSize: SIZES.large,
+    fontFamily: "poppinsMedium",
+    fontSize: (2.4 / 100) * SIZES.height,
     marginBottom: 2,
   },
   // addBtn: {
