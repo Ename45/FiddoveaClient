@@ -12,7 +12,9 @@ import { customerUrl, ngrokBaseUrl, registerUrl } from "../../../../api/Api.jsx"
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [buttonClicked, setButtonClicked] = useState(false);
+  const [buttonClicked, setButtonClicked] = useState(false);  
+  const [error, setError] = useState(null);
+  const [networkError, setNetworkError] = useState("");
 
   const navigation = useNavigation();
 
@@ -31,10 +33,11 @@ const Register = () => {
     console.log("i got here")
     if (email !== "" && password !== "") {
       try {
-        await axios.post(URL, customerData).then((response) => {
+        const response = await axios.post(URL, customerData)
+        .then((response) => {
           console.log("got here 2")
-          navigation.navigate("Login");
-          return response.data;
+          navigation.navigate("BottomTabNav");
+          // return response.data;
         });
       } catch (error) {
         return error;

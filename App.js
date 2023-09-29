@@ -7,7 +7,6 @@ import Splash from "./views/components/screens/splashScreens/Splash.jsx";
 import Splash2 from "./views/components/screens/splashScreens/Splash2.jsx";
 import GetStarted from "./views/components/onboarding/GetStarted.jsx";
 import Register from "./views/components/auth/register/Register.jsx";
-import Otp from "./views/components/auth/register/Otp.jsx"
 import RegisterVendor from "./views/components/auth/register/RegisterVendor.jsx";
 import RegisterAdmin from "./views/components/auth/register/RegisterAdmin.jsx";
 import Login from "./views/components/auth/login/Login.jsx";
@@ -42,6 +41,7 @@ import Bread from './views/components/product/categories/bread/Bread.jsx'
 import Drink from './views/components/product/categories/drink/Drink.jsx'
 import WishList from "./views/components/product/wishlist/WishList.jsx";
 import NewRivals from "./views/components/product/allProducts/NewRivals.jsx";
+import OtpConfirmation from "./views/components/auth/register/OtpConfirmation.jsx";
 
 const Stack = createNativeStackNavigator();
 
@@ -85,6 +85,11 @@ export default function App() {
         <Stack.Screen
           name="Register"
           component={Register}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="OtpConfirmation"
+          component={OtpConfirmation}
           options={{ headerShown: false }}
         />
         <Stack.Screen
@@ -259,7 +264,7 @@ export default function App() {
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
-     </NavigationContainer>
+    </NavigationContainer>
   );
 
 }

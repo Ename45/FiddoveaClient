@@ -10,7 +10,6 @@ const useFetch = () => {
   const [error, setError ] = useState(null);
 
   const fetchData = async() => {
-    setIsLoading(true)
 
     try {
       const response = await axios.get(`${ngrokBaseUrl}/api/v1/products`);
