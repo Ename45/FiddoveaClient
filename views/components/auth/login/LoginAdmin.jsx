@@ -5,6 +5,7 @@ import axios from 'axios';
 import register from '../../../../styles/components/auth/register/register.js'
 import InputField from '../../reusable/inputField/InputField.jsx';
 import CustomButton from '../../reusable/button/CustomButton.jsx'
+import loginAdmin from '../../../../styles/components/auth/login/loginAdmin.js';
 
 const LoginAdmin = () => {
   const [email, setEmail] = useState('');
@@ -39,23 +40,52 @@ const LoginAdmin = () => {
     }
 
     return (
-    <SafeAreaView>
-      <View style={register.container}>
-        <Text style={register.title}></Text>
+      <ImageBackground source={require("../../../../assets/images/jpg/backgroundColour3.jpeg")} 
+      style={loginAdmin.backgroundColor}>
+      <View style={loginAdmin.logoContainer}>
+    <Image
+        source={require('../../../../assets/images/png/secondLogo.png')} 
+        style={loginAdmin.logo}
+      />
+    </View>
+
+    <View
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        paddingHorizontal: 20,
+      }}
+    >
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: COLORS.pageBackgroundBrown,
+          borderRadius: 20,
+          padding: 20,
+        }}
+      >
+        <Text style={loginAdmin.title}>Login</Text>
         <InputField
           placeholder="Email"
-          keyboardType='email-address'
-          onChangeText={text => setEmail(text)}
+          keyboardType="email-address"
+          onChangeText={(text) => setEmail(text)}
           value={email}
+          style={{ marginBottom: 10 }}
         />
         <InputField
           placeholder="Password"
-          onChangeText={text => setPassword(text)}
+          onChangeText={(text) => setPassword(text)}
           value={password}
           secureTextEntry
         />
         <View>
-        <CustomButton buttonName="Login" onPress={handleSubmit} />
+        <CustomButton 
+        buttonName="Login" 
+        onPress={handleSubmit} 
+        style={{
+            backgroundColor: buttonClicked ? COLORS.rosyBrown : COLORS.silverGray
+          }} 
+        />
         </View>
         <View>
           <Text onPress={() => navigateToPage("ForgotPassword")}>
@@ -63,7 +93,8 @@ const LoginAdmin = () => {
           </Text>
         </View>
       </View>
-      </SafeAreaView>
+      </View>
+      </ImageBackground>
   )
 }
 

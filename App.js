@@ -7,6 +7,7 @@ import Splash from "./views/components/screens/splashScreens/Splash.jsx";
 import Splash2 from "./views/components/screens/splashScreens/Splash2.jsx";
 import GetStarted from "./views/components/onboarding/GetStarted.jsx";
 import Register from "./views/components/auth/register/Register.jsx";
+import Otp from "./views/components/auth/register/Otp.jsx"
 import RegisterVendor from "./views/components/auth/register/RegisterVendor.jsx";
 import RegisterAdmin from "./views/components/auth/register/RegisterAdmin.jsx";
 import Login from "./views/components/auth/login/Login.jsx";
@@ -45,6 +46,7 @@ import NewRivals from "./views/components/product/allProducts/NewRivals.jsx";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+
   const [fontsLoaded] = useFonts({
     croissantOneRegular: require("./assets/fonts/CroissantOne-Regular.ttf"),
     playFairRegular: require("./assets/fonts/PlayfairDisplay-Regular.ttf"),
@@ -257,16 +259,17 @@ export default function App() {
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
-    </NavigationContainer>
+     </NavigationContainer>
   );
+
 }
 
 const styles = StyleSheet.create({
-  container: {
-    paddingTop: 20,
-  },
-  textStyle: {
-    fontFamily: "playFairRegular",
-    fontSize: 20,
-  },
+    container: {
+        paddingTop: 20,
+    },
+    textStyle: {
+        fontFamily: "playFairRegular",
+        fontSize: 20,
+    },
 });
