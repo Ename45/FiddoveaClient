@@ -3,7 +3,6 @@ export const customerUrl = 'api/v1/customer'
 export const vendorUrl = 'api/v1/vendor'
 export const adminUrl = 'api/v1/admin'
 
-
 // export const Url = `${ngrokBaseUrl}/${customerUrl}`;
 
 // export const loginCustomerUrl = `${ngrokBaseUrl}/${customerUrl}`;
