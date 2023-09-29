@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Image } from 'react-native'
+import { View, Text, TouchableOpacity, Image, SafeAreaView } from 'react-native'
 import React from 'react'
 import allProductsCardView from '../../../../styles/components/product/allProductsCardView/allProductsCardView'
 import { Ionicons } from '@expo/vector-icons'
@@ -8,12 +8,13 @@ import { useNavigation } from '@react-navigation/native'
 const AllProductsCardView = ({item }) => {
   const navigation = useNavigation()
 
-  const navigateToProductDetails =() => {
-    navigation.navigate('ProductDetails')
-  }
+  // const navigateToProductDetails =() => {
+  //   navigation.navigate('ProductDetails', {item})
+  // }
+  
 
   return (
-    <TouchableOpacity onPress={() => navigateToProductDetails()}>
+      <TouchableOpacity onPress={() => navigation.navigate('ProductDetails', {item})}>
         <View style={allProductsCardView.container}>
           <View style={allProductsCardView.imageContainer}>
             <Image
@@ -23,14 +24,14 @@ const AllProductsCardView = ({item }) => {
           </View>  
           <View style={allProductsCardView.details}>            
           <Text style={allProductsCardView.nameText} numberOfLines={1}>{item.productName}</Text>
-          <Text style={allProductsCardView.price} numberOfLines={1}>{item.price}</Text>
+          <Text style={allProductsCardView.price} numberOfLines={1}>N{item.productPrice}</Text>
           </View>
           <View  style={{alignItems: "center", paddingHorizontal: 8}}>
             <TouchableOpacity style={ allProductsCardView.addBtn}>
             <Ionicons
             name='heart'
             size={35}
-            color={COLORS.pageBackgroundBrown}
+            color={COLORS.white}
             />
           </TouchableOpacity>       
           <TouchableOpacity style={ allProductsCardView.addBtn2}>

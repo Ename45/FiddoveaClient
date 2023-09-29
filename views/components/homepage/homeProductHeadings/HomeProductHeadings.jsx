@@ -3,11 +3,14 @@ import React from 'react'
 import homeProductHeadings from '../../../../styles/components/homepage/homeProductHeadings/homeProductHeadings.js'
 import { Ionicons } from '@expo/vector-icons'
 import { COLORS, SIZES } from '../../../../constants/theme'
+import { useNavigation } from '@react-navigation/native'
 
-const HomeProductHeadings = ({navigation}) => {
+const HomeProductHeadings = () => {
+
+  const navigation = useNavigation();
 
   const navigateToAllProducts =() =>{
-    navigation.navigate("AllProducts")
+    navigation.navigate("NewRivals")
   }
   
   return (

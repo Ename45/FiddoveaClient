@@ -7,8 +7,6 @@ import ProductCardView from '../productCardView/ProductCardView';
 // import cupcake from '../../../../assets/images/jpg/cupcake'
 
 const ProductsRow = ({navigation}) => {
-  
-
   const productCategories = [
     {
       categoryImage: "https://i.ibb.co/W29btXp/profile.jpg",

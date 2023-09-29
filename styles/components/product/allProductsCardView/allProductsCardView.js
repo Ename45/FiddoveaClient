@@ -2,10 +2,10 @@ import { StyleSheet } from "react-native";
 import { COLORS, SIZES } from "../../../../constants/theme";
 
 export default StyleSheet.create({
-  container: {
-    width: SIZES.width / 2,
+    container: {
+    width: SIZES.width / 2.3,
     height: 240,
-    // marginEnd: 22,
+    marginEnd: 22,
     borderRadius: 12,
     backgroundColor: COLORS.tanBrown,
     marginBottom: (2 / 100) * SIZES.height,
@@ -13,7 +13,7 @@ export default StyleSheet.create({
   },
   imageContainer: {
     flex: 1,
-    width: (47 / 100) * SIZES.width,
+    width: (40 / 100) * SIZES.width,
     marginLeft: 10 / 2,
     marginTop: 10 / 2,
     borderRadius: 10,
@@ -45,6 +45,6 @@ export default StyleSheet.create({
   addBtn2: {
     position: "absolute",
     bottom: 1,
-    left: 148
+    left: 118
   }
 });

@@ -39,6 +39,8 @@ import Roll from './views/components/product/categories/roll/Roll.jsx'
 import Popcorn from './views/components/product/categories/popcorn/Popcorn.jsx'
 import Bread from './views/components/product/categories/bread/Bread.jsx'
 import Drink from './views/components/product/categories/drink/Drink.jsx'
+import WishList from "./views/components/product/wishlist/WishList.jsx";
+import NewRivals from "./views/components/product/allProducts/NewRivals.jsx";
 
 const Stack = createNativeStackNavigator();
 
@@ -242,6 +244,16 @@ export default function App() {
         <Stack.Screen
           name="Drink"
           component={Drink}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="WishList"
+          component={WishList}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="NewRivals"
+          component={NewRivals}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

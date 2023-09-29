@@ -45,7 +45,7 @@ export default StyleSheet.create({
     height: (8 / 100) * SIZES.height,
     paddingHorizontal: (10 / 100) * SIZES.width,
     fontSize: (2.4 / 100) * SIZES.height,
-    fontFamily: "croissantOneRegular",
+    fontFamily: "poppinsMedium",
     borderWidth: 0,
   },
   searchBtn: {

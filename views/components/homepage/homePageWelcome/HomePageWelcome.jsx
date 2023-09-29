@@ -7,8 +7,6 @@ import InputField from "../../reusable/inputField/InputField.jsx";
 import { useNavigation } from "@react-navigation/native";
 
 const HomePageWelcome = () => {
-  const [searchItem, setSearchItem] = useState("");
-
   const navigation = useNavigation();
 
   const navigateToSearchPage = () => {
@@ -33,27 +31,15 @@ const HomePageWelcome = () => {
 
       <View style={homePageWelcome.searchOuterContainer}>
         <View style={homePageWelcome.searchWrapper}>
-          <TouchableOpacity>
-            <Feather
+          <TouchableOpacity style={homePageWelcome.searchBtn}       
+              onPress={navigateToSearchPage}>
+          <View>
+            <Text style={homePageWelcome.searchInput}>what are you looking for</Text>
+          </View>
+            <Ionicons
               name="search"
               size={(7 / 100) * SIZES.width}
-              color={COLORS.darkChocolateBrown}
-              style={homePageWelcome.searchIcon}
-            />
-          </TouchableOpacity>
-          <InputField
-            style={homePageWelcome.searchInput}
-            value={searchItem}
-            onChangeText={(text) => setSearchItem(text)}
-            onPress={() => {}}
-            placeholder="what are you looking for"
-          />
-          <TouchableOpacity style={homePageWelcome.searchBtn}>
-            <Ionicons
-              name="camera-outline"
-              size={(7 / 100) * SIZES.width}
-              color={COLORS.darkChocolateBrown}
-              onPress={navigateToSearchPage}
+              color={COLORS.darkChocolateBrown}        
             />
           </TouchableOpacity>
         </View>
