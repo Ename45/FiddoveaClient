@@ -30,8 +30,8 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
     return (
-     <NavigationContainer > { /* <Stack.Navigator initialRouteName='BottomTabNav'></Stack.Navigator> */}
-      <Stack.Navigator styles = { styles.container } >
+       <NavigationContainer> { /* <Stack.Navigator initialRouteName='BottomTabNav'></Stack.Navigator> */}
+         <Stack.Navigator styles = {styles.container}>
 
         <Stack.Screen name = "SplashScreen"
         component = { Splash }
@@ -179,11 +179,11 @@ export default function App() {
             { headerShown: false }
         }
         />
-      <Stack.Navigator>
+      </Stack.Navigator>
      </NavigationContainer>
+  );
 
-
-});
+}
 
 const styles = StyleSheet.create({
     container: {
