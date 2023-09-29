@@ -22,7 +22,7 @@ const GetStarted = () => {
           getStarted.shadowBox]}>
           <CustomButton 
           buttonName="Register as a Vendor" 
-          onPress={() => navigateToPage("Login")}
+          onPress={() => navigateToPage("Otp")}
           />
           <CustomButton 
           buttonName="Get Started" 
