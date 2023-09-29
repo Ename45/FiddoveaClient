@@ -5,15 +5,17 @@ import {
   Fontisto,
   MaterialCommunityIcons,
   MaterialIcons,
+  Feather,
 } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { COLORS, SIZES } from "../../../constants/theme";
 import { LinearGradient } from "expo-linear-gradient";
 import HomePage from "../homepage/HomePage";
-import Categories from "../product/categories/Categories";
+
 import Cart from "../cart/Cart";
 import MySettings from "../accounts/yourSettings/MySettings.jsx";
 import Profile from "../accounts/myAccount/profile/Profile";
+import Search from "../product/search/Search";
 
 const Tab = createBottomTabNavigator();
 
@@ -61,14 +63,14 @@ const BottomTabNav = () => {
         }}
       />
       <Tab.Screen
-        name="Categories"
-        component={Categories}
+        name="Search"
+        component={Search}
         options={{
           tabBarIcon: ({ focused }) => {
             return (
               <View>
-                <SimpleLineIcons
-                  name="eye"
+                <Feather
+                  name="search"
                   size={24}
                   color={focused ? COLORS.black : COLORS.white}
                 />
