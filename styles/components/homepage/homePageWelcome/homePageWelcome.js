@@ -26,6 +26,7 @@ export default StyleSheet.create({
     color: COLORS.gray3,
     borderRadius: 10,
     marginVertical: 12,
+
     marginHorizontal: -12,
     width: SIZES.width-5,
     marginLeft: (2 / 100) * SIZES.width,
