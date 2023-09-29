@@ -19,7 +19,7 @@ const RegisterAdmin = () => {
     const URL = "https://e895-102-89-46-66.ngrok-free.app/api/v1/admin";
     let adminData = {
       email,
-      password,
+      password
     };
     
     if (email !== "" && password !== "") {

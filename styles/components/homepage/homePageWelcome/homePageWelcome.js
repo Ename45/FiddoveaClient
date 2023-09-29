@@ -27,7 +27,7 @@ export default StyleSheet.create({
     marginHorizontal: 10,
     color: COLORS.darkChocolateBrown,
     position: "absolute",
-    top: (2/100*("100%"))
+    top: 2
     // marginTop: 10,
   },
   searchWrapper: {
