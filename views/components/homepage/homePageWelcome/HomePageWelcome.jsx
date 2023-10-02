@@ -19,13 +19,13 @@ const HomePageWelcome = () => {
         <Text
           style={homePageWelcome.welcomeText(
             COLORS.black,
-            // (1 / 100) * SIZES.height
+            (1 / 100) * SIZES.height
           )}
         >
-          Dive into a Treasure Trove
+          Dive Into A Treasure Trove
         </Text>
-        <Text style={homePageWelcome.welcomeText(COLORS.primary, 0)}>
-          Of Products and Services
+        <Text style={homePageWelcome.welcomeText(COLORS.primary, -5)}>
+          Of Products And Services
         </Text>
       </View>
 
@@ -39,7 +39,7 @@ const HomePageWelcome = () => {
             <Ionicons
               name="search"
               size={(7 / 100) * SIZES.width}
-              color={COLORS.darkChocolateBrown}        
+              color={COLORS.black}        
             />
           </TouchableOpacity>
         </View>

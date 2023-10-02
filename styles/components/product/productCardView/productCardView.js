@@ -1,38 +1,48 @@
 import { StyleSheet } from "react-native";
 import { COLORS, SIZES } from "../../../../constants/theme";
 
-
 export default StyleSheet.create({
   container: {
-    // width: SIZES.width / 2,
-    // height: 240,
-    // // marginEnd: 22,
-    // borderRadius: 12,
-    // backgroundColor: COLORS.tanBrown,
-    
+    width: SIZES.width * 0.6,
+    height: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: COLORS.pageBackgroundBrown,
+    borderRadius: 12,
+    overflow: "hidden",
+    elevation: 10
   },
   imageContainer: {
-    flex: 1,
-    width: (47 / 100) * SIZES.width,
-    marginLeft: 10 / 2,
-    marginTop: 10 / 2,
-    borderRadius: 10,
+    width: "100%",
+    height: "100%",
+    borderRadius: 20,
     overflow: "hidden",
-    backgroundColor: COLORS.gray3,
+    
   },
   image: {
-    aspectRatio: 1,
-    resizeMode: "cover",
+    width: "100%",
+    height: "100%",
   },
   details: {
-    padding: 3,
+    backgroundColor: "rgba(0, 0, 0, 0.7)",
+    padding: 2/100*(SIZES.width),
+    // padding: SIZES.xxxSmall,
+    position: "absolute",
+    // bottom: SIZES.padding,
+    left: 0,
+    bottom: 20,
+    flexDirection: "row",
+    width: "50%",
+    borderTopRightRadius: 20,
+    borderBottomRightRadius: 20,
+    // justifyContent: "space-between",
+    // alignItems: "center",
   },
   nameText: {
-    fontFamily: "poppinsMedium",
-    fontSize: (2.4 / 100) * SIZES.height,
-    marginBottom: 2,
+    fontFamily: "poppinsMedium500",
+    fontSize: 4.5/100*(SIZES.width),
+    lineHeight: 36,
+    color: COLORS.white,
+    flex: 1,
   },
-  // addBtn: {
-  //   position: "absolute",
-  // },
 });

@@ -24,12 +24,12 @@ const GetStarted = () => {
         <View style={[getStarted.buttonContainer,
           getStarted.shadowBox]}>
           <CustomButton
-          buttonName="Register as a Vendor"
+          buttonName="Register As A Vendor"
           onPress={() => navigateToPage("RegisterVendor")}
           />
           <CustomButton
           buttonName="Get Started"
-          onPress={() => navigateToPage("Register")}
+          onPress={() => navigateToPage("BottomTabNav")}
           style={getStarted.button}
           />
         </View>

@@ -1,18 +1,28 @@
 import { View, Text, TouchableOpacity, Image } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import productCardView from '../../../../styles/components/product/productCardView/productCardView'
 import { Ionicons } from '@expo/vector-icons'
 import { COLORS } from '../../../../constants/theme'
 
 const ProductCardView = ( {item, navigation} ) => {
+
+  const [isFocused, setIsFocused] = useState(false);
+
   const navigateToScreen = (screenName) => {
     navigation.navigate(screenName);
   };
 
   return (
-    <TouchableOpacity onPress={() => navigateToScreen(item.screen)}>
+    <TouchableOpacity 
+    onPress={() => navigateToScreen(item.screen)}
+    onPressIn={() => setIsFocused(true)}
+    >
         <View style={productCardView.container}>
-          <View style={productCardView.imageContainer}>
+          <View style={[
+            productCardView.imageContainer, 
+            isFocused && { backgroundColor: COLORS.pureGold },
+          ]}
+          >
             <Image
             source={{ uri: item.categoryImage }}
             style={productCardView.image}
@@ -27,4 +37,3 @@ const ProductCardView = ( {item, navigation} ) => {
 }
 
 export default ProductCardView
-

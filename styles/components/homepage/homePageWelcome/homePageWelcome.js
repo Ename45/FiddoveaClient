@@ -5,30 +5,42 @@ import { COLORS, SIZES } from "../../../../constants/theme";
 export default StyleSheet.create({
   outerContainer: {
     width: SIZES.width,
-    marginBottom: -10,
+    marginBottom: 10,
     // borderWidth: 3,
     // borderColor: "red",
     // borderStyle: "solid",
-    height: (9 / 100) * SIZES.height,
-    marginHorizontal: 8
+    height: (10 / 100) * SIZES.height,
+    marginHorizontal: 8,
+    marginBottom: -(0.3/ 100) * SIZES.height,
+    position: "relative",
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "flex-start",
+    gap: 3
   },
   welcomeText: (color, top) => ({
-    fontFamily: "croissantOneRegular",
+    fontFamily: "poppinsBold700",
     fontSize: (6 / 100) * SIZES.width,
     marginTop: top,
     color: color,
-    marginHorizontal: 8,
+    // marginHorizontal: 8,
+    // lineHeight: 36,
+    // borderWidth: 3,
+    // borderStyle: "solid",
+    // position: "absolute",
+    width: "99%",
+    height: "50%"
   }),
   searchOuterContainer: {
     flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
+    // justifyContent: "center",
+    // alignItems: "center",
     color: COLORS.gray3,
     borderRadius: 10,
     marginVertical: 12,
 
-    marginHorizontal: -12,
-    width: SIZES.width-5,
+    // marginHorizontal: -12,
+    width: SIZES.width - 5,
     marginLeft: (2 / 100) * SIZES.width,
     height: (8 / 100) * SIZES.height,
     // borderWidth: 3,
@@ -47,7 +59,7 @@ export default StyleSheet.create({
     // flex: 1,
     backgroundColor: COLORS.gainsBoroGray,
     // marginRight: 10,
-    borderRadius: 10,
+    borderRadius: 20,
     height: (7 / 100) * SIZES.height,
     width: SIZES.width - 20,
     // flexDirection: "row",
@@ -64,7 +76,8 @@ export default StyleSheet.create({
     // height: (8 / 100) * SIZES.height,
     // paddingHorizontal: (10 / 100) * SIZES.width,
     // fontSize: (2.4 / 100) * SIZES.height,
-    // fontFamily: "poppinsRegular",
+    fontFamily: "poppinsLight300",
+    fontSize: (4 / 100) * SIZES.width,
     // borderWidth: 0,
   },
   searchBtn: {
@@ -77,8 +90,7 @@ export default StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     marginTop: 15,
-    marginHorizontal: 12
-    
+    marginHorizontal: 12,
   },
 });
 

@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import { View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
 import React, { useState } from "react";
 import productDetails from "../../../../styles/components/product/productDetails/productDetails";
 import { Fontisto, Ionicons, MaterialCommunityIcons, SimpleLineIcons } from "@expo/vector-icons";
@@ -32,7 +32,8 @@ const ProductDetails = ({ navigation }) => {
   // };
 
   return (
-    <View style={productDetails.container}>
+    <ScrollView>
+      <View style={productDetails.container}>
       <View style={productDetails.upperRow}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Ionicons
@@ -138,6 +139,7 @@ const ProductDetails = ({ navigation }) => {
 
       </View>
     </View>
+    </ScrollView>
   );
 };
 

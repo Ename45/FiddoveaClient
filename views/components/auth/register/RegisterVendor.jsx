@@ -115,10 +115,18 @@ const RegisterVendor = () => {
           >
              <Picker.Item label="select product type" value=""/>
           <Picker.Item label="Grill" value="GRILL"/>
-          <Picker.Item label="cake" value="CAKE"/>
-          <Picker.Item label="chocolate" value="CHOCOLATE"/>
-          <Picker.Item label="candy" value="CANDY"/>
-          <Picker.Item label="dessert" value="DESSERT"/>
+          <Picker.Item label="Cake" value="CAKE"/>
+          <Picker.Item label="Cupcake" value="CUPCAKE"/>
+          <Picker.Item label="Chocolate" value="CHOCOLATE"/>
+          <Picker.Item label="Doughnut" value="DOUGHNUT"/>
+          <Picker.Item label="Candy" value="CANDY"/>
+          <Picker.Item label="Brownie" value="BROWNIE"/>
+          <Picker.Item label="Cookie" value="COOKIE"/>
+          <Picker.Item label="Dessert" value="DESSERT"/>
+          <Picker.Item label="Roll" value="ROLL"/>
+          <Picker.Item label="Popcorn" value="POPCORN"/>
+          <Picker.Item label="Bread" value="BREAD"/>
+          <Picker.Item label="Juice" value="JUICE"/>
           </Picker>
           <InputField
             placeholder="House Number"

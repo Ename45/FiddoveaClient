@@ -12,6 +12,7 @@ export default StyleSheet.create({
     // borderStyle: "solid",
     alignItems: "center",
     backgroundColor: COLORS.pageBackgroundBrown,
+    padding: 1/100*(SIZES.width)
   },
   topBarWrap: {
     marginHorizontal: 22,
@@ -20,8 +21,9 @@ export default StyleSheet.create({
     // borderWidth: 3,
     // borderColor: "blue",
     // borderStyle: "solid",
-    paddingBottom: 10,
+    // paddingBottom: 10,
     position: "relative",
+    marginBottom: 1/100*(SIZES.height)
   },
   appBar: {
     paddingHorizontal: 10,
@@ -34,9 +36,9 @@ export default StyleSheet.create({
     height: (6 / 100) * SIZES.height,
   },
   location: {
-    fontFamily: "poppinsRegular",
+    fontFamily: "poppinsRegular400",
     fontSize: (4 / 100) * SIZES.width,
-    color: COLORS.gray3,
+    color: COLORS.black,
   },
   notificationButton: {
     alignItems: "flex-end",
@@ -67,9 +69,8 @@ export default StyleSheet.create({
     zIndex: 999,
   },
   notificationNumberText: {
-    color: "green",
-    fontWeight: "600",
-    fontFamily: "croissantOneRegular",
+    color: COLORS.black,
+    fontFamily: "poppinsSemiBold600",
     fontSize: SIZES.mid,
   },
 });

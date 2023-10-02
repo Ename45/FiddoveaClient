@@ -38,7 +38,7 @@ export default StyleSheet.create({
     top: 20,
   },
   title: {
-    fontFamily: "poppinsRegular",
+    fontFamily: "poppinsRegular400",
     fontSize: SIZES.large,
   },
   priceWrapper: {
@@ -47,7 +47,7 @@ export default StyleSheet.create({
   },
   price: {
     paddingHorizontal: 10,
-    fontFamily: "poppinsBold",
+    fontFamily: "poppinsBold700",
     fontSize: SIZES.large,
   },
   ratingRow: {
@@ -60,7 +60,7 @@ export default StyleSheet.create({
   },
   ratingText: {
     color: COLORS.gray3,
-    fontFamily: "poppinsMedium",
+    fontFamily: "poppinsMedium500",
     paddingHorizontal: 5,
   },
   rating: {
@@ -83,11 +83,11 @@ export default StyleSheet.create({
     marginHorizontal: SIZES.large,
   },
   description: {
-    fontFamily: "poppinsMedium",
+    fontFamily: "poppinsMedium500",
     fontSize: SIZES.large - 2,
   },
   descriptionStyle: {
-    fontFamily: "poppinsRegular",
+    fontFamily: "poppinsRegular400",
     fontSize: SIZES.small,
     textAlign: "justify",
     marginBottom: SIZES.small,
@@ -117,7 +117,7 @@ export default StyleSheet.create({
   },
   cartTitle: {
     marginLeft: SIZES.small,
-    fontFamily: "poppinsBold",
+    fontFamily: "poppinsBold700",
     fontSize: SIZES.medium,
     color: COLORS.lightWhite
   },
