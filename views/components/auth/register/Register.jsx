@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { View, Text, SafeAreaView, styles, Image, ImageBackground} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
-
 import register from "../../../../styles/components/auth/register/register.js";
 import InputField from "../../reusable/inputField/InputField.jsx";
 import CustomButton from "../../reusable/button/CustomButton.jsx";
