@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { View, Text, ScrollView } from 'react-native'
+import {View, Text, ScrollView, Alert} from 'react-native'
 import { Picker } from '@react-native-picker/picker';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 
+import VerificationPendingScreen from "../../vendor/verification/VerificationPendingScreen";
 import register from '../../../../styles/components/auth/register/register.js'
 import InputField from '../../reusable/inputField/InputField.jsx';
 import CustomButton from '../../reusable/button/CustomButton.jsx'
@@ -23,7 +24,7 @@ const RegisterVendor = () => {
 
   const navigation = useNavigation()
 
-  const handleSubmit = async(e)=>{  
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const URL = "https://e895-102-89-46-66.ngrok-free.app/api/v1/vendor";
 
@@ -40,28 +41,38 @@ const RegisterVendor = () => {
       state,
     };
 
-    
+
     if (email !== "" &&
-        password !== "" && 
-        companyRcNumber !== "" && 
-        companyPhoneNumber !== "" && 
-        businessType !== "" && 
-        productType !== "" && 
-        houseNumber !== "" && 
-        street !== "" && 
-        lga !== "" && 
+        password !== "" &&
+        companyRcNumber !== "" &&
+        companyPhoneNumber !== "" &&
+        businessType !== "" &&
+        productType !== "" &&
+        houseNumber !== "" &&
+        street !== "" &&
+        lga !== "" &&
         state !== "") {
-        try {
-          await axios.post(URL, vendorData)
-          .then((response) => {   
-          navigation.navigate("LoginVendor")
-          return response.data;
-        })
-        } catch (error) {
-          return error
-        }       
-    } 
+      try {
+        const response = await axios.post(URL, vendorData);
+        if (response.status === 200) {
+          // Registration successful
+          console.log(response.data);
+          // Navigate to the verification pending screen
+          navigation.navigate("VerificationPendingScreen");
+        } else {
+          // Handle other HTTP statuses if needed
+          Alert.alert('Registration Failed', 'Registration failed. Please try again.');
+        }
+      } catch (error) {
+        // Registration failed
+        console.error('Registration Error:', error);
+        Alert.alert('Registration Failed', 'Registration failed. Please try again.');
+      }
+    } else {
+      // Validation failed, show an error message
+      Alert.alert('Validation Error', 'Please fill out all the required fields.');
     }
+  }
 
   return (
     <ScrollView>
@@ -90,28 +101,6 @@ const RegisterVendor = () => {
           value={companyPhoneNumber}
         />
 
-        <Picker
-          onValueChange={(text) => setBusinessType(text)}
-          selectedValue={businessType}
-        >
-          <Picker.Item label="select business type" value=""/>
-          <Picker.Item label="restaurant" value="RESTAURANT"/>
-          <Picker.Item label="grocery" value="GROCERY"/>
-          <Picker.Item label="others" value="OTHERS"/>
-        </Picker>
-
-        <Picker
-          onValueChange={(itemValue) => setProductType(itemValue)}
-          selectedValue={productType}
-        >
-          <Picker.Item label="select product type" value=""/>
-          <Picker.Item label="Grill" value="GRILL"/>
-          <Picker.Item label="cake" value="CAKE"/>
-          <Picker.Item label="chocolate" value="CHOCOLATE"/>
-          <Picker.Item label="candy" value="CANDY"/>
-          <Picker.Item label="dessert" value="DESSERT"/>
-        </Picker>
-
         <InputField
           placeholder="House Number"
           onChangeText={(text) => setHouseNumber(text)}
@@ -132,6 +121,29 @@ const RegisterVendor = () => {
           onChangeText={(text) => setState(text)}
           value={state}
         />
+
+        <Picker
+            onValueChange={(text) => setBusinessType(text)}
+            selectedValue={businessType}
+        >
+          <Picker.Item label="select business type" value=""/>
+          <Picker.Item label="restaurant" value="RESTAURANT"/>
+          <Picker.Item label="grocery" value="GROCERY"/>
+          <Picker.Item label="others" value="OTHERS"/>
+        </Picker>
+
+        <Picker
+            onValueChange={(itemValue) => setProductType(itemValue)}
+            selectedValue={productType}
+        >
+          <Picker.Item label="select product type" value=""/>
+          <Picker.Item label="Grill" value="GRILL"/>
+          <Picker.Item label="cake" value="CAKE"/>
+          <Picker.Item label="chocolate" value="CHOCOLATE"/>
+          <Picker.Item label="candy" value="CANDY"/>
+          <Picker.Item label="dessert" value="DESSERT"/>
+        </Picker>
+
         <View>
         <CustomButton buttonName="Register" onPress={handleSubmit} />
         </View>
