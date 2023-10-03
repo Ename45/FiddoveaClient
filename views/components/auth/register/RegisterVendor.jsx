@@ -113,7 +113,7 @@ const RegisterVendor = () => {
             onValueChange={(itemValue) => setProductType(itemValue)}
             selectedValue={productType}
           >
-             <Picker.Item label="select product type" value=""/>
+          <Picker.Item label="select product type" value=""/>
           <Picker.Item label="Grill" value="GRILL"/>
           <Picker.Item label="Cake" value="CAKE"/>
           <Picker.Item label="Cupcake" value="CUPCAKE"/>
