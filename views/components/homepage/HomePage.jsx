@@ -4,6 +4,9 @@ import homepage from '../../../styles/components/homepage/homepage.js'
 import { MaterialCommunityIcons, MaterialIcons, Ionicons, Fontisto } from '@expo/vector-icons'
 import { COLORS, SIZES } from '../../../constants/theme.js'
 import HomePageWelcome from './homePageWelcome/HomePageWelcome.jsx'
+import CarouselSlides from './carousel/CarouselSlides.jsx'
+import HomeProductHeadings from './homeProductHeadings/HomeProductHeadings.jsx'
+import ProductsRow  from '../product/productsRow/ProductsRow.jsx'
 
 const HomePage = ({navigation}) => {
 
@@ -24,8 +27,8 @@ const HomePage = ({navigation}) => {
         <View style={homepage.appBar}>
           <Ionicons
           name="location-outline"
-          size={(9 / 100) * SIZES.width}
-          color={COLORS.darkChocolateBrown}
+          size={(7 / 100) * SIZES.width}
+          color={COLORS.black}
           />
           <Text 
           style={homepage.location}
@@ -47,8 +50,8 @@ const HomePage = ({navigation}) => {
 
             <Fontisto
             name='bell'
-            size={(9 / 100) * SIZES.width}
-            color={COLORS.darkChocolateBrown}
+            size={(7 / 100) * SIZES.width}
+            color={COLORS.black}
             style={{ position: "relative" }}
             />
           </View>
@@ -58,9 +61,11 @@ const HomePage = ({navigation}) => {
       </View>
 
       <ScrollView>
-        <HomePageWelcome
-        
-        />
+        <HomePageWelcome/>
+        <CarouselSlides/>
+        <HomeProductHeadings/>
+        {/* <HomeProductHeadings navigation={navigation}/> */}
+        <ProductsRow navigation={navigation} />
       </ScrollView>
     </SafeAreaView>
   )
