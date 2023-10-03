@@ -7,8 +7,6 @@ import HomePageWelcome from './homePageWelcome/HomePageWelcome.jsx'
 import CarouselSlides from './carousel/CarouselSlides.jsx'
 import HomeProductHeadings from './homeProductHeadings/HomeProductHeadings.jsx'
 import ProductsRow  from '../product/productsRow/ProductsRow.jsx'
-import AllProducts from '../product/allProducts/AllProducts.jsx'
-import { productList } from '../../../constants/allProductsList.js'
 
 const HomePage = ({navigation}) => {
 
@@ -30,7 +28,7 @@ const HomePage = ({navigation}) => {
           <Ionicons
           name="location-outline"
           size={(7 / 100) * SIZES.width}
-          color={COLORS.darkChocolateBrown}
+          color={COLORS.black}
           />
           <Text 
           style={homepage.location}
@@ -53,7 +51,7 @@ const HomePage = ({navigation}) => {
             <Fontisto
             name='bell'
             size={(7 / 100) * SIZES.width}
-            color={COLORS.darkChocolateBrown}
+            color={COLORS.black}
             style={{ position: "relative" }}
             />
           </View>

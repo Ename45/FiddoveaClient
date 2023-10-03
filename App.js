@@ -7,7 +7,7 @@ import Splash from "./views/components/screens/splashScreens/Splash.jsx";
 import Splash2 from "./views/components/screens/splashScreens/Splash2.jsx";
 import GetStarted from "./views/components/onboarding/GetStarted.jsx";
 import Register from "./views/components/auth/register/Register.jsx";
-import Otp from "./views/components/auth/register/Otp.jsx"
+import OtpConfirmation from "./views/components/auth/register/OtpConfirmation.jsx";
 import RegisterVendor from "./views/components/auth/register/RegisterVendor.jsx";
 import RegisterAdmin from "./views/components/auth/register/RegisterAdmin.jsx";
 import Login from "./views/components/auth/login/Login.jsx";
@@ -26,7 +26,7 @@ import EditProfile from "./views/components/accounts/myAccount/profile/EditProfi
 import LiveChat from "./views/components/accounts/actions/liveChat/LiveChat.jsx";
 import Notification from "./views/components/accounts/myAccount/notification/Notification.jsx";
 import Logout from "./views/components/accounts/actions/logout/Logout.jsx";
-import AllProducts from "./views/components/product/allProducts/AllProducts.jsx";
+import ProductList from "./views/components/product/allProducts/ProductList.jsx";
 import ProductDetails from "./views/components/product/productDetails/ProductDetails.jsx";
 import Cake from './views/components/product/categories/cake/Cake.jsx'
 import Cupcake from './views/components/product/categories/cupcake/Cupcake.jsx'
@@ -47,17 +47,16 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
 
-  const [fontsLoaded] = useFonts({
-    croissantOneRegular: require("./assets/fonts/CroissantOne-Regular.ttf"),
-    playFairRegular: require("./assets/fonts/PlayfairDisplay-Regular.ttf"),
-    playFairMedium: require("./assets/fonts/PlayfairDisplay-Medium.ttf"),
-    playFairBold: require("./assets/fonts/PlayfairDisplay-Bold.ttf"),
-    poppinsRegular: require("./assets/fonts/Poppins-Regular.ttf"),
-    poppinsMedium: require("./assets/fonts/Poppins-Medium.ttf"),
-    poppinsBold: require("./assets/fonts/Poppins-Bold.ttf"),
-    robotoRegular: require("./assets/fonts/RobotoCondensed-Regular.ttf"),
-    robotoLight: require("./assets/fonts/RobotoCondensed-Light.ttf"),
-    robotoBold: require("./assets/fonts/RobotoCondensed-Bold.ttf"),
+  const [fontsLoaded] = useFonts({    
+    poppinsThin100: require("./assets/fonts/Poppins-Thin.ttf"),
+    poppinsExtraLight200: require("./assets/fonts/Poppins-ExtraLight.ttf"),
+    poppinsLight300: require("./assets/fonts/Poppins-Light.ttf"),
+    poppinsRegular400: require("./assets/fonts/Poppins-Regular.ttf"),
+    poppinsMedium500: require("./assets/fonts/Poppins-Medium.ttf"),
+    poppinsSemiBold600: require("./assets/fonts/Poppins-SemiBold.ttf"),
+    poppinsBold700: require("./assets/fonts/Poppins-Bold.ttf"),
+    poppinsExtraBold800: require("./assets/fonts/Poppins-ExtraBold.ttf"),
+    poppinsBlack900: require("./assets/fonts/Poppins-Black.ttf"),
   })
 
 
@@ -78,13 +77,18 @@ export default function App() {
         <Stack.Screen
           name="GetStarted"
           component={GetStarted}
-          options={{ 
-            headerShown: false
+          options={{
+            headerShown: false,
           }}
         />
         <Stack.Screen
           name="Register"
           component={Register}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="OtpConfirmation"
+          component={OtpConfirmation}
           options={{ headerShown: false }}
         />
         <Stack.Screen
@@ -179,8 +183,8 @@ export default function App() {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="AllProducts"
-          component={AllProducts}
+          name="ProductList"
+          component={ProductList}
           options={{ headerShown: false }}
         />
         <Stack.Screen
@@ -259,7 +263,7 @@ export default function App() {
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
-     </NavigationContainer>
+    </NavigationContainer>
   );
 
 }

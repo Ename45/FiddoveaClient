@@ -9,16 +9,16 @@ export const COLORS = {
   tertiary: "#312651",
 
   black: "#000000",
+
+  pureGold: "#FFD700",
+  metallicGold: "#D4AF37",
+  goldenrod: "#DAA520",
+  oldGold: "#CFB53B",
   
   
   lightWhite: "#FAFAFC",
   white: "#F3F4F8",
   white2: "#FFFFFF",
-  snowWhite: "#FFFAFA",
-  honeydewWhite: "#F0FFF0",
-  mintCreamWhite: "#F5FFFA",
-  azureWhite: "#F0FFFF",
-  aliceBlueWhite: "#F0F8FF",
   ghostWhite: "#F8F8FF",
   whiteSmoke: "#F5F5F5",
 
@@ -33,29 +33,17 @@ export const COLORS = {
   gray3: "#808080",
 
 
-  lightBrown: "#f9c3c3",
   pageBackgroundBrown: "#FFFBF2",
-  darkBrown: "#a52a2a",
   tabBarBrown: "#3C2113",
   darkChocolateBrown: "#785036",
-  darkBrown2: '#654321',
-  // saddleBrown: "#8B4513",
-  // chocolateBrown: "#D2691E",
-  // siennaBrown: "#A0522D",
-  // peruBrown: "#CD853F",
   burlyWoodBrown: "#DEB887",
   tanBrown: "#D2B48C",
   rosyBrown: "#BC8F8F",
-  // sandyBrown: "#F4A460",
-  // navajoWhiteBrown: "#FFDEAD",
-  // peachPuffBrown: "#FFDAB9",
-  // moccasinBrown: "#FFE4B5",
-  // bisqueBrown: "#FFE4C4",
-  blanchedAlmondBrown: "#FFEBCD",
-  wheatBrown: "#F5DEB3",
 };
 
 export const SIZES = {
+  xxxSmall: 6,
+  xxSmall: 8,
   xSmall: 10,
   small: 12,
   mid: 14,

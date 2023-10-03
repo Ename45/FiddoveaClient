@@ -9,63 +9,63 @@ import ProductCardView from '../productCardView/ProductCardView';
 const ProductsRow = ({navigation}) => {
   const productCategories = [
     {
-      categoryImage: "https://i.ibb.co/W29btXp/profile.jpg",
-      categoryName: "Cakes",
-      screen: "Cake",
+      categoryImage: "http://res.cloudinary.com/di8higqd1/image/upload/v1695924370/promiscuous/users/profile%20images/7e7fef99-0cd0-4483-a2ed-cb98de3b27d8.jpg",
+      categoryName: "Cup Cakes",
+      screen: "Cupcake",
       id: 1
     },
     {
-      categoryImage: "https://i.ibb.co/W29btXp/profile.jpg",
-      categoryName: "Cup Cakes",
-      screen: "Cupcake",
+      categoryImage: "http://res.cloudinary.com/di8higqd1/image/upload/v1695924663/promiscuous/users/profile%20images/61200cd0-aae8-47c1-bdce-e5bd3c4088da.jpg",
+      categoryName: "Brownies",
+      screen: "Brownie",
       id: 2
+    },
+    {
+      categoryImage: "http://res.cloudinary.com/di8higqd1/image/upload/v1695925411/promiscuous/users/profile%20images/95c4900a-7e9d-443c-ae9a-290fd93100c1.jpg",
+      categoryName: "Cookies",
+      screen: "Cookie",
+      id: 3
+    },
+    {
+      categoryImage: "http://res.cloudinary.com/di8higqd1/image/upload/v1695924126/promiscuous/users/profile%20images/ba26eac9-859b-4702-b648-4cdb65beeee3.jpg",
+      categoryName: "Popcorn",
+      screen: "Popcorn",
+      id: 4
+    },
+    {
+      categoryImage: "https://i.ibb.co/W29btXp/profile.jpg",
+      categoryName: "Cakes",
+      screen: "Cake",
+      id: 5
     },
     {
       categoryImage: "https://i.ibb.co/W29btXp/profile.jpg",
       categoryName: "Doughnuts",
       screen: "Doughnut",
-      id: 3
+      id: 6
     },
     {
       categoryImage: "https://i.ibb.co/W29btXp/profile.jpg",
       categoryName: "Chocolates",
       screen: "Chocolate",
-      id: 4
+      id: 7
     },
     {
       categoryImage: "https://i.ibb.co/W29btXp/profile.jpg",
       categoryName: "Candies",
       screen: "Candy",
-      id: 5
-    },
-    {
-      categoryImage: "https://i.ibb.co/W29btXp/profile.jpg",
-      categoryName: "Brownies",
-      screen: "Brownie",
-      id: 6
-    },
-    {
-      categoryImage: "https://i.ibb.co/W29btXp/profile.jpg",
-      categoryName: "Cookies",
-      screen: "Cookie",
-      id: 7
+      id: 8
     },
     {
       categoryImage: "https://i.ibb.co/W29btXp/profile.jpg",
       categoryName: "Desserts",
       screen: "Dessert",
-      id: 8
+      id: 9
     },
     {
       categoryImage: "https://i.ibb.co/W29btXp/profile.jpg",
       categoryName: "Rolls",
       screen: "Roll",
-      id: 9
-    },
-    {
-      categoryImage: "https://i.ibb.co/W29btXp/profile.jpg",
-      categoryName: "Popcorn",
-      screen: "Popcorn",
       id: 10
     },
     {

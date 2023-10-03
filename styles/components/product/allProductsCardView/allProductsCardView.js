@@ -2,49 +2,66 @@ import { StyleSheet } from "react-native";
 import { COLORS, SIZES } from "../../../../constants/theme";
 
 export default StyleSheet.create({
-    container: {
-    width: SIZES.width / 2.3,
-    height: 240,
+  container: {
+    width: SIZES.width * 0.43,
+    height: SIZES.height * 0.35,
     marginEnd: 22,
-    borderRadius: 12,
-    backgroundColor: COLORS.tanBrown,
-    marginBottom: (2 / 100) * SIZES.height,
-    position: "relative"
+    backgroundColor: COLORS.pageBackgroundBrown,
+    marginBottom: (0.2 / 100) * SIZES.height,
+    position: "relative",
+    // borderWidth: 0.13,
+    // borderStyle: "solid",
+    // borderColor: COLORS.gray2,
+    borderTopRightRadius: 10,
+    borderTopLeftRadius: 10,
+    paddingTop: (1.5 / 100) * SIZES.height,
+    elevation: 2
   },
   imageContainer: {
-    flex: 1,
-    width: (40 / 100) * SIZES.width,
-    marginLeft: 10 / 2,
-    marginTop: 10 / 2,
     borderRadius: 10,
     overflow: "hidden",
-    backgroundColor: COLORS.gray3,
+    height: "60%",
+    backgroundColor: COLORS.white,
   },
   image: {
-    aspectRatio: 1,
+    width: "100%",
+    height: "100%",
+    borderRadius: 20,
     resizeMode: "cover",
   },
   details: {
-    padding: 3,
+    // paddingTop: 1,
   },
   nameText: {
-    fontFamily: "poppinsMedium",
+    fontFamily: "poppinsSemiBold600",
     fontSize: (2.4 / 100) * SIZES.height,
     marginBottom: 2,
+    color: COLORS.black,
   },
   price: {
-    fontFamily: "poppinsBold",
+    fontFamily: "poppinsSemiBold600",
     fontSize: (2.4 / 100) * SIZES.height,
-    // color: COLORS.gray3
+    color: COLORS.tabBarBrown,
+  },
+  buttonsContainer: {
+    alignItems: "center",
+    paddingHorizontal: 8,
+    position: "absolute",
+    flexDirection: "row",
+    gap: (19 / 100) * SIZES.width,
+    justifyContent: "center",
+    bottom: 5,
   },
   addBtn: {
-    position: "absolute",
-    bottom: 193,
-    left: 4
+    borderRadius: 50,
+    backgroundColor: COLORS.lightWhite,
+    padding: 3,
+    elevation: (2 / 100) * SIZES.height,
   },
   addBtn2: {
-    position: "absolute",
-    bottom: 1,
-    left: 118
-  }
+    borderRadius: 50,
+    backgroundColor: COLORS.lightWhite,
+    padding: 3,
+    elevation: (2 / 100) * SIZES.height,
+  },
 });

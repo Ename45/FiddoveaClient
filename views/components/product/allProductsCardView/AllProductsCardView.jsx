@@ -2,10 +2,10 @@ import { View, Text, TouchableOpacity, Image, SafeAreaView } from 'react-native'
 import React from 'react'
 import allProductsCardView from '../../../../styles/components/product/allProductsCardView/allProductsCardView'
 import { Ionicons } from '@expo/vector-icons'
-import { COLORS } from '../../../../constants/theme'
+import { COLORS, SIZES } from '../../../../constants/theme'
 import { useNavigation } from '@react-navigation/native'
 
-const AllProductsCardView = ({item }) => {
+const AllProductsCardView = ({item, addToWishList}) => {
   const navigation = useNavigation()
 
   // const navigateToProductDetails =() => {
@@ -22,23 +22,31 @@ const AllProductsCardView = ({item }) => {
             style={allProductsCardView.image}
           />
           </View>  
-          <View style={allProductsCardView.details}>            
+          <View style={{ alignItems: "center", justifyContent: "center" }}>
+            <View style={allProductsCardView.product}>            
           <Text style={allProductsCardView.nameText} numberOfLines={1}>{item.productName}</Text>
+          </View>
+          <View style={allProductsCardView.details}>            
           <Text style={allProductsCardView.price} numberOfLines={1}>N{item.productPrice}</Text>
           </View>
-          <View  style={{alignItems: "center", paddingHorizontal: 8}}>
-            <TouchableOpacity style={ allProductsCardView.addBtn}>
+          </View>
+          <View  style={allProductsCardView.buttonsContainer}>
+            <TouchableOpacity 
+            style={ allProductsCardView.addBtn}
+            onPress={() => addToWishList(item)}
+            >
             <Ionicons
-            name='heart'
-            size={35}
-            color={COLORS.white}
+            name='heart-outline'
+            size={(9 / 100) * SIZES.width}
+            color={COLORS.black}
+            style={{marginTop: 1, marginBottom: -3}}
             />
           </TouchableOpacity>       
           <TouchableOpacity style={ allProductsCardView.addBtn2}>
             <Ionicons
-            name='add-circle'
-            size={35}
-            color={COLORS.primary}
+            name='cart-outline'
+            size={(9 / 100) * SIZES.width}
+            color={COLORS.goldenrod}
             />
           </TouchableOpacity>   
             </View>    

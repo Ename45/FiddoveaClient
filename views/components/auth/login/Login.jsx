@@ -14,6 +14,9 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');  
   const [buttonClicked, setButtonClicked] = useState(false);
+    const [error, setError] = useState(null);
+  const [inputError, setInputError] = useState("");
+  const [networkError, setNetworkError] = useState("");
 
   const navigation = useNavigation()
 
@@ -31,18 +34,21 @@ const Login = () => {
       password,
     };
 
-    
     if (email !== "" && password !== "") {
+      setInputError("");
       try {
-        await axios.post(URL, customerData)
-          .then((response) => {    
-          navigation.navigate("BottomTabNav")
-          return response.data;
-          })
+        const response = await axios.post(URL, customerData);
+        if (response.status === 201) {
+          console.log("This is response,data", response.data.message);
+          // navigation.navigate("OtpConfirmation", {email: email});
+          navigation.navigate("BottomTabNav",);
+        }
       } catch (error) {
-        return error
-      }      
-    } 
+        setError(error.response.data);
+      }
+    } else {
+      setInputError("All fields are required");
+    }
     }
 
     return (
@@ -84,6 +90,14 @@ const Login = () => {
           value={password}
           secureTextEntry
         />
+
+        <View>
+            {error && <Text style={{ color: "red" }}>{error.data}</Text>}
+            {inputError !== "" && (
+              <Text style={{ color: "red" }}>{inputError}</Text>
+            )}
+          </View>
+
         <View>
         <CustomButton 
         buttonName="Login" 
