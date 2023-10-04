@@ -25,7 +25,7 @@ const RegisterVendor = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const URL = 'https://e895-102-89-46-66.ngrok-free.app/api/v1/vendor';
+    const URL = 'https://294e-62-173-45-70.ngrok-free.app/api/v1/vendor';
 
     let vendorData = {
       email,
@@ -41,27 +41,31 @@ const RegisterVendor = () => {
     };
 
     if (
-      email !== '' &&
-      password !== '' &&
-      companyRcNumber !== '' &&
-      companyPhoneNumber !== '' &&
-      businessType !== '' &&
-      productType !== '' &&
-      houseNumber !== '' &&
-      street !== '' &&
-      lga !== '' &&
-      state !== ''
+        email !== '' &&
+        password !== '' &&
+        companyRcNumber !== '' &&
+        companyPhoneNumber !== '' &&
+        businessType !== '' &&
+        productType !== '' &&
+        houseNumber !== '' &&
+        street !== '' &&
+        lga !== '' &&
+        state !== ''
     ) {
       try {
-        await axios
-          .post(URL, vendorData)
-          .then((response) => {
-            navigation.navigate('LoginVendor');
-            return response.data;
-          });
+        const response = await axios.post(URL, vendorData);
+        console.log('Response from registration:', response.data);
+
+        if (response.status === 201) {
+          navigation.navigate('VerificationPendingScreen');
+        } else {
+          console.error('Registration failed:', response.data.message);
+        }
       } catch (error) {
-        return error;
+        console.error('Registration error:', error);
       }
+    } else {
+      console.error('Form validation failed.');
     }
   };
 
@@ -99,6 +103,26 @@ const RegisterVendor = () => {
             onChangeText={(text) => setCompanyPhoneNumber(text)}
             value={companyPhoneNumber}
           />
+          <InputField
+            placeholder="House Number"
+            onChangeText={(text) => setHouseNumber(text)}
+            value={houseNumber}
+          />
+          <InputField
+            placeholder="Street"
+            onChangeText={(text) => setStreet(text)}
+            value={street}
+          />
+          <InputField
+            placeholder="Local Government Area"
+            onChangeText={(text) => setLga(text)}
+            value={lga}
+          />
+          <InputField
+            placeholder="State"
+            onChangeText={(text) => setState(text)}
+            value={state}
+          />
           <Picker
             onValueChange={(text) => setBusinessType(text)}
             selectedValue={businessType}
@@ -128,26 +152,6 @@ const RegisterVendor = () => {
           <Picker.Item label="Bread" value="BREAD"/>
           <Picker.Item label="Juice" value="JUICE"/>
           </Picker>
-          <InputField
-            placeholder="House Number"
-            onChangeText={(text) => setHouseNumber(text)}
-            value={houseNumber}
-          />
-          <InputField
-            placeholder="Street"
-            onChangeText={(text) => setStreet(text)}
-            value={street}
-          />
-          <InputField
-            placeholder="Local Government Area"
-            onChangeText={(text) => setLga(text)}
-            value={lga}
-          />
-          <InputField
-            placeholder="State"
-            onChangeText={(text) => setState(text)}
-            value={state}
-          />
         </View>
         <View>
           <CustomButton buttonName="Register" onPress={handleSubmit} />
