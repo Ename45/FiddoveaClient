@@ -9,8 +9,6 @@ import WishlistCardView from './WishlistCardView';
 const WishList = () => {
   const [buttonClicked, setButtonClicked] = useState(false);
   const [error, setError] = useState(null);
-  const [inputError, setInputError] = useState("");
-  const [networkError, setNetworkError] = useState("");
   const [wishList, setWishList] = useState([])
 
   const navigation = useNavigation();
@@ -36,7 +34,7 @@ const WishList = () => {
     getProductFromApi()
   }, []);
 
-  console.log(wishList);
+  // console.log(wishList);
 
   return(
     <View >

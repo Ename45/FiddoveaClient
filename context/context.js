@@ -1,6 +1,8 @@
 import { createContext, useEffect, useState } from "react";
 import { customerUrl, ngrokBaseUrl, productUrl } from "../api/Api";
 import axios from "axios";
+import { AsyncStorage } from "@react-native-async-storage/async-storage";
+
 // create context
 // provide context
 // consume context
@@ -11,34 +13,69 @@ const ProductContext = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-
   const [wishListItems, setWishListItems] = useState([]);
 
-  // const [getWishList, setGetWishList] = useState([])
+  const WISHLIST_STORAGE_KEY = "wishlist";
+
+
+  useEffect(() => {
+    async function loadWishlistFromStorage() {
+      try {
+        const existingWishlist = await AsyncStorage.getItem(
+          WISHLIST_STORAGE_KEY
+        );
+        const wishlist = existingWishlist ? JSON.parse(existingWishlist) : [];
+        setWishListItems(wishlist);
+      } catch (error) {
+        console.log("Error loading wishlist from storage", error);
+      }
+    }
+
+    loadWishlistFromStorage();
+  }, []);
+
 
   async function addToWishlistUsingApi(productId) {
-    // console.log("wishlist ==> ", productId);
-    const data = {
-      productId: productId,
-      customerId: "6519d0e1d7ee80377ef42653",
-    };
     try {
-      const response = await axios.post(
-        `${ngrokBaseUrl}/${customerUrl}/addtowishlist`,
-        data
-      );
+      // Check if the item exists in AsyncStorage
+      const existingWishlist = await AsyncStorage.getItem(WISHLIST_STORAGE_KEY);
+      const wishlist = existingWishlist ? JSON.parse(existingWishlist) : [];
 
-      console.log("this is the response", response.data);
+      // Check if the product is already in the wishlist
+      const exists = wishlist.find((item) => item.productId === productId);
 
-      if (response.status == 200) {
-        setIsLoading(false);
-        setWishListItems([...wishListItems, response.data]);
+      if (!exists) {
+        const data = {
+          productId: productId,
+          customerId: "6519d0e1d7ee80377ef42653",
+        };
+
+        // Make the API call to add the item to the server-side wishlist
+        const response = await axios.post(
+          `${ngrokBaseUrl}/${customerUrl}/addtowishlist`,
+          data
+        );
+
+        if (response.status === 200) {
+          // Update the local wishlist state and AsyncStorage
+          const updatedWishlist = [...wishlist, response.data];
+          await AsyncStorage.setItem(
+            WISHLIST_STORAGE_KEY,
+            JSON.stringify(updatedWishlist)
+          );
+
+          setIsLoading(false);
+          setWishListItems(updatedWishlist);
+        }
+      } else {
+        console.log("Item is already in the wishlist");
       }
     } catch (error) {
-      console.log("Error adding to wishList", error);
+      console.log("Error adding to wishlist", error);
       setError(error);
     }
   }
+
 
   // console.log(wishListItems);
 
@@ -73,29 +110,41 @@ const ProductContext = ({ children }) => {
   // console.log(getWishList);
 
   async function removeFromWishlistUsingApi(productId) {
-    console.log("wishlist ==> ", productId);
-    const data = {
-      productId: productId,
-      userId: "6519d0e1d7ee80377ef42653",
-    };
     try {
+      // Check if the item exists in AsyncStorage
+      const existingWishlist = await AsyncStorage.getItem(WISHLIST_STORAGE_KEY);
+      const wishlist = existingWishlist ? JSON.parse(existingWishlist) : [];
+
+      // Remove the item from the local wishlist state and AsyncStorage
+      const updatedWishlist = wishlist.filter(
+        (item) => item.productId !== productId
+      );
+      await AsyncStorage.setItem(
+        WISHLIST_STORAGE_KEY,
+        JSON.stringify(updatedWishlist)
+      );
+
+      // Make the API call to remove the item from the server-side wishlist
+      const data = {
+        productId: productId,
+        userId: "6519d0e1d7ee80377ef42653",
+      };
       const response = await axios.post(
         `${ngrokBaseUrl}/${customerUrl}/removefromwishlist`,
         data
       );
 
-      console.log("remove response  ", response.data);
-
-      if (response.status == 200) {
+      if (response.status === 200) {
         setIsLoading(false);
-        setWishListItems([...wishListItems, response.data]);
+        setWishListItems(updatedWishlist);
       }
     } catch (error) {
-      console.log("Error adding to wishList", error);
+      console.log("Error removing from wishlist", error);
       setError(error);
     }
-  };
-  console.log("removeFromWishlistUsingApi==> ", wishListItems);
+  }
+  // console.log("removeFromWishlistUsingApi==> ", wishListItems);
+
 
 
 

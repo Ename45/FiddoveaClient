@@ -75,8 +75,7 @@ const ProductDetails = ({ navigation }) => {
   // };
 
   return (
-    <ScrollView style={{flex: 1, height: SIZES.height, 
-    backgroundColor: COLORS.pageBackgroundBrown}}>
+    <ScrollView>
       <View style={productDetails.container}>
       <View style={productDetails.upperMainContainer}>
         <View style={productDetails.upperRow}>

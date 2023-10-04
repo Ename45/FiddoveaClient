@@ -5,31 +5,26 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.pageBackgroundBrown,
-    width: SIZES.width,
-    height: SIZES.height,
-  },
-  upperMainContainer: {
-    height: "50%",
-    marginTop: (3 / 100) * SIZES.height,
+    marginTop: 20,
   },
   upperRow: {
-    marginHorizontal: 14,
+    marginHorizontal: 20,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    top: 8,
+    position: "absolute",
+    top: 14,
     width: SIZES.width - 44,
     zIndex: 999,
+    // justifyContent: "space-between"
+    
   },
   image: {
-    // resizeMode: "cover",
-    width: "100%",
-    height: "100%",
-    // resizeMode: "contain",
-    position: "absolute",
+    aspectRatio: 1,
+    resizeMode: "cover",
   },
   details: {
-    marginTop: -7,
+    marginTop: -18,
     backgroundColor: COLORS.lightWhite,
     width: SIZES.width,
     borderTopLeftRadius: 10,
@@ -118,7 +113,7 @@ export default StyleSheet.create({
   cartButton: {
     width: SIZES.width * 0.7,
     backgroundColor: COLORS.black,
-    padding: SIZES.small / 2,
+    padding: SIZES.small/2,
     borderRadius: SIZES.large,
     marginLeft: 12,
   },
@@ -126,7 +121,7 @@ export default StyleSheet.create({
     marginLeft: SIZES.small,
     fontFamily: "poppinsBold700",
     fontSize: SIZES.medium,
-    color: COLORS.lightWhite,
+    color: COLORS.lightWhite
   },
   addToCart: {
     width: 37,
@@ -135,6 +130,6 @@ export default StyleSheet.create({
     margin: SIZES.small,
     backgroundColor: COLORS.black,
     alignItems: "center",
-    justifyContent: "center",
-  },
+    justifyContent: "center"
+  }
 });
