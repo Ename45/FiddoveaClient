@@ -1,28 +1,28 @@
 import React, { useEffect } from 'react';
 import { View, Text} from 'react-native';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import VerificationPending from "../../../../styles/components/vendor/verification/VerificationPending";
 
 const VerificationPendingScreen = ({ navigation }) => {
-    // useEffect(() => {
-    //     const delayInMilliseconds = 15 * 1000; 
+    useEffect(() => {
+        const delayInMilliseconds = 15 * 1000; 
 
-    //     const timer = setTimeout(async () => {
+        const timer = setTimeout(async () => {
         
-    //         const isVendorVerified = await AsyncStorage.getItem('isVendorVerified');
+            const isVendorVerified = await AsyncStorage.getItem('isVendorVerified');
 
-    //         if (isVendorVerified === 'true') {
+            if (isVendorVerified === 'true') {
                
-    //             navigation.replace('VendorDashboard');
-    //         } else {
+                navigation.replace('VendorDashboard');
+            } else {
             
-    //             console.log('Vendor verification pending.');
-    //         }
-    //     }, delayInMilliseconds);
+                console.log('Vendor verification pending.');
+            }
+        }, delayInMilliseconds);
 
-    //     return () => clearTimeout(timer);
-    // }, [navigation]);
+        return () => clearTimeout(timer);
+    }, [navigation]);
 
     return (
         <View style={VerificationPending.container}>
