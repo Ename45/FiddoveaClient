@@ -11,16 +11,15 @@ import { Context } from "../../../../context/context";
 const ProductDetails = ({ navigation }) => {
 
   const route = useRoute();
-  // const { item } = route.params;
-  // console.log(item)
   const { productId } = route.params;
-  // console.log(productId)
 
   const [isLoading, setIsLoading ] = useState(false)
   const [error, setError] = useState(null);
   const [productDetailsData, setProductDetailsData] = useState(null)
 
-  const { addToWishlistUsingApi } = useContext(Context)
+  const [isFocused, setIsFocused] = useState(false);
+
+  const { addToWishList } = useContext(Context)
 
   useEffect(() => {
     async function getProductDetailsDataFromApi (){
@@ -90,13 +89,15 @@ const ProductDetails = ({ navigation }) => {
           />
         </TouchableOpacity>
         <TouchableOpacity          
-          onPress={() => addToWishlistUsingApi(productId)} 
-          style={{elevation: 10, backgroundColor: COLORS.white, borderRadius: 50}}
+          onPress={() => addToWishList(productId)} 
+          onPressIn={() => setIsFocused(true)}
+          style={{elevation: 10, borderRadius: 50, backgroundColor: COLORS.white}}
+          // onPressOut={() => setIsFocused(false)}
         >
           <Ionicons 
-          name="heart-outline" 
+          name={isFocused? "heart" : "heart-outline" }
           size={30} 
-          color={COLORS.black} 
+          color={ isFocused? "red" : COLORS.black} 
           />
         </TouchableOpacity>
       </View>
