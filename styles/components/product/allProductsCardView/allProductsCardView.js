@@ -7,7 +7,7 @@ export default StyleSheet.create({
     height: SIZES.height * 0.35,
     marginEnd: 22,
     backgroundColor: COLORS.pageBackgroundBrown,
-    marginBottom: (0.2 / 100) * SIZES.height,
+    marginBottom: (2 / 100) * SIZES.height,
     position: "relative",
     // borderWidth: 0.13,
     // borderStyle: "solid",
