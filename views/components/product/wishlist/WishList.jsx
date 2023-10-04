@@ -1,45 +1,58 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
+import { customerUrl, ngrokBaseUrl } from '../../../../api/Api';
+import axios from 'axios';
+import WishlistCardView from './WishlistCardView';
 
 const WishList = () => {
-  const [wishlist, setWishlist] = useState([]);
-  const [cart, setCart] = useState([]);
+  const [buttonClicked, setButtonClicked] = useState(false);
+  const [error, setError] = useState(null);
+  const [inputError, setInputError] = useState("");
+  const [networkError, setNetworkError] = useState("");
+  const [wishList, setWishList] = useState([])
 
-  const addToWishList = (product) => {
-    setWishlist([...wishlist, product]);
-  };
+  const navigation = useNavigation();
 
-  const removeFromWishlist = (productId) => {
-    const updatedWishlist = wishlist.filter((item) => item._productId !== productId);
-    setWishlist(updatedWishlist);
-  };
+  useEffect(() => {
+    // setIsLoading(true)
+    async function getProductFromApi() {
+      try {
+        const response = await axios.get(`${ngrokBaseUrl}/${customerUrl}/wishlist/${"6519d0e1d7ee80377ef42653"}`);
 
-  // Add a product to the cart
-  const addToCart = (product) => {
-    setCart([...cart, product]);
-  };
+        // console.log("this is the response", response.data);
 
-  return (
-    <View>
-      <Text>Wishlist</Text>
+        if (response.status == 200) {
+          // setIsLoading(false);
+          setWishList(response.data);
+        }
+      } catch (error) {
+        console.log("wishlist component error message", error);
+        setError(error)
+      }
+    }
+
+    getProductFromApi()
+  }, []);
+
+  console.log(wishList);
+
+  return(
+    <View >
       <FlatList
-        data={wishlist}
-        keyExtractor={(item) => item._productId}
-        renderItem={({ item }) => (
-          <View>
-            <Text>{item.productName}</Text>
-            <TouchableOpacity onPress={() => removeFromWishlist(item._productId)}>
-              <Ionicons name='heart-dislike' size={24} color='red' />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => addToCart(item)}>
-              <Ionicons name='cart-plus' size={24} color='green' />
-            </TouchableOpacity>
-          </View>
-        )}
+      data={wishList}
+      renderItem={({item}) => {
+      if (!item || !item.productImageUrl) {
+            return null;
+          }
+          return <WishlistCardView wishList={item} />;
+    }}
+      keyExtractor={(item) => item.productId}
+      numColumns={2}
       />
     </View>
-  );
+  )
 };
 
 export default WishList;

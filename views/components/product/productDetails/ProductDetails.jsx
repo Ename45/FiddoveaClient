@@ -14,18 +14,17 @@ const ProductDetails = ({ navigation }) => {
   // const { item } = route.params;
   // console.log(item)
   const { productId } = route.params;
-  console.log(productId)
+  // console.log(productId)
 
   const [isLoading, setIsLoading ] = useState(false)
   const [error, setError] = useState(null);
-  const [productDetailsData, setProductDetailsData] = useState([])
+  const [productDetailsData, setProductDetailsData] = useState(null)
 
-  const { addToFavorites } = useContext(Context)
+  const { addToWishlistUsingApi } = useContext(Context)
 
   useEffect(() => {
     async function getProductDetailsDataFromApi (){
       try {
-        // const response = await axios.get(`${ngrokBaseUrl}/${productUrl}/findproduct/${item}`);
         const response = await axios.get(`${ngrokBaseUrl}/${productUrl}/findproduct/${productId}`);
 
         // console.log("this is the response", response.data);
@@ -43,7 +42,7 @@ const ProductDetails = ({ navigation }) => {
     getProductDetailsDataFromApi();
   }, []);
 
-  console.log(productDetailsData);
+  // console.log("this is me", productDetailsData);
 
   if (isLoading) {
     return(
@@ -91,10 +90,8 @@ const ProductDetails = ({ navigation }) => {
             color={COLORS.white}
           />
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            {};
-          }}
+        <TouchableOpacity          
+          onPress={() => addToWishlistUsingApi(productId)} 
           style={{elevation: 10, backgroundColor: COLORS.white, borderRadius: 50}}
         >
           <Ionicons 
@@ -105,16 +102,16 @@ const ProductDetails = ({ navigation }) => {
         </TouchableOpacity>
       </View>
       <Image
-        source={{ uri: productDetailsData.productImageUrl }}
+        source={{ uri: productDetailsData?.productImageUrl }} // optional chaining
         style={productDetails.image}
       />
       </View>
 
       <View style={productDetails.details}>
         <View style={productDetails.titleRow}>
-          <Text style={productDetails.title}>{productDetailsData.productName}</Text>
+          <Text style={productDetails.title}>{productDetailsData?.productName}</Text>
           <View style={productDetails.priceWrapper}>
-            <Text style={productDetails.productPrice}>N{productDetailsData.productPrice}</Text>
+            <Text style={productDetails.productPrice}>N{productDetailsData?.productPrice}</Text>
           </View>
         </View>
 
@@ -153,7 +150,7 @@ const ProductDetails = ({ navigation }) => {
             Description
           </Text>
           <Text style={productDetails.descriptionStyle}>
-            {productDetailsData.productDescription}
+            {productDetailsData?.productDescription}
           </Text>
         </View>
 
@@ -184,7 +181,6 @@ const ProductDetails = ({ navigation }) => {
             </Text>
           </TouchableOpacity>
           <TouchableOpacity 
-          onPress={() => addToFavorites( productId, productDetailsData.productName, productDetailsData.productPrice )} 
           style={productDetails.addToCart}
           >
             <MaterialCommunityIcons
