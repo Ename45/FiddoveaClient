@@ -1,18 +1,15 @@
-
 import React, { useState } from 'react';
-import {View, Text, ScrollView, ImageBackground, StyleSheet, Image, styles, Alert} from 'react-native';
- 
+import { View, Text, ScrollView, ImageBackground, StyleSheet, Image } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 
-import VerificationPendingScreen from "../../vendor/verification/VerificationPendingScreen";
 import { COLORS } from '../../../../constants/theme.js';
 import InputField from '../../reusable/inputField/InputField.jsx';
 import CustomButton from '../../reusable/button/CustomButton.jsx';
 import registerVendor from '../../../../styles/components/auth/register/registerVendor.js';
 
-const RegisterVendor = async () => {
+const RegisterVendor = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [companyRcNumber, setCompanyRcNumber] = useState('');
@@ -24,12 +21,11 @@ const RegisterVendor = async () => {
   const [lga, setLga] = useState('');
   const [state, setState] = useState('');
 
-
-  const navigation = useNavigation()
+  const navigation = useNavigation();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const URL = 'https://e895-102-89-46-66.ngrok-free.app/api/v1/vendor';
+    const URL = 'https://294e-62-173-45-70.ngrok-free.app/api/v1/vendor';
 
     let vendorData = {
       email,
@@ -44,143 +40,124 @@ const RegisterVendor = async () => {
       state,
     };
 
+    if (
+        email !== '' &&
+        password !== '' &&
+        companyRcNumber !== '' &&
+        companyPhoneNumber !== '' &&
+        businessType !== '' &&
+        productType !== '' &&
+        houseNumber !== '' &&
+        street !== '' &&
+        lga !== '' &&
+        state !== ''
+    ) {
+      try {
+        const response = await axios.post(URL, vendorData);
+        console.log('Response from registration:', response.data);
 
-    try {
-      const response = await axios.post(URL, vendorData);
-      if (response.status === 200) {
-        // Registration successful
-        console.log(response.data);
-        // Navigate to the verification pending screen
-        navigation.navigate("VerificationPendingScreen");
-      } else {
-        // Handle other HTTP statuses if needed
-        Alert.alert('Registration Failed', 'Registration failed. Please try again.');
+        if (response.status === 201) {
+          navigation.navigate('VerificationPendingScreen');
+        } else {
+          console.error('Registration failed:', response.data.message);
+        }
+      } catch (error) {
+        console.error('Registration error:', error);
       }
-    } catch (error) {
-      // Registration failed
-      console.error('Registration Error:', error);
-      Alert.alert('Registration Failed', 'Registration failed. Please try again.');
+    } else {
+      console.error('Form validation failed.');
     }
-    {
-      // Validation failed, show an error message
-      Alert.alert('Validation Error', 'Please fill out all the required fields.');
-    }
-  }
-
-  if (
-      email !== '' &&
-      password !== '' &&
-      companyRcNumber !== '' &&
-      companyPhoneNumber !== '' &&
-      businessType !== '' &&
-      productType !== '' &&
-      houseNumber !== '' &&
-      street !== '' &&
-      lga !== '' &&
-      state !== ''
-  )
-    try {
-      await axios
-          .post(URL, vendorData)
-          .then((response) => {
-            navigation.navigate('LoginVendor');
-            return response.data;
-          });
-    } catch (error) {
-      return error;
-    }
-
+  };
 
   return (
-      <ImageBackground
-          source={require('../../../../assets/images/jpg/backgroundColour3.jpeg')}
-          style={registerVendor.backgroundColor}
-      >
-        <View style={registerVendor.logoContainer}></View>
-        <Image
-            source={require('../../../../assets/images/png/secondLogo.png')}
-            style={registerVendor.logo}
-        />
-        <ScrollView contentContainerStyle={styles.container}>
-          <Text style={styles.title}></Text>
-          <View style={styles.inputContainer}>
-            <InputField
-                placeholder="Email"
-                keyboardType="email-address"
-                onChangeText={(text) => setEmail(text)}
-                value={email}
-            />
-            <InputField
-                placeholder="Password"
-                onChangeText={(text) => setPassword(text)}
-                value={password}
-            />
-            <InputField
-                placeholder="Company Rc Number"
-                onChangeText={(text) => setCompanyRcNumber(text)}
-                value={companyRcNumber}
-            />
-            <InputField
-                placeholder="Company PhoneNumber"
-                onChangeText={(text) => setCompanyPhoneNumber(text)}
-                value={companyPhoneNumber}
-            />
-            <Picker
-                onValueChange={(text) => setBusinessType(text)}
-                selectedValue={businessType}
-            >
-              <Picker.Item label="select business type" value=""/>
-              <Picker.Item label="restaurant" value="RESTAURANT"/>
-              <Picker.Item label="grocery" value="GROCERY"/>
-              <Picker.Item label="others" value="OTHERS"/>
+    <ImageBackground
+      source={require('../../../../assets/images/jpg/backgroundColour3.jpeg')}
+      style={registerVendor.backgroundColor}
+    >
+   <View style={registerVendor.logoContainer}></View>
+    <Image
+        source={require('../../../../assets/images/png/secondLogo.png')} 
+        style={registerVendor.logo}
+      />
+      <ScrollView contentContainerStyle={styles.container}>
+        <Text style={styles.title}></Text>
+        <View style={styles.inputContainer}>
+          <InputField
+            placeholder="Email"
+            keyboardType="email-address"
+            onChangeText={(text) => setEmail(text)}
+            value={email}
+          />
+          <InputField
+            placeholder="Password"
+            onChangeText={(text) => setPassword(text)}
+            value={password}
+          />
+          <InputField
+            placeholder="Company Rc Number"
+            onChangeText={(text) => setCompanyRcNumber(text)}
+            value={companyRcNumber}
+          />
+          <InputField
+            placeholder="Company PhoneNumber"
+            onChangeText={(text) => setCompanyPhoneNumber(text)}
+            value={companyPhoneNumber}
+          />
+          <InputField
+            placeholder="House Number"
+            onChangeText={(text) => setHouseNumber(text)}
+            value={houseNumber}
+          />
+          <InputField
+            placeholder="Street"
+            onChangeText={(text) => setStreet(text)}
+            value={street}
+          />
+          <InputField
+            placeholder="Local Government Area"
+            onChangeText={(text) => setLga(text)}
+            value={lga}
+          />
+          <InputField
+            placeholder="State"
+            onChangeText={(text) => setState(text)}
+            value={state}
+          />
+          <Picker
+            onValueChange={(text) => setBusinessType(text)}
+            selectedValue={businessType}
+          >
+           <Picker.Item label="select business type" value=""/>
+          <Picker.Item label="restaurant" value="RESTAURANT"/>
+          <Picker.Item label="grocery" value="GROCERY"/>
+          <Picker.Item label="others" value="OTHERS"/>
 
-            </Picker>
-            <Picker
-                onValueChange={(itemValue) => setProductType(itemValue)}
-                selectedValue={productType}
-            >
-              <Picker.Item label="select product type" value=""/>
-              <Picker.Item label="Grill" value="GRILL"/>
-              <Picker.Item label="Cake" value="CAKE"/>
-              <Picker.Item label="Cupcake" value="CUPCAKE"/>
-              <Picker.Item label="Chocolate" value="CHOCOLATE"/>
-              <Picker.Item label="Doughnut" value="DOUGHNUT"/>
-              <Picker.Item label="Candy" value="CANDY"/>
-              <Picker.Item label="Brownie" value="BROWNIE"/>
-              <Picker.Item label="Cookie" value="COOKIE"/>
-              <Picker.Item label="Dessert" value="DESSERT"/>
-              <Picker.Item label="Roll" value="ROLL"/>
-              <Picker.Item label="Popcorn" value="POPCORN"/>
-              <Picker.Item label="Bread" value="BREAD"/>
-              <Picker.Item label="Juice" value="JUICE"/>
-            </Picker>
-            <InputField
-                placeholder="House Number"
-                onChangeText={(text) => setHouseNumber(text)}
-                value={houseNumber}
-            />
-            <InputField
-                placeholder="Street"
-                onChangeText={(text) => setStreet(text)}
-                value={street}
-            />
-            <InputField
-                placeholder="Local Government Area"
-                onChangeText={(text) => setLga(text)}
-                value={lga}
-            />
-            <InputField
-                placeholder="State"
-                onChangeText={(text) => setState(text)}
-                value={state}
-            />
-          </View>
-          <View>
-            <CustomButton buttonName="Register" onPress={handleSubmit}/>
-
-          </View>
-        </ScrollView>
-      </ImageBackground>
+          </Picker>
+          <Picker
+            onValueChange={(itemValue) => setProductType(itemValue)}
+            selectedValue={productType}
+          >
+          <Picker.Item label="select product type" value=""/>
+          <Picker.Item label="Grill" value="GRILL"/>
+          <Picker.Item label="Cake" value="CAKE"/>
+          <Picker.Item label="Cupcake" value="CUPCAKE"/>
+          <Picker.Item label="Chocolate" value="CHOCOLATE"/>
+          <Picker.Item label="Doughnut" value="DOUGHNUT"/>
+          <Picker.Item label="Candy" value="CANDY"/>
+          <Picker.Item label="Brownie" value="BROWNIE"/>
+          <Picker.Item label="Cookie" value="COOKIE"/>
+          <Picker.Item label="Dessert" value="DESSERT"/>
+          <Picker.Item label="Roll" value="ROLL"/>
+          <Picker.Item label="Popcorn" value="POPCORN"/>
+          <Picker.Item label="Bread" value="BREAD"/>
+          <Picker.Item label="Juice" value="JUICE"/>
+          </Picker>
+        </View>
+        <View>
+          <CustomButton buttonName="Register" onPress={handleSubmit} />
+        </View>
+      </ScrollView>
+    </ImageBackground>
   );
 };
 
@@ -197,9 +174,9 @@ const styles = StyleSheet.create({
   inputContainer: {
     width: '100%',
     maxWidth: 400,
-    backgroundColor: COLORS.pageBackgroundBrown,
-    padding: 20,
-    borderRadius: 15,
+    backgroundColor: COLORS.pageBackgroundBrown, 
+    padding: 20, 
+    borderRadius: 15, 
   },
 });
 

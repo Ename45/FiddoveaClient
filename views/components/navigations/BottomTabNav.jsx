@@ -34,11 +34,6 @@ const screenOptions = {
     top: 0,
     height: (15 / 100) * SIZES.width,
   },
-  // tabBarLabelStyle: {
-  //   color: COLORS.burlyWoodBrown,
-  //   fontSize: (3.5 / 100) * SIZES.width,
-  //   fontFamily: "poppinsLight300",
-  // },
 };
 
 const BottomTabNav = () => {

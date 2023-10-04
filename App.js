@@ -42,6 +42,11 @@ import Bread from './views/components/product/categories/bread/Bread.jsx'
 import Drink from './views/components/product/categories/drink/Drink.jsx'
 import WishList from "./views/components/product/wishlist/WishList.jsx";
 import NewRivals from "./views/components/product/allProducts/NewRivals.jsx";
+import VerificationPendingScreen from "./views/components/vendor/verification/VerificationPendingScreen";
+import VendorDashboard from "./views/components/vendor/dashboard/DashBoardScreen";
+import VendorProfile from "./views/components/vendor/profile/VendorProfile";
+
+
 
 const Stack = createNativeStackNavigator();
 
@@ -96,6 +101,21 @@ export default function App() {
           component={RegisterVendor}
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name={"VerificationPendingScreen"}
+          component={VerificationPendingScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name={"VendorDashboard"}
+          component={VendorDashboard}
+          options={{ headerShown: false }}
+        />
+         <Stack.Screen
+          name={"VendorProfile"}
+          component={VendorProfile}
+          options={{ headerShown: false }}
+         />
         <Stack.Screen
           name="RegisterAdmin"
           component={RegisterAdmin}

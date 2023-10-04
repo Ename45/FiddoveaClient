@@ -9,11 +9,25 @@ export default StyleSheet.create({
         height: SIZES.height,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.darkBrown2,
+        backgroundColor: '#F5DEB3',
         padding: 16,
     },
     message: {
         fontSize: 18,
         textAlign: 'center',
     },
+    messageContainer: {
+        padding: 20,
+        borderRadius: 10,
+        backgroundColor: 'white', // Set background color to white
+        shadowColor: 'black',
+        shadowOffset: {
+            width: 0,
+            height: 4,
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 4,
+        elevation: 8,
+    },
+
 });

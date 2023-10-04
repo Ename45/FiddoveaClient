@@ -6,42 +6,35 @@ import VerificationPending from "../../../../styles/components/vendor/verificati
 
 const VerificationPendingScreen = ({ navigation }) => {
     useEffect(() => {
-        const checkVendorVerification = async () => {
-            try {
-                // Fetch the endpoint to check vendor verification status
-                const response = await axios.get('YOUR_VERIFICATION_ENDPOINT');
+        const delayInMilliseconds = 15 * 1000; 
 
-                // Assuming the response contains a property 'isVerified' indicating vendor verification status
-                const isVendorVerified = response.data.isVerified;
+        const timer = setTimeout(async () => {
+        
+            const isVendorVerified = await AsyncStorage.getItem('isVendorVerified');
 
-                if (isVendorVerified) {
-                    // If the vendor is verified, navigate to the vendor dashboard
-                    await AsyncStorage.setItem('isVendorVerified', 'true');
-                    navigation.replace('VendorDashboard');
-                } else {
-                    // If not verified, show a message (optional) or handle it accordingly
-                    console.log('Vendor verification pending.');
-                }
-            } catch (error) {
-                // Handle error in fetching verification status
-                console.error('Error fetching verification status:', error);
-                // You might want to show an error message to the user
+            if (isVendorVerified === 'true') {
+               
+                navigation.replace('VendorDashboard');
+            } else {
+            
+                console.log('Vendor verification pending.');
             }
-        };
+        }, delayInMilliseconds);
 
-        // Call the function to check vendor verification
-        checkVendorVerification();
+        return () => clearTimeout(timer);
     }, [navigation]);
 
     return (
         <View style={VerificationPending.container}>
-            <Text style={VerificationPending.message}>
-                Your account is under verification.
-                {'\n'}
-                Please allow up to 4 working days for the verification process.
-                {'\n\n'}
-                Thank you for your patience.
-            </Text>
+            <View style={VerificationPending.messageContainer}>
+                <Text style={VerificationPending.message}>
+                    Your account is under verification.
+                    {'\n'}
+                    Please allow up to 4 working days for the verification process.
+                    {'\n\n'}
+                    Thank you for your patience.
+                </Text>
+            </View>
         </View>
     );
 };

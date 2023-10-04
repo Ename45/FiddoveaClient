@@ -1,59 +1,73 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
-import axios from 'axios';
+import React from 'react';
+import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import {
+    Ionicons,
+    MaterialCommunityIcons,
+    FontAwesome,
+    SimpleLineIcons,
+} from '@expo/vector-icons';
 
-const DashboardScreen = () => {
-    const [productName, setProductName] = useState('');
-    const [products, setProducts] = useState([]);
-
-    const fetchProducts = async () => {
-        // Fetch products from the API endpoint
-        try {
-            const response = await axios.get('https://api.example.com/products');
-            setProducts(response.data);
-        } catch (error) {
-            console.error('Error fetching products:', error);
-        }
-    };
-
-    useEffect(() => {
-        // Fetch products when the component mounts
-        fetchProducts();
-    }, []);
-
-    const addProduct = async () => {
-        // Add product to the API endpoint
-        try {
-            await axios.post('https://api.example.com/products', { name: productName });
-            // Refetch products after adding a new one
-            fetchProducts();
-            // Clear the product name input field
-            setProductName('');
-        } catch (error) {
-            console.error('Error adding product:', error);
-        }
-    };
-
+const VendorDashboard = ({ navigation }) => {
     return (
         <View style={styles.container}>
-            <TextInput
-                placeholder="Product Name"
-                value={productName}
-                onChangeText={(text) => setProductName(text)}
-                style={styles.input}
-            />
-            <TouchableOpacity onPress={addProduct} style={styles.addButton}>
-                <Text style={styles.buttonText}>Add Product</Text>
-            </TouchableOpacity>
-            <FlatList
-                data={products}
-                keyExtractor={(item) => item.id.toString()}
-                renderItem={({ item }) => (
-                    <View style={styles.productItem}>
-                        <Text>{item.name}</Text>
-                    </View>
-                )}
-            />
+            <View style={styles.iconBox}>
+                {/* Orders Menu Item */}
+                <TouchableOpacity
+                    style={[styles.menuItem, styles.brownBackground]}
+                    onPress={() => navigation.navigate('OrdersComponent')}
+                >
+                    <MaterialCommunityIcons
+                        name="clipboard-check"
+                        size={28} // Increased icon width
+                        color="white"
+                    />{' '}
+                    {/* Orders Icon */}
+                </TouchableOpacity>
+
+                {/* Products Menu Item */}
+                <TouchableOpacity
+                    style={[styles.menuItem, styles.brownBackground]}
+                    onPress={() => navigation.navigate('ProductsComponent')}
+                >
+                    <FontAwesome
+                        name="shopping-bag"
+                        size={28} // Increased icon width
+                        color="white"
+                    />{' '}
+                    {/* Products Icon */}
+                </TouchableOpacity>
+
+                {/* Earnings Menu Item */}
+                <TouchableOpacity
+                    style={[styles.menuItem, styles.brownBackground]}
+                    onPress={() => navigation.navigate('EarningsComponent')}
+                >
+                    <MaterialCommunityIcons
+                        name="cash"
+                        size={28} // Increased icon width
+                        color="white"
+                    />{' '}
+                    {/* Earnings Icon */}
+                </TouchableOpacity>
+
+                {/* Profile Menu Item */}
+                <TouchableOpacity
+                    style={[styles.menuItem, styles.brownBackground]}
+                    onPress={() => navigation.navigate('VendorProfile')}
+                >
+                    <Ionicons name="person" size={28} color="white" />{' '}
+                    {/* Profile Icon */}
+                </TouchableOpacity>
+
+                {/* Settings Menu Item */}
+                <TouchableOpacity
+                    style={[styles.menuItem, styles.brownBackground]}
+                    onPress={() => navigation.navigate('SettingsComponent')}
+                >
+                    <SimpleLineIcons name="settings" size={28} color="white" />{' '}
+                    {/* Settings Icon */}
+                </TouchableOpacity>
+            </View>
         </View>
     );
 };
@@ -61,28 +75,24 @@ const DashboardScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 20,
-        backgroundColor: '#F5DEB3', // Light brown background color
+        backgroundColor: '#ffffff',
+        justifyContent: 'flex-end',
     },
-    input: {
-        marginBottom: 10,
-        padding: 10,
-        borderWidth: 1,
-    },
-    addButton: {
-        marginBottom: 20,
-        padding: 10,
-        backgroundColor: 'green',
+    iconBox: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
         alignItems: 'center',
+        backgroundColor: '#3a1204',
+        paddingVertical: 10,
     },
-    buttonText: {
-        color: 'white',
+    menuItem: {
+        alignItems: 'center',
+        padding: 15,
+        borderRadius: 15,
     },
-    productItem: {
-        marginBottom: 10,
-        padding: 10,
-        borderWidth: 1,
+    brownBackground: {
+        backgroundColor: '#b06f55', 
     },
 });
 
-export default DashboardScreen;
+export default VendorDashboard;
