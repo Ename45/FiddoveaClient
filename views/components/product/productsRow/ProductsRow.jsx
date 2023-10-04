@@ -33,39 +33,39 @@ const ProductsRow = ({navigation}) => {
       id: 4
     },
     {
-      categoryImage: "https://i.ibb.co/W29btXp/profile.jpg",
+      categoryImage: "http://res.cloudinary.com/di8higqd1/image/upload/v1696273396/promiscuous/users/profile%20images/1494e687-7906-4544-a5ee-2366dfeb643d.jpg",
       categoryName: "Cakes",
       screen: "Cake",
       id: 5
     },
     {
-      categoryImage: "https://i.ibb.co/W29btXp/profile.jpg",
+      categoryImage: "http://res.cloudinary.com/di8higqd1/image/upload/v1696273615/promiscuous/users/profile%20images/de05085b-fae7-4447-a4d5-6fa9e577fa2d.jpg",
       categoryName: "Doughnuts",
       screen: "Doughnut",
       id: 6
     },
     {
+      categoryImage: "http://res.cloudinary.com/di8higqd1/image/upload/v1696322343/promiscuous/users/profile%20images/ba075d1a-82a0-458c-8605-7a34573f855b.jpg",
+      categoryName: "Rolls",
+      screen: "Roll",
+      id: 7
+    },
+    {
       categoryImage: "https://i.ibb.co/W29btXp/profile.jpg",
       categoryName: "Chocolates",
       screen: "Chocolate",
-      id: 7
+      id: 8
     },
     {
       categoryImage: "https://i.ibb.co/W29btXp/profile.jpg",
       categoryName: "Candies",
       screen: "Candy",
-      id: 8
+      id: 9
     },
     {
       categoryImage: "https://i.ibb.co/W29btXp/profile.jpg",
       categoryName: "Desserts",
       screen: "Dessert",
-      id: 9
-    },
-    {
-      categoryImage: "https://i.ibb.co/W29btXp/profile.jpg",
-      categoryName: "Rolls",
-      screen: "Roll",
       id: 10
     },
     {

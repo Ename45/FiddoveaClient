@@ -1,15 +1,59 @@
-import { View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
-import React, { useState } from "react";
+import { View, Text, TouchableOpacity, Image, ScrollView, ActivityIndicator } from "react-native";
+import React, { useContext, useEffect, useState } from "react";
 import productDetails from "../../../../styles/components/product/productDetails/productDetails";
 import { Fontisto, Ionicons, MaterialCommunityIcons, SimpleLineIcons } from "@expo/vector-icons";
 import { COLORS, SIZES } from "../../../../constants/theme";
 import { useRoute } from "@react-navigation/native";
+import axios from "axios";
+import { ngrokBaseUrl, productUrl } from "../../../../api/Api";
+import { Context } from "../../../../context/context";
 
 const ProductDetails = ({ navigation }) => {
 
   const route = useRoute();
-  const { item } = route.params;
-  console.log(item)
+  // const { item } = route.params;
+  // console.log(item)
+  const { productId } = route.params;
+  console.log(productId)
+
+  const [isLoading, setIsLoading ] = useState(false)
+  const [error, setError] = useState(null);
+  const [productDetailsData, setProductDetailsData] = useState([])
+
+  const { addToFavorites } = useContext(Context)
+
+  useEffect(() => {
+    async function getProductDetailsDataFromApi (){
+      try {
+        // const response = await axios.get(`${ngrokBaseUrl}/${productUrl}/findproduct/${item}`);
+        const response = await axios.get(`${ngrokBaseUrl}/${productUrl}/findproduct/${productId}`);
+
+        // console.log("this is the response", response.data);
+
+        if (response.status == 200) {
+          setIsLoading(false);
+          setProductDetailsData(response.data);
+        }
+      } catch (error) {
+        console.log("this is the error message", error);
+        setError(error)
+      }
+    }
+
+    getProductDetailsDataFromApi();
+  }, []);
+
+  console.log(productDetailsData);
+
+  if (isLoading) {
+    return(
+      <ActivityIndicator
+      size={SIZES.xxLarge}
+      color={COLORS.tabBarBrown}
+      />
+    )
+  }
+
 
   const [count, setCount] = useState(1)
 
@@ -32,34 +76,45 @@ const ProductDetails = ({ navigation }) => {
   // };
 
   return (
-    <ScrollView>
+    <ScrollView style={{flex: 1, height: SIZES.height, 
+    backgroundColor: COLORS.pageBackgroundBrown}}>
       <View style={productDetails.container}>
-      <View style={productDetails.upperRow}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
+      <View style={productDetails.upperMainContainer}>
+        <View style={productDetails.upperRow}>
+        <TouchableOpacity 
+        onPress={() => navigation.goBack()}
+        style={{elevation: 10, backgroundColor: COLORS.tabBarBrown, borderRadius: 50}}
+        >
           <Ionicons
-            name="chevron-back-circle"
+            name="chevron-back-circle-outline"
             size={30}
-            color={COLORS.primary}
+            color={COLORS.white}
           />
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
             {};
           }}
+          style={{elevation: 10, backgroundColor: COLORS.white, borderRadius: 50}}
         >
-          <Ionicons name="heart-outline" size={30} color={COLORS.primary} />
+          <Ionicons 
+          name="heart-outline" 
+          size={30} 
+          color={COLORS.black} 
+          />
         </TouchableOpacity>
       </View>
       <Image
-        source={{ uri: item.productImage }}
+        source={{ uri: productDetailsData.productImageUrl }}
         style={productDetails.image}
       />
+      </View>
 
       <View style={productDetails.details}>
         <View style={productDetails.titleRow}>
-          <Text style={productDetails.title}>{item.productName}</Text>
+          <Text style={productDetails.title}>{productDetailsData.productName}</Text>
           <View style={productDetails.priceWrapper}>
-            <Text style={productDetails.productPrice}>N{item.productPrice}</Text>
+            <Text style={productDetails.productPrice}>N{productDetailsData.productPrice}</Text>
           </View>
         </View>
 
@@ -98,7 +153,7 @@ const ProductDetails = ({ navigation }) => {
             Description
           </Text>
           <Text style={productDetails.descriptionStyle}>
-            {item.productDescription}
+            {productDetailsData.productDescription}
           </Text>
         </View>
 
@@ -128,7 +183,10 @@ const ProductDetails = ({ navigation }) => {
               BUY NOW
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => {}} style={productDetails.addToCart}>
+          <TouchableOpacity 
+          onPress={() => addToFavorites( productId, productDetailsData.productName, productDetailsData.productPrice )} 
+          style={productDetails.addToCart}
+          >
             <MaterialCommunityIcons
             name="cart"
             size={24}
