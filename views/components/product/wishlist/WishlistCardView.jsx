@@ -1,25 +1,31 @@
 import { View, Text, Pressable, Image, SafeAreaView } from "react-native";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import allProductsCardView from "../../../../styles/components/product/allProductsCardView/allProductsCardView";
 import { Ionicons } from "@expo/vector-icons";
 import { COLORS, SIZES } from "../../../../constants/theme";
 import { useNavigation } from "@react-navigation/native";
+import { Context } from "../../../../context/context";
 
-const AllProductsCardView = ({ product }) => {
-  const navigation = useNavigation();
+
+const WishlistCardView = ({wishList}) => {
+  // const navigation = useNavigation();
+
+  // console.log("This is the wishlist log ==> ", wishList);
 
   const [isFocused, setIsFocused] = useState(false);
 
-  const navigateToProductDetails =(productId) => {
-    // navigation.navigate('ProductDetails', { productId: productId })
-    navigation.navigate('ProductDetails', { productId })
-  }
+  const { removeFromWishlistUsingApi } = useContext(Context)
+
+  // const navigateToProductDetails = (productId) => {
+  //   // navigation.navigate('ProductDetails', { productId: productId })
+  //   navigation.navigate("ProductDetails", { productId });
+  // };
 
   return (
     <Pressable
       onPressIn={() => setIsFocused(true)}
       onPressOut={() => setIsFocused(false)}
-      onPress={() => navigateToProductDetails(product.productId)}
+      // onPress={() => navigateToProductDetails(product.productId)}
       // onPress={() => navigation.navigate("ProductDetails", {item: product})}
     >
       {/* product */}
@@ -31,7 +37,7 @@ const AllProductsCardView = ({ product }) => {
       >
         <View style={allProductsCardView.imageContainer}>
           <Image
-            source={{ uri: product.productImageUrl }}
+            source={{ uri: wishList.productImageUrl }}
             style={allProductsCardView.image}
           />
         </View>
@@ -42,38 +48,38 @@ const AllProductsCardView = ({ product }) => {
               numberOfLines={1}
               ellipsizeMode="tail"
             >
-              {product.productName}
+              {wishList.productName}
             </Text>
           </View>
           <View style={allProductsCardView.details}>
             <Text style={allProductsCardView.price} numberOfLines={1}>
-              N{product.productPrice}
+              N{wishList.productPrice}
             </Text>
           </View>
         </View>
         <View style={allProductsCardView.buttonsContainer}>
           <Pressable
             style={allProductsCardView.addBtn}
-            // onPress={() => addToWishList(product)}
+            onPress={() => removeFromWishlistUsingApi(wishList.productId)}
           >
             <Ionicons
-              name="heart-outline"
+              name="remove"
               size={(9 / 100) * SIZES.width}
               color={COLORS.black}
               style={{ marginTop: 1, marginBottom: -3 }}
             />
           </Pressable>
-          <Pressable style={allProductsCardView.addBtn2}>
+          {/* <Pressable style={allProductsCardView.addBtn2}>
             <Ionicons
               name="cart-outline"
               size={(9 / 100) * SIZES.width}
               color={COLORS.goldenrod}
             />
-          </Pressable>
+          </Pressable> */}
         </View>
       </View>
     </Pressable>
   );
-};
+}
 
-export default AllProductsCardView;
+export default WishlistCardView

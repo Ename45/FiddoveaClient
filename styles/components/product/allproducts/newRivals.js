@@ -13,10 +13,10 @@ export default StyleSheet.create({
     // borderWidth: 3,
     // borderStyle: "solid",
     // justifyContent: "center",
-    alignItems: "center"    
+    alignItems: "center",
   },
   upperRow: {
-    width: SIZES.width-20,
+    width: SIZES.width - 20,
     // marginHorizontal: SIZES.large,
     flexDirection: "row",
     justifyContent: "flex-start",
@@ -26,8 +26,8 @@ export default StyleSheet.create({
     borderRadius: SIZES.large,
     top: SIZES.large,
     zIndex: 999,
-    gap: SIZES.width/4,
-    elevation: 10
+    gap: SIZES.width / 4,
+    elevation: 10,
   },
   heading: {
     fontFamily: "poppinsBold700",

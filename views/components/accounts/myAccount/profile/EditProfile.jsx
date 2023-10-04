@@ -320,7 +320,7 @@ const EditProfile = ({navigation}) => {
             <CustomButton   
             buttonName="Update Profile"
             onPress={handleUpdate}
-            style={{ marginTop: -50}}
+            style={{ marginTop: -130}}
             />
 
           </ScrollView>
