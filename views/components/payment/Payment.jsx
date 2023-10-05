@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, SafeAreaView, ImageBackground, Pressable, Image } from 'react-native';
 import { CardField, useStripe } from '@stripe/stripe-react-native';
 import payment from "../../../styles/components/payment/payment"
+import { COLORS } from '../../../constants/theme';
 
 const Payment = () => {
   const { confirmPayment } = useStripe()
@@ -34,14 +35,12 @@ const Payment = () => {
   };
 
   return (
-    <ImageBackground source={require('../../../assets/images/jpg/welcomeScreen.jpg')} 
-    style={payment.cardImage}>
         
-      <SafeAreaView>
+      <SafeAreaView style={{flex: 1, backgroundColor: COLORS.pageBackgroundBrown}}>
       <Text style={payment.textTiltle}>Payment Details</Text> 
         <View style={payment.cardDetailLabel}>
         
-          <Text style={payment.cardDetailLabel}>All Cards</Text>
+          <Text style={payment.cardDetailLabels}>All Cards</Text>
       
           <CardField
             postalCodeEnabled={false}
@@ -63,7 +62,6 @@ const Payment = () => {
           </Pressable>
        
       </SafeAreaView>
-    </ImageBackground>
   );
 };
 

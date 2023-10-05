@@ -12,19 +12,10 @@ import { COLORS, SIZES } from "../../../constants/theme";
   textTiltle: {
     fontSize: 30,
     fontWeight: 'bold',
-    color: 'violet',  
+    color: COLORS.tabBarBrown,  
     marginLeft: 50,
     marginTop: 40
 
-  },
-
-  cardImage: {
-    flex: 1,
-    resizeMode: "cover",
-    justifyContent: "center",
-    width: SIZES.width,
-    height: SIZES.height,
-    padding: 40,
   },
 
     title: {
@@ -36,23 +27,38 @@ import { COLORS, SIZES } from "../../../constants/theme";
       color: 'white',
       fontSize: 20,
       marginTop: 50,
-      backgroundColor: 'purple',
-      borderColor: 'yellow'
-
+      // backgroundColor: COLORS.tabBarBrown,
+      backgroundColor: COLORS.metallicGold,
+      borderColor: 'yellow',
+      marginHorizontal: 15,
+      borderWidth: 1,
+      borderStyle: "solid",
+      borderColor: COLORS.tabBarBrown,
+      borderRadius: 10,
+      height: 30/100*(SIZES.height)
+    },
+    cardDetailLabels: {
+      color: COLORS.tabBarBrown,
+      fontSize: 20,
+      marginTop: 50,
+      // backgroundColor: COLORS.tabBarBrown,
+      backgroundColor: COLORS.metallicGold,
+      borderColor: 'yellow',
+      marginHorizontal: 8,
+      borderRadius: 10,
     },
     cardField: {
-      width: '100%',
-      height: 50,
-      marginBottom: 20,
+      height: 50, 
 
     },
     button: {
-      backgroundColor: 'purple',
+      backgroundColor: COLORS.metallicGold,
       borderRadius: 20,
       height: 50,
       alignItems: 'center',
       justifyContent: 'center',
-      marginTop: 100
+      marginTop: 100,
+      marginHorizontal: 15
     },
     buttonText: {
       color: 'white',
