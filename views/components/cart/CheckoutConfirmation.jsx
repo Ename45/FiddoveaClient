@@ -1,35 +1,39 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Cart from "./Cart";
+import { Context } from '../../../context/context';
 
-const CheckoutConfirmation = ({ deliveryLocation, phoneNumber, paymentMethod, products, totalPrice, cartItems }) => {
+const CheckoutConfirmation = ({ deliveryLocation, phoneNumber, paymentMethod, totalPrice,  }) => {
+
+    const { products, cartItems } = useContext(Context)
+
     return (
         <View style={styles.container}>
             <Text style={styles.header}>Order Confirmation</Text>
 
             <View style={styles.section}>
                 <Text style={styles.sectionTitle}>Delivery Information</Text>
-                <Text>Delivery Location: {deliveryLocation}</Text>
-                <Text>Phone Number: {phoneNumber}</Text>
+                <Text>Delivery Location: </Text>
+                <Text>Phone Number: </Text>
             </View>
 
             <View style={styles.section}>
                 <Text style={styles.sectionTitle}>Payment Method</Text>
-                <Text>{paymentMethod}</Text>
+                <Text>paymentMethod function</Text>
             </View>
 
             <View style={styles.section}>
                 <Text style={styles.sectionTitle}>Ordered Products</Text>
                 {products.map((product) => (
-                    <View key={product.id} style={styles.productItem}>
-                        <Text>{product.name} x{product.quantity}</Text>
-                        <Text>${product.price * product.quantity}</Text>
+                    <View key={product.productId} style={styles.productItem}>
+                        <Text>{product.productName} x{product.quantity}</Text>
+                        <Text>${product.productPrice * product.quantity}</Text>
                     </View>
                 ))}
             </View>
 
             <View style={styles.totalPrice}>
-                <Text>Total Price: ${totalPrice}</Text>
+                <Text>Total Price: $1234</Text>
             </View>
         </View>
     );

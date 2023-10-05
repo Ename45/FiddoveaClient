@@ -74,7 +74,7 @@ const Cart = () => {
       </View>
       <Pressable
         style={cart.checkoutButton}
-        onPress={navigation.navigate("CheckoutConfirmation")}
+        onPress={()=> navigation.navigate("CheckoutConfirmation")}
       >
         <Text style={cart.checkoutButtonText}>Check out</Text>
       </Pressable>
