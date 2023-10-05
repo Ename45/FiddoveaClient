@@ -21,7 +21,8 @@ import EditProfile from "./views/components/accounts/myAccount/profile/EditProfi
 import LiveChat from "./views/components/accounts/actions/liveChat/LiveChat.jsx";
 import Notification from "./views/components/accounts/myAccount/notification/Notification.jsx";
 import Logout from "./views/components/accounts/actions/logout/Logout.jsx";
-import OtpNotification from "./views/components/auth/register/OtpNotification.jsx";
+import Payment from "./views/components/payment/Payment.jsx";
+import PaymentPage from "./views/components/payment/PaymentPage.jsx";
 
 const Stack = createNativeStackNavigator();
 
@@ -133,9 +134,14 @@ export default function App() {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="OtpNotification"
-          component={OtpNotification}
-          options={{headerShown: false}}
+        name="Payment"
+        component={Payment}
+        options={{headerShown: false}}
+        />
+        <Stack.Screen
+        name="PaymentPage"
+        component={PaymentPage}
+        options={{headerShown: false}}
         />
       </Stack.Navigator>
     </NavigationContainer>

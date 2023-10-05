@@ -10,6 +10,7 @@ import MySettings from "./views/components/accounts/yourSettings/MySettings.jsx"
 import Profile from "./views/components/accounts/profile/Profile.jsx";
 import EditProfile from "./views/components/accounts/profile/EditProfile.jsx";
 import LiveChat from "./views/components/accounts/liveChat/LiveChat.jsx";
+import Payment from './views/components/payment/Payment.jsx';
 
 const Stack = createNativeStackNavigator();
 
@@ -57,6 +58,11 @@ export default function Component1() {
           component={EditProfile}
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name="Payment"
+          component={Payment}
+          options={{headerShown: false}}
+        />  
       </Stack.Navigator>
     </NavigationContainer>
   );
