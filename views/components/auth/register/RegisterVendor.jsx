@@ -29,7 +29,7 @@ const RegisterVendor = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     const URL = `${ngrokBaseUrl}/${vendorUrl}`;
 
     let vendorData = {

@@ -24,8 +24,7 @@ const VendorProfile = () => {
             <TouchableOpacity onPress={pickImage} style={styles.cameraIconContainer}>
                 <AntDesign name="camera" size={24} color="#5D4037" />
             </TouchableOpacity>
-<<<<<<< HEAD
-=======
+
             <TouchableOpacity onPress={handleImageSelection}>
             <Image
                 source={{ uri: selectedImage }}
@@ -38,7 +37,6 @@ const VendorProfile = () => {
                 }}
             />
             </TouchableOpacity>
->>>>>>> main
             {profilePic && <Image source={{ uri: profilePic }} style={styles.profilePic} />}
             <Text style={styles.heading}>Vendor</Text>
             <Text style={styles.detail}>Vendor Email: vendor@example.com</Text>
