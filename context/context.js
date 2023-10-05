@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { customerUrl, ngrokBaseUrl, productUrl } from "../api/Api";
 import axios from "axios";
+
 // create context
 // provide context
 // consume context
@@ -11,36 +12,178 @@ const ProductContext = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-
   const [wishListItems, setWishListItems] = useState([]);
+  const [cartItems, setCartItems] = useState([])
 
-  // const [getWishList, setGetWishList] = useState([])
 
-  async function addToWishlistUsingApi(productId) {
-    // console.log("wishlist ==> ", productId);
+
+
+  const addToWishList = async (productId) => {
+    // console.log(productId);
+    let copyOfWishListItems = [...wishListItems];
+    const foundProduct = copyOfWishListItems.findIndex(
+      (item) => item.productId == productId
+    );
+
+    if (foundProduct === -1 && !wishListItems.includes(productId)) {
+      const data = {
+        productId: productId,
+        customerId: "6519d0e1d7ee80377ef42653",
+      };
+
+      try {
+        const response = await axios.post(
+          `${ngrokBaseUrl}/${customerUrl}/addtowishlist`,
+          data
+        );
+
+        // console.log("this is the response", response.data);
+
+        if (response.status === 200) {
+          setIsLoading(false);
+          setWishListItems([...copyOfWishListItems, response.data]);
+        }
+      } catch (error) {
+        console.log("Error adding to wishList", error);
+        setError(error);
+      }
+    } else {
+      console.log("Item is already in the wishlist");
+    }
+  };
+
+  // console.log("wishListItems in context", wishListItems);
+
+
+
+
+  const addToCart = async (productId) => {
+    console.log(productId);
+    let copyOfCartItems = [...cartItems];
+    const foundProduct = copyOfCartItems.findIndex(
+      (item) => item.productId == productId
+    );
+
+    if (foundProduct === -1 && !cartItems.includes(productId)) {
+      const data = {
+        productId: productId,
+        customerId: "6519d0e1d7ee80377ef42653",
+      };
+
+      try {
+        const response = await axios.post(
+          `${ngrokBaseUrl}/${customerUrl}/addtocart`,
+          data
+        );
+
+        console.log("this is the response", response.data);
+
+        if (response.status === 200) {
+          setIsLoading(false);
+          setCartItems([...copyOfCartItems, response.data]);
+        }
+      } catch (error) {
+        console.log("Error adding to cart", error);
+        setError(error);
+      }
+    } else {
+      console.log("Item is already in the cart");
+    }
+  };
+
+  // console.log("wishListItems in context", wishListItems);
+
+
+
+
+  const handleRemoveFromWishList = async (getCurrentId) => {
+    let copyOfWishListItems = [...wishListItems];
+
+    copyOfWishListItems = copyOfWishListItems.filter(
+      (item) => item.productId !== getCurrentId
+    );
+
     const data = {
-      productId: productId,
-      customerId: "6519d0e1d7ee80377ef42653",
+      productId: getCurrentId,
+      userId: "6519d0e1d7ee80377ef42653",
     };
+
     try {
       const response = await axios.post(
-        `${ngrokBaseUrl}/${customerUrl}/addtowishlist`,
+        `${ngrokBaseUrl}/${customerUrl}/removefromwishlist`,
         data
       );
 
       console.log("this is the response", response.data);
 
-      if (response.status == 200) {
+      if (response.status === 200) {
         setIsLoading(false);
-        setWishListItems([...wishListItems, response.data]);
+        setWishListItems(copyOfWishListItems);
       }
     } catch (error) {
-      console.log("Error adding to wishList", error);
+      console.log("Error removing from wishList", error);
       setError(error);
     }
-  }
+  };
 
-  // console.log(wishListItems);
+
+
+
+  const handleRemoveFromCart = async (getCurrentId) => {
+    let copyOfCartItems = [...cartItems];
+
+    copyOfCartItems = copyOfCartItems.filter(
+      (item) => item.productId !== getCurrentId
+    );
+
+    const data = {
+      productId: getCurrentId,
+      userId: "6519d0e1d7ee80377ef42653",
+    };
+
+    try {
+      const response = await axios.post(
+        `${ngrokBaseUrl}/${customerUrl}/removefromcart`,
+        data
+      );
+
+      console.log("this is the response", response.data);
+
+      if (response.status === 200) {
+        setIsLoading(false);
+        setCartItems(copyOfCartItems);
+      }
+    } catch (error) {
+      console.log("Error removing from cart", error);
+      setError(error);
+    }
+  };
+
+  console.log("desperado cart items==>", cartItems);
+
+
+
+  useEffect(() => {
+    setIsLoading(true);
+    async function getProductFromApi() {
+      try {
+        const response = await axios.get(`${ngrokBaseUrl}/${productUrl}`);
+
+        if (response.status == 200) {
+          setIsLoading(false);
+          setProducts(response.data);
+        }
+      } catch (error) {
+        console.log("this is the error message", error);
+        setError(error);
+      }
+    }
+
+    getProductFromApi();
+  }, []);
+
+
+
 
   //   useEffect(() => {
   //     setIsLoading(true);
@@ -72,59 +215,19 @@ const ProductContext = ({ children }) => {
 
   // console.log(getWishList);
 
-  async function removeFromWishlistUsingApi(productId) {
-    console.log("wishlist ==> ", productId);
-    const data = {
-      productId: productId,
-      userId: "6519d0e1d7ee80377ef42653",
-    };
-    try {
-      const response = await axios.post(
-        `${ngrokBaseUrl}/${customerUrl}/removefromwishlist`,
-        data
-      );
-
-      console.log("remove response  ", response.data);
-
-      if (response.status == 200) {
-        setIsLoading(false);
-        setWishListItems([...wishListItems, response.data]);
-      }
-    } catch (error) {
-      console.log("Error adding to wishList", error);
-      setError(error);
-    }
-  };
-  console.log("removeFromWishlistUsingApi==> ", wishListItems);
-
-
-
-  useEffect(() => {
-    setIsLoading(true);
-    async function getProductFromApi() {
-      try {
-        const response = await axios.get(`${ngrokBaseUrl}/${productUrl}`);
-
-        // console.log("this is the response", response.data);
-
-        if (response.status == 200) {
-          setIsLoading(false);
-          setProducts(response.data);
-        }
-      } catch (error) {
-        console.log("this is the error message", error);
-        setError(error);
-      }
-    }
-
-    getProductFromApi();
-  }, []);
-
-  // console.log("this is the list of products", products);
-
   return (
     <Context.Provider
-      value={{ products, isLoading, error, addToWishlistUsingApi, removeFromWishlistUsingApi }}
+      value={{
+        products,
+        isLoading,
+        error,
+        wishListItems,
+        addToWishList,
+        handleRemoveFromWishList,
+        cartItems,
+        addToCart,
+        handleRemoveFromCart
+      }}
     >
       {children}
     </Context.Provider>

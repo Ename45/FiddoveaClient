@@ -1,19 +1,22 @@
-import { View, Text, Pressable, Image, SafeAreaView } from "react-native";
-import React, { useState } from "react";
+import { View, Text, Pressable, Image } from "react-native";
+import React, { useContext, useState } from "react";
 import allProductsCardView from "../../../../styles/components/product/allProductsCardView/allProductsCardView";
 import { Ionicons } from "@expo/vector-icons";
 import { COLORS, SIZES } from "../../../../constants/theme";
 import { useNavigation } from "@react-navigation/native";
+import { Context } from "../../../../context/context";
 
 const AllProductsCardView = ({ product }) => {
   const navigation = useNavigation();
 
   const [isFocused, setIsFocused] = useState(false);
 
-  const navigateToProductDetails =(productId) => {
+  const { addToWishList, addToCart } = useContext(Context);
+
+  const navigateToProductDetails = (productId) => {
     // navigation.navigate('ProductDetails', { productId: productId })
-    navigation.navigate('ProductDetails', { productId })
-  }
+    navigation.navigate("ProductDetails", { productId });
+  };
 
   return (
     <Pressable
@@ -22,7 +25,6 @@ const AllProductsCardView = ({ product }) => {
       onPress={() => navigateToProductDetails(product.productId)}
       // onPress={() => navigation.navigate("ProductDetails", {item: product})}
     >
-      {/* product */}
       <View
         style={[
           allProductsCardView.container,
@@ -54,7 +56,7 @@ const AllProductsCardView = ({ product }) => {
         <View style={allProductsCardView.buttonsContainer}>
           <Pressable
             style={allProductsCardView.addBtn}
-            // onPress={() => addToWishList(product)}
+            onPress={() => addToWishList(product.productId)}
           >
             <Ionicons
               name="heart-outline"
@@ -63,7 +65,10 @@ const AllProductsCardView = ({ product }) => {
               style={{ marginTop: 1, marginBottom: -3 }}
             />
           </Pressable>
-          <Pressable style={allProductsCardView.addBtn2}>
+          <Pressable 
+          style={allProductsCardView.addBtn2}
+          onPress={() => addToCart(product.productId)}
+          >
             <Ionicons
               name="cart-outline"
               size={(9 / 100) * SIZES.width}

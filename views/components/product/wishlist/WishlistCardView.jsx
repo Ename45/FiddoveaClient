@@ -1,66 +1,50 @@
 import { View, Text, Pressable, Image, SafeAreaView } from "react-native";
 import React, { useContext, useState } from "react";
-import allProductsCardView from "../../../../styles/components/product/allProductsCardView/allProductsCardView";
+import wishlistCardView from "../../../../styles/components/product/wishlist/wishlistCardView";
 import { Ionicons } from "@expo/vector-icons";
 import { COLORS, SIZES } from "../../../../constants/theme";
 import { useNavigation } from "@react-navigation/native";
 import { Context } from "../../../../context/context";
 
 
-const WishlistCardView = ({wishList}) => {
-  // const navigation = useNavigation();
+const WishlistCardView = ({product, handleRemoveFromWishList, currentProductId }) => {
 
-  // console.log("This is the wishlist log ==> ", wishList);
-
-  const [isFocused, setIsFocused] = useState(false);
-
-  const { removeFromWishlistUsingApi } = useContext(Context)
-
-  // const navigateToProductDetails = (productId) => {
-  //   // navigation.navigate('ProductDetails', { productId: productId })
-  //   navigation.navigate("ProductDetails", { productId });
-  // };
+    const [isFocused, setIsFocused] = useState(false);
 
   return (
-    <Pressable
-      onPressIn={() => setIsFocused(true)}
-      onPressOut={() => setIsFocused(false)}
-      // onPress={() => navigateToProductDetails(product.productId)}
-      // onPress={() => navigation.navigate("ProductDetails", {item: product})}
-    >
-      {/* product */}
-      <View
-        style={[
-          allProductsCardView.container,
-          isFocused && { backgroundColor: COLORS.pureGold },
-        ]}
+      <Pressable style={{backgroundColor: COLORS.pageBackgroundBrown}} 
       >
-        <View style={allProductsCardView.imageContainer}>
+        <View style={[
+          wishlistCardView.container,
+        ]}>
+          <View style={wishlistCardView.imageContainer}>
           <Image
-            source={{ uri: wishList.productImageUrl }}
-            style={allProductsCardView.image}
+            source={{ uri: product.productImageUrl }}
+            style={wishlistCardView.image}
           />
         </View>
         <View style={{ alignItems: "center", justifyContent: "center" }}>
-          <View style={allProductsCardView.product}>
+          <View style={wishlistCardView.product}>
             <Text
-              style={allProductsCardView.nameText}
+              style={wishlistCardView.nameText}
               numberOfLines={1}
               ellipsizeMode="tail"
             >
-              {wishList.productName}
+              {product.productName}
             </Text>
           </View>
-          <View style={allProductsCardView.details}>
-            <Text style={allProductsCardView.price} numberOfLines={1}>
-              N{wishList.productPrice}
+          <View style={wishlistCardView.details}>
+            <Text style={wishlistCardView.price} numberOfLines={1}>
+              N{product.productPrice}
             </Text>
           </View>
         </View>
-        <View style={allProductsCardView.buttonsContainer}>
+        <View style={wishlistCardView.buttonsContainer}>
           <Pressable
-            style={allProductsCardView.addBtn}
-            onPress={() => removeFromWishlistUsingApi(wishList.productId)}
+            style={[wishlistCardView.addBtn, {backgroundColor: isFocused? "red" : COLORS.white}]}            
+            onPress={()=> handleRemoveFromWishList(currentProductId)}            
+            onPressIn={() => setIsFocused(true)}
+            onPressOut={() => setIsFocused(false)}
           >
             <Ionicons
               name="remove"
@@ -69,16 +53,9 @@ const WishlistCardView = ({wishList}) => {
               style={{ marginTop: 1, marginBottom: -3 }}
             />
           </Pressable>
-          {/* <Pressable style={allProductsCardView.addBtn2}>
-            <Ionicons
-              name="cart-outline"
-              size={(9 / 100) * SIZES.width}
-              color={COLORS.goldenrod}
-            />
-          </Pressable> */}
         </View>
-      </View>
-    </Pressable>
+        </View>
+      </Pressable>
   );
 }
 
