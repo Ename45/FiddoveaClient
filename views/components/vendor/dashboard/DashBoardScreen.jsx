@@ -14,7 +14,7 @@ const VendorDashboard = ({ navigation }) => {
                 {/* Orders Menu Item */}
                 <TouchableOpacity
                     style={[styles.menuItem, styles.brownBackground]}
-                    onPress={() => navigation.navigate('OrdersComponent')}
+                    onPress={() => navigation.navigate('ViewOrder')}
                 >
                     <MaterialCommunityIcons
                         name="clipboard-check"

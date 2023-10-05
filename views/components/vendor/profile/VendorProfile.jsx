@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
-import {COLORS} from "../../../../constants/theme";
 
 const VendorProfile = () => {
     const [profilePic, setProfilePic] = useState(null);
@@ -25,17 +24,6 @@ const VendorProfile = () => {
             <TouchableOpacity onPress={pickImage} style={styles.cameraIconContainer}>
                 <AntDesign name="camera" size={24} color="#5D4037" />
             </TouchableOpacity>
-            TouchableOpacity onPress={handleImageSelection}>
-            <Image
-                source={{ uri: selectedImage }}
-                style={{
-                    height: 170,
-                    width: 170,
-                    borderRadius: 85,
-                    borderWidth: 2,
-                    borderColor: COLORS.primary,
-                }}
-            />
             {profilePic && <Image source={{ uri: profilePic }} style={styles.profilePic} />}
             <Text style={styles.heading}>Vendor</Text>
             <Text style={styles.detail}>Vendor Email: vendor@example.com</Text>
@@ -56,7 +44,7 @@ const VendorProfile = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#FFFFFF', // Set background color to white
         alignItems: 'center',
         padding: 20,
     },
@@ -86,13 +74,13 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     logoutButton: {
-        backgroundColor: '#5D4037',
+        backgroundColor: '#5D4037', // Brown background color for the button
         paddingVertical: 10,
         paddingHorizontal: 20,
         borderRadius: 5,
     },
     buttonText: {
-        color: '#FFFFFF',
+        color: '#FFFFFF', // White text color for the button text
         fontSize: 16,
     },
 });
