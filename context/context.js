@@ -17,7 +17,6 @@ const ProductContext = ({ children }) => {
 
 
 
-
   const addToWishList = async (productId) => {
     // console.log(productId);
     let copyOfWishListItems = [...wishListItems];
@@ -80,6 +79,10 @@ const ProductContext = ({ children }) => {
 
         if (response.status === 200) {
           setIsLoading(false);
+            // const productWithTotalPrice = {
+            //   ...response.data,
+            //   totalItemPrice: response.data.productPrice *1, 
+            // };
           setCartItems([...copyOfCartItems, response.data]);
         }
       } catch (error) {
@@ -226,7 +229,7 @@ const ProductContext = ({ children }) => {
         handleRemoveFromWishList,
         cartItems,
         addToCart,
-        handleRemoveFromCart
+        handleRemoveFromCart,
       }}
     >
       {children}
