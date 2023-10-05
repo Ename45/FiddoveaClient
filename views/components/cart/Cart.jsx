@@ -4,8 +4,11 @@ import { COLORS } from '../../../constants/theme';
 import { Context } from '../../../context/context';
 import CartCardView from './CartCardView';
 import cart from '../../../styles/components/cart/cart';
+import { useNavigation } from '@react-navigation/native';
 
 const Cart = () => {
+
+  const navigation = useNavigation()
 
   const { cartItems, handleRemoveFromCart} = useContext(Context)
 
@@ -71,6 +74,7 @@ const Cart = () => {
       </View>
       <Pressable
         style={cart.checkoutButton}
+        onPress={navigation.navigate("CheckoutConfirmation")}
       >
         <Text style={cart.checkoutButtonText}>Check out</Text>
       </Pressable>

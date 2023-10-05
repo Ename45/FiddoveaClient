@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Cart from "./Cart";
 
-const CheckoutConfirmation = ({ deliveryLocation, phoneNumber, paymentMethod, products, totalPrice }) => {
+const CheckoutConfirmation = ({ deliveryLocation, phoneNumber, paymentMethod, products, totalPrice, cartItems }) => {
     return (
         <View style={styles.container}>
             <Text style={styles.header}>Order Confirmation</Text>

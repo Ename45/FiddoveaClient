@@ -20,6 +20,7 @@ import Categories from "./views/components/product/categories/Categories.jsx";
 import Filter from "./views/components/product/filter/Filter.jsx";
 import Search from "./views/components/product/search/Search.jsx";
 import Cart from "./views/components/cart/Cart.jsx";
+import CheckoutConfirmation from "./views/components/cart/CheckoutConfirmation.jsx";
 import MySettings from "./views/components/accounts/yourSettings/MySettings.jsx";
 import Profile from "./views/components/accounts/myAccount/profile/Profile.jsx";
 import EditProfile from "./views/components/accounts/myAccount/profile/EditProfile.jsx";
@@ -101,21 +102,21 @@ export default function App() {
             component={RegisterVendor}
             options={{ headerShown: false }}
           />
-         <Stack.Screen
-          name={"VerificationPendingScreen"}
-          component={VerificationPendingScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name={"VendorDashboard"}
-          component={VendorDashboard}
-          options={{ headerShown: false }}
-        />
-         <Stack.Screen
-          name={"VendorProfile"}
-          component={VendorProfile}
-          options={{ headerShown: false }}
-         />
+          <Stack.Screen
+            name={"VerificationPendingScreen"}
+            component={VerificationPendingScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name={"VendorDashboard"}
+            component={VendorDashboard}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name={"VendorProfile"}
+            component={VendorProfile}
+            options={{ headerShown: false }}
+          />
           <Stack.Screen
             name="RegisterAdmin"
             component={RegisterAdmin}
@@ -169,6 +170,11 @@ export default function App() {
           <Stack.Screen
             name="Cart"
             component={Cart}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="CheckoutConfirmation"
+            component={CheckoutConfirmation}
             options={{ headerShown: false }}
           />
           <Stack.Screen

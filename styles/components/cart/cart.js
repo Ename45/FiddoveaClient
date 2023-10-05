@@ -8,12 +8,6 @@ export default StyleSheet.create({
     marginTop: 5/100*(SIZES.height),
     paddingBottom: 5/100*(SIZES.height)
   },
-  header: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 16,
-    textAlign: "center",
-  },
   totalPriceContainer: {
     flexDirection: "row",
     justifyContent: "space-between",

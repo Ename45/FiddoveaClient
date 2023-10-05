@@ -41,7 +41,7 @@ const CartCardView = ({product, handleRemoveFromCart, currentProductId, onUpdate
           >
             <MaterialIcons
               name="delete"
-              size={(5 / 100) * SIZES.width}
+              size={(7 / 100) * SIZES.width}
               color={COLORS.black}
               style={{ marginTop: 1, marginBottom: -3 }}
             />
