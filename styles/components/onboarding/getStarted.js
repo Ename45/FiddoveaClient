@@ -27,4 +27,5 @@ export default StyleSheet.create({
     justifyContent: "center",
     gap: 5,
   },
+
 });

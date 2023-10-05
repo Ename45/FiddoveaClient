@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
-import { View, Text, SafeAreaView } from 'react-native'
+import { View, Text, SafeAreaView, ImageBackground, Image } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 import login from '../../../../styles/components/auth/login/login.js'
-import register from '../../../../styles/components/auth/register/register.js'
 import InputField from '../../reusable/inputField/InputField.jsx';
 import CustomButton from '../../reusable/button/CustomButton.jsx'
 import { customerUrl, ngrokBaseUrl } from '../../../../api/Api.jsx';
@@ -15,6 +14,9 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');  
   const [buttonClicked, setButtonClicked] = useState(false);
+    const [error, setError] = useState(null);
+  const [inputError, setInputError] = useState("");
+  const [networkError, setNetworkError] = useState("");
 
   const navigation = useNavigation()
 
@@ -32,36 +34,70 @@ const Login = () => {
       password,
     };
 
-    
     if (email !== "" && password !== "") {
+      setInputError("");
       try {
-        await axios.post(URL, customerData)
-          .then((response) => {    
-          navigation.navigate("BottomTabNav")
-          return response.data;
-          })
+        const response = await axios.post(URL, customerData);
+        if (response.status === 201) {
+          console.log("This is response,data", response.data.message);
+          // navigation.navigate("OtpConfirmation", {email: email});
+          navigation.navigate("BottomTabNav",);
+        }
       } catch (error) {
-        return error
-      }      
-    } 
+        setError(error.response.data);
+      }
+    } else {
+      setInputError("All fields are required");
+    }
     }
 
     return (
-    <SafeAreaView>
-      <View style={register.container}>
-        <Text style={register.title}></Text>
+      <ImageBackground source={require("../../../../assets/images/jpg/backgroundColour3.jpeg")} 
+      style={login.backgroundColor}>
+      <View style={login.logoContainer}>
+    <Image
+        source={require('../../../../assets/images/png/secondLogo.png')} 
+        style={login.logo}
+      />
+    </View>
+
+    <View
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        paddingHorizontal: 20,
+      }}
+    >
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: COLORS.pageBackgroundBrown,
+          borderRadius: 20,
+          padding: 20,
+        }}
+      >
+        <Text style={login.title}>Login</Text>
         <InputField
           placeholder="Email"
-          keyboardType='email-address'
-          onChangeText={text => setEmail(text)}
+          keyboardType="email-address"
+          onChangeText={(text) => setEmail(text)}
           value={email}
+          style={{ marginBottom: 10 }}
         />
         <InputField
           placeholder="Password"
-          onChangeText={text => setPassword(text)}
+          onChangeText={(text) => setPassword(text)}
           value={password}
           secureTextEntry
         />
+
+        <View>
+            {error && <Text style={{ color: "red" }}>{error.data}</Text>}
+            {inputError !== "" && (
+              <Text style={{ color: "red" }}>{inputError}</Text>
+            )}
+          </View>
+
         <View>
         <CustomButton 
         buttonName="Login" 
@@ -77,8 +113,10 @@ const Login = () => {
           </Text>
         </View>
       </View>
-      </SafeAreaView>
+      </View>
+      </ImageBackground>
   )
 }
 
 export default Login
+

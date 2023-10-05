@@ -2,76 +2,117 @@ import { View, Text } from "react-native";
 import React from "react";
 import {
   SimpleLineIcons,
-  Fontisto,
-  MaterialCommunityIcons,
-  MaterialIcons,
+  Ionicons,
 } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { COLORS, SIZES } from "../../../constants/theme";
-import { LinearGradient } from "expo-linear-gradient";
 import HomePage from "../homepage/HomePage";
-import Categories from "../categories/Categories";
+
 import Cart from "../cart/Cart";
 import MySettings from "../accounts/yourSettings/MySettings.jsx";
 import Profile from "../accounts/myAccount/profile/Profile";
+import Search from "../product/search/Search";
+import WishList from "../product/wishlist/WishList";
 
 const Tab = createBottomTabNavigator();
 
 const screenOptions = {
-  tabBarShowLabel: true,
+  tabBarShowLabel: false,
   headerShown: false,
   tabBarHideOnKeyBoard: true,
   tabBarStyle: {
+    outerWidth: SIZES.width,
+    innerWidth: SIZES.width,
     backgroundColor: COLORS.tabBarBrown,
     borderTopRightRadius: 18,
     borderTopLeftRadius: 18,
     top: 0,
-    height: SIZES.height/12,
-  },
-  tabBarLabelStyle: {
-    color: COLORS.burlyWoodBrown,
-    fontSize: SIZES.mid,
+    height: (15 / 100) * SIZES.width,
   },
 };
 
 const BottomTabNav = () => {
-  return (    
-    <Tab.Navigator screenOptions={screenOptions} >
+  return (
+    <Tab.Navigator screenOptions={screenOptions}>
       <Tab.Screen
         name="Home"
         component={HomePage}
         options={{
           tabBarIcon: ({ focused }) => {
             return (
-              <View>
+              <View
+                style={{
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  backgroundColor: focused
+                    ? COLORS.darkChocolateBrown
+                    : COLORS.tabBarBrown,
+                  borderRadius: focused ? 10 : 0,
+                  elevation: focused ? 5 : 0,
+                  width: focused ? 60 : 70,
+                }}
+              >
                 <SimpleLineIcons
                   name="home"
-                  size={24}
-                  color={focused ? COLORS.black : COLORS.white}
+                  size={(6 / 100) * SIZES.width}
+                  color={focused ? COLORS.white : COLORS.black}
                 />
-                {/* <View>
-                  <Text>Home</Text>
-                </View> */}
+                <View>
+                  <Text
+                    style={{
+                      color: focused ? COLORS.black : COLORS.burlyWoodBrown,
+                      fontSize: (3.5 / 100) * SIZES.width,
+                      fontFamily: focused
+                        ? "poppinsBold700"
+                        : "poppinsLight300",
+                    }}
+                  >
+                    Home
+                  </Text>
+                </View>
               </View>
             );
           },
         }}
       />
       <Tab.Screen
-        name="Categories"
-        component={Categories}
+        name="WishList"
+        component={WishList}
         options={{
           tabBarIcon: ({ focused }) => {
             return (
-              <View>
-                <SimpleLineIcons
-                  name="eye"
-                  size={24}
-                  color={focused ? COLORS.black : COLORS.white}
+              <View
+                style={{
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  backgroundColor: focused
+                    ? COLORS.darkChocolateBrown
+                    : COLORS.tabBarBrown,
+                  borderRadius: focused ? 10 : 0,
+                  elevation: focused ? 5 : 0,
+                  width: focused ? 60 : 70,
+                }}
+              >
+                <Ionicons
+                  name="heart-outline"
+                  size={(6 / 100) * SIZES.width}
+                  color={focused ? COLORS.white : COLORS.black}
                 />
-                {/* <View>
-                  <Text>Categories</Text>
-                </View> */}
+                <View>
+                  <Text
+                    style={{
+                      color: focused ? COLORS.black : COLORS.burlyWoodBrown,
+                      fontSize: (3.5 / 100) * SIZES.width,
+                      fontFamily: focused
+                        ? "poppinsBold700"
+                        : "poppinsLight300",
+                    }}
+                  >
+                    Wish List
+                  </Text>
+                </View>
               </View>
             );
           },
@@ -83,65 +124,86 @@ const BottomTabNav = () => {
         options={{
           tabBarIcon: ({ focused }) => {
             return (
-              <View>
+              <View
+                style={{
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  backgroundColor: focused
+                    ? COLORS.darkChocolateBrown
+                    : COLORS.tabBarBrown,
+                  borderRadius: focused ? 10 : 0,
+                  elevation: focused ? 5 : 0,
+                  width: focused ? 60 : 70,
+                }}
+              >
                 <SimpleLineIcons
                   name="basket-loaded"
-                  size={24}
-                  color={focused ? COLORS.black : COLORS.white}
+                  size={(6 / 100) * SIZES.width}
+                  color={focused ? COLORS.white : COLORS.black}
                 />
-                {/* <View>
-                  <Text>Cart</Text>
-                </View> */}
+                <View>
+                  <Text
+                    style={{
+                      color: focused ? COLORS.black : COLORS.burlyWoodBrown,
+                      fontSize: (3.5 / 100) * SIZES.width,
+                      fontFamily: focused
+                        ? "poppinsBold700"
+                        : "poppinsLight300",
+                    }}
+                  >
+                    Cart
+                  </Text>
+                </View>
               </View>
             );
           },
         }}
       />
       <Tab.Screen
-        name="Settings"
+        name="Account"
         component={MySettings}
         options={{
           tabBarIcon: ({ focused }) => {
             return (
-              <View>
+              <View
+                style={{
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  backgroundColor: focused
+                    ? COLORS.darkChocolateBrown
+                    : COLORS.tabBarBrown,
+                  borderRadius: focused ? 10 : 0,
+                  elevation: focused ? 5 : 0,
+                  width: focused ? 60 : 70,
+                }}
+              >
                 <SimpleLineIcons
                   name="settings"
-                  size={24}
-                  color={focused ? COLORS.black : COLORS.white}
+                  size={(6 / 100) * SIZES.width}
+                  color={focused ? COLORS.white : COLORS.black}
                 />
-                {/* <View>
-                  <Text>Settings</Text>
-                </View> */}
+                <View>
+                  <Text
+                    style={{
+                      color: focused ? COLORS.black : COLORS.burlyWoodBrown,
+                      fontSize: (3.5 / 100) * SIZES.width,
+                      fontFamily: focused
+                        ? "poppinsBold700"
+                        : "poppinsLight300",
+                    }}
+                  >
+                    Settings
+                  </Text>
+                </View>
               </View>
             );
           },
         }}
       />
-      
     </Tab.Navigator>
   );
 };
 
 export default BottomTabNav;
-
-
-// <Tab.Screen
-//         name="Profile"
-//         component={Profile}
-//         options={{
-//           tabBarIcon: ({ focused }) => {
-//             return (
-//               <View>
-//                 <SimpleLineIcons
-//                   name="user"
-//                   size={24}
-//                   color={focused ? COLORS.black : COLORS.white}
-//                 />
-//                 {/* <View>
-//                   <Text>Account</Text>
-//                 </View> */}
-//               </View>
-//             );
-//           },
-//         }}
-//       />

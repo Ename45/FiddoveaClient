@@ -8,10 +8,11 @@ export default StyleSheet.create({
 
   input: {
     width: "90%",
-    height: 40,
     borderColor: COLORS.gray,
     borderWidth: 1,
-    paddingLeft: 8,
-    borderRadius: 10,
+    borderStyle: "solid",
+    borderRadius: 12,
+    padding: 10,
+    fontSize: SIZES.medium,
   },
 });
