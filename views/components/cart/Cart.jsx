@@ -1,17 +1,39 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { View, Text, SafeAreaView, StyleSheet, Image, Pressable, ScrollView, TouchableOpacity, FlatList } from 'react-native';
 import { COLORS } from '../../../constants/theme';
 import { Context } from '../../../context/context';
 import CartCardView from './CartCardView';
-// import { useNavigation } from '@react-navigation/native';
+import cart from '../../../styles/components/cart/cart';
 
 const Cart = () => {
 
   const { cartItems, handleRemoveFromCart} = useContext(Context)
-  // console.log("from context in cart component", cartItems);
 
-  // const [cartData, setCartData] = useState([]);
-  // const [quantity, setQuantity] = useState([]);
+  const [productQuantities, setProductQuantities] = useState({});
+
+  const onUpdateQuantity = (productId, quantity) => {
+    setProductQuantities((prevState) => ({
+      ...prevState,
+      [productId]: quantity,
+    }));
+  };
+
+  const calculateGrandTotal = () => {
+    let grandTotal = 0;
+    cartItems.forEach((item) => {
+      const quantity = productQuantities[item.productId] || 1;
+      grandTotal += item.productPrice * quantity;
+    });
+    return grandTotal;
+  };
+
+  useEffect(() => {
+    const initialQuantities = {};
+    cartItems.forEach((item) => {
+      initialQuantities[item.productId] = 1;
+    });
+    setProductQuantities(initialQuantities);
+  }, [cartItems]);
 
 
     if (!cartItems) {
@@ -26,8 +48,7 @@ const Cart = () => {
 
 
   return (
-    <View >
-      <Text style={cartStyles.header}>Cart</Text>
+    <View style={cart.container}>
       <FlatList
       data={cartItems}
       renderItem={({item}) => {
@@ -38,19 +59,20 @@ const Cart = () => {
           product={item} 
           handleRemoveFromCart={handleRemoveFromCart} 
           currentProductId={item.productId}
+          onUpdateQuantity={onUpdateQuantity}
           />;
     }}
       keyExtractor={(item) => item.productId}
       />
       <View>
-        <View style={cartStyles.totalPriceContainer}>
-        <Text style={cartStyles.totalPriceLabel}>Total Price:</Text>
-        <Text style={cartStyles.totalPriceAmount}>N TotalPrice</Text>
+        <View style={cart.totalPriceContainer}>
+        <Text style={cart.totalPriceLabel}>Grand Price:</Text>
+        <Text style={cart.totalPriceAmount}>N {calculateGrandTotal()}</Text>
       </View>
       <Pressable
-        style={cartStyles.checkoutButton}
+        style={cart.checkoutButton}
       >
-        <Text style={cartStyles.checkoutButtonText}>Check out</Text>
+        <Text style={cart.checkoutButtonText}>Check out</Text>
       </Pressable>
       </View>
     </View>
@@ -59,42 +81,6 @@ const Cart = () => {
 };
 
 
-const cartStyles = StyleSheet.create({
-  header: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 16,
-    textAlign: 'center',
-  },
-  totalPriceContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginTop: 16,
-    paddingHorizontal: 16,
-  },
-  totalPriceLabel: {
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  totalPriceAmount: {
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  checkoutButton: {
-    backgroundColor: 'brown',
-    paddingVertical: 16,
-    borderRadius: 4,
-    alignSelf: 'center',
-    marginTop: 16,
-    width: '80%', // Added width style
-  },
-  checkoutButtonText: {
-    color: 'white',
-    fontSize: 16,
-    textAlign: 'center',
-  },
-});
 
 
 export default Cart;
