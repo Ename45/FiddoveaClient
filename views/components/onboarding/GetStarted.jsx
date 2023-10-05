@@ -27,9 +27,10 @@ const GetStarted = () => {
           buttonName="Register As A Vendor"
           onPress={() => navigateToPage("RegisterVendor")}
           />
+  
           <CustomButton
           buttonName="Get Started"
-          onPress={() => navigateToPage("BottomTabNav")}
+          onPress={() => navigateToPage("PaymentPage")}
           style={getStarted.button}
           />
         </View>

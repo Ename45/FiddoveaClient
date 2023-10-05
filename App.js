@@ -26,6 +26,8 @@ import EditProfile from "./views/components/accounts/myAccount/profile/EditProfi
 import LiveChat from "./views/components/accounts/actions/liveChat/LiveChat.jsx";
 import Notification from "./views/components/accounts/myAccount/notification/Notification.jsx";
 import Logout from "./views/components/accounts/actions/logout/Logout.jsx";
+import Payment from "./views/components/payment/Payment.jsx";
+import PaymentPage from "./views/components/payment/PaymentPage.jsx";
 import ProductList from "./views/components/product/allProducts/ProductList.jsx";
 import ProductDetails from "./views/components/product/productDetails/ProductDetails.jsx";
 import Cake from './views/components/product/categories/cake/Cake.jsx'
@@ -115,186 +117,111 @@ export default function App() {
           name={"VendorProfile"}
           component={VendorProfile}
           options={{ headerShown: false }}
-         />
-          <Stack.Screen
-            name="RegisterAdmin"
-            component={RegisterAdmin}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Login"
-            component={Login}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="LoginAdmin"
-            component={LoginAdmin}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="LoginVendor"
-            component={LoginVendor}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="ForgotPassword"
-            component={ForgotPassword}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="BottomTabNav"
-            component={BottomTabNav}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="HomePage"
-            component={HomePage}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Categories"
-            component={Categories}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Filter"
-            component={Filter}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Search"
-            component={Search}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Cart"
-            component={Cart}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="MySettings"
-            component={MySettings}
-            options={{ headerShown: false }}
-            style={styles.textStyle}
-          />
-          <Stack.Screen
-            name="LiveChat"
-            component={LiveChat}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Profile"
-            component={Profile}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="EditProfile"
-            component={EditProfile}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Notification"
-            component={Notification}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Logout"
-            component={Logout}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="ProductList"
-            component={ProductList}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="ProductDetails"
-            component={ProductDetails}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Cake"
-            component={Cake}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Cupcake"
-            component={Cupcake}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Doughnut"
-            component={Doughnut}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Chocolate"
-            component={Chocolate}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Candy"
-            component={Candy}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Brownie"
-            component={Brownie}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Cookie"
-            component={Cookie}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Dessert"
-            component={Dessert}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Roll"
-            component={Roll}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Popcorn"
-            component={Popcorn}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Bread"
-            component={Bread}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Drink"
-            component={Drink}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="WishList"
-            component={WishList}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="NewRivals"
-            component={NewRivals}
-            options={{ headerShown: false }}
-          />
-        </Stack.Navigator>
+
+        />
+       
+        <Stack.Screen
+          name="RegisterAdmin"
+          component={RegisterAdmin}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="LoginAdmin"
+          component={LoginAdmin}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="LoginVendor"
+          component={LoginVendor}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="ForgotPassword"
+          component={ForgotPassword}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="BottomTabNav"
+          component={BottomTabNav}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="HomePage"
+          component={HomePage}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Categories"
+          component={Categories}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Cart"
+          component={Cart}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="MySettings"
+          component={MySettings}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="LiveChat"
+          component={LiveChat}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Profile"
+          component={Profile}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="EditProfile"
+          component={EditProfile}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Notification"
+          component={Notification}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Logout"
+          component={Logout}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+        name="Payment"
+        component={Payment}
+        options={{headerShown: false}}
+        />
+        <Stack.Screen
+        name="PaymentPage"
+        component={PaymentPage}
+        options={{headerShown: false}}
+        />
+          
+      </Stack.Navigator>
       </NavigationContainer>
     </ProductContext>
+
   );
 
 }
 
 const styles = StyleSheet.create({
-    container: {
-        paddingTop: 20,
-    },
-    textStyle: {
-        fontFamily: "playFairRegular",
-        fontSize: 20,
-    },
+
+  container: {
+    paddingTop: 20,
+  },
+  textStyle: {
+    fontFamily: "playFairRegular",
+    fontSize: 20
+  }
 });
+  
