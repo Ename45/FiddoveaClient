@@ -8,7 +8,10 @@ import { COLORS } from '../../../../constants/theme.js';
 import InputField from '../../reusable/inputField/InputField.jsx';
 import CustomButton from '../../reusable/button/CustomButton.jsx';
 import registerVendor from '../../../../styles/components/auth/register/registerVendor.js';
-import {ngrokBaseUrl, vendorUrl} from "../../../../api/Api";
+
+
+import { ngrokBaseUrl, vendorUrl } from '../../../../api/Api.jsx';
+
 
 const RegisterVendor = () => {
   const [email, setEmail] = useState('');
@@ -26,7 +29,7 @@ const RegisterVendor = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    
     const URL = `${ngrokBaseUrl}/${vendorUrl}`;
 
     let vendorData = {

@@ -5,6 +5,7 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.pageBackgroundBrown,
+    marginTop: 20,
   },
   upperRow: {
     marginHorizontal: 20,
@@ -16,6 +17,7 @@ export default StyleSheet.create({
     width: SIZES.width - 44,
     zIndex: 999,
     // justifyContent: "space-between"
+    
   },
   image: {
     aspectRatio: 1,

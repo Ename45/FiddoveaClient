@@ -48,6 +48,8 @@ import VendorProfile from "./views/components/vendor/profile/VendorProfile";
 import ViewOrder from "./views/components/vendor/order/ViewOrder";
 
 
+import ProductContext from "./context/context.js";
+
 
 const Stack = createNativeStackNavigator();
 
@@ -67,42 +69,43 @@ export default function App() {
 
 
   return (
-    <NavigationContainer>
-      {/* <Stack.Navigator initialRouteName='BottomTabNav'></Stack.Navigator> */}
-      <Stack.Navigator styles={styles.container}>
-        <Stack.Screen
-          name="SplashScreen"
-          component={Splash}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Splash2"
-          component={Splash2}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="GetStarted"
-          component={GetStarted}
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="Register"
-          component={Register}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="OtpConfirmation"
-          component={OtpConfirmation}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="RegisterVendor"
-          component={RegisterVendor}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
+    <ProductContext>
+      <NavigationContainer>
+        {/* <Stack.Navigator initialRouteName='BottomTabNav'></Stack.Navigator> */}
+        <Stack.Navigator styles={styles.container}>
+          <Stack.Screen
+            name="SplashScreen"
+            component={Splash}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Splash2"
+            component={Splash2}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="GetStarted"
+            component={GetStarted}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="Register"
+            component={Register}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="OtpConfirmation"
+            component={OtpConfirmation}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="RegisterVendor"
+            component={RegisterVendor}
+            options={{ headerShown: false }}
+          />
+         <Stack.Screen
           name={"VerificationPendingScreen"}
           component={VerificationPendingScreen}
           options={{ headerShown: false }}
@@ -122,174 +125,176 @@ export default function App() {
             component={ViewOrder}
             options={{ headerShown: false }}
         />
-        <Stack.Screen
-          name="RegisterAdmin"
-          component={RegisterAdmin}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Login"
-          component={Login}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="LoginAdmin"
-          component={LoginAdmin}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="LoginVendor"
-          component={LoginVendor}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="ForgotPassword"
-          component={ForgotPassword}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="BottomTabNav"
-          component={BottomTabNav}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="HomePage"
-          component={HomePage}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Categories"
-          component={Categories}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Filter"
-          component={Filter}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Search"
-          component={Search}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Cart"
-          component={Cart}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="MySettings"
-          component={MySettings}
-          options={{ headerShown: false }}
-          style={styles.textStyle}
-        />
-        <Stack.Screen
-          name="LiveChat"
-          component={LiveChat}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Profile"
-          component={Profile}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="EditProfile"
-          component={EditProfile}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Notification"
-          component={Notification}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Logout"
-          component={Logout}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="ProductList"
-          component={ProductList}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="ProductDetails"
-          component={ProductDetails}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Cake"
-          component={Cake}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Cupcake"
-          component={Cupcake}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Doughnut"
-          component={Doughnut}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Chocolate"
-          component={Chocolate}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Candy"
-          component={Candy}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Brownie"
-          component={Brownie}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Cookie"
-          component={Cookie}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Dessert"
-          component={Dessert}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Roll"
-          component={Roll}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Popcorn"
-          component={Popcorn}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Bread"
-          component={Bread}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Drink"
-          component={Drink}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="WishList"
-          component={WishList}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="NewRivals"
-          component={NewRivals}
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+          <Stack.Screen
+            name="RegisterAdmin"
+            component={RegisterAdmin}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Login"
+            component={Login}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="LoginAdmin"
+            component={LoginAdmin}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="LoginVendor"
+            component={LoginVendor}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="ForgotPassword"
+            component={ForgotPassword}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="BottomTabNav"
+            component={BottomTabNav}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="HomePage"
+            component={HomePage}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Categories"
+            component={Categories}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Filter"
+            component={Filter}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Search"
+            component={Search}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Cart"
+            component={Cart}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="MySettings"
+            component={MySettings}
+            options={{ headerShown: false }}
+            style={styles.textStyle}
+          />
+          <Stack.Screen
+            name="LiveChat"
+            component={LiveChat}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Profile"
+            component={Profile}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="EditProfile"
+            component={EditProfile}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Notification"
+            component={Notification}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Logout"
+            component={Logout}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="ProductList"
+            component={ProductList}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="ProductDetails"
+            component={ProductDetails}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Cake"
+            component={Cake}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Cupcake"
+            component={Cupcake}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Doughnut"
+            component={Doughnut}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Chocolate"
+            component={Chocolate}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Candy"
+            component={Candy}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Brownie"
+            component={Brownie}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Cookie"
+            component={Cookie}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Dessert"
+            component={Dessert}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Roll"
+            component={Roll}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Popcorn"
+            component={Popcorn}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Bread"
+            component={Bread}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Drink"
+            component={Drink}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="WishList"
+            component={WishList}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="NewRivals"
+            component={NewRivals}
+            options={{ headerShown: false }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </ProductContext>
+
   );
 
 }

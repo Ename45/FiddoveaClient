@@ -5,7 +5,7 @@ export default StyleSheet.create({
   container: {
     width: SIZES.width * 0.43,
     height: SIZES.height * 0.35,
-    marginEnd: 22,
+    marginEnd: 15,
     backgroundColor: COLORS.pageBackgroundBrown,
     marginBottom: (2 / 100) * SIZES.height,
     position: "relative",
@@ -15,7 +15,9 @@ export default StyleSheet.create({
     borderTopRightRadius: 10,
     borderTopLeftRadius: 10,
     paddingTop: (1.5 / 100) * SIZES.height,
-    elevation: 2
+    elevation: 2,
+    marginHorizontal: 10,
+    marginTop: 20,
   },
   imageContainer: {
     borderRadius: 10,

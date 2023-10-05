@@ -12,6 +12,7 @@ export default StyleSheet.create({
     alignItems: "center",
     paddingTop: SIZES.xxLarge,
     paddingLeft: SIZES.small / 2,
+    marginTop: (5 / 100) * SIZES.height,
   },
   seperator: {
     height: 16,
