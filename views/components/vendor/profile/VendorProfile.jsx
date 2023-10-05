@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
-import {COLORS} from "../../../../constants/theme";
 
 const VendorProfile = () => {
     const [profilePic, setProfilePic] = useState(null);
@@ -25,6 +24,7 @@ const VendorProfile = () => {
             <TouchableOpacity onPress={pickImage} style={styles.cameraIconContainer}>
                 <AntDesign name="camera" size={24} color="#5D4037" />
             </TouchableOpacity>
+
             <TouchableOpacity onPress={handleImageSelection}>
             <Image
                 source={{ uri: selectedImage }}
@@ -57,7 +57,7 @@ const VendorProfile = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#FFFFFF', // Set background color to white
         alignItems: 'center',
         padding: 20,
     },
@@ -87,13 +87,13 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     logoutButton: {
-        backgroundColor: '#5D4037',
+        backgroundColor: '#5D4037', // Brown background color for the button
         paddingVertical: 10,
         paddingHorizontal: 20,
         borderRadius: 5,
     },
     buttonText: {
-        color: '#FFFFFF',
+        color: '#FFFFFF', // White text color for the button text
         fontSize: 16,
     },
 });

@@ -48,7 +48,11 @@ import NewRivals from "./views/components/product/allProducts/NewRivals.jsx";
 import VerificationPendingScreen from "./views/components/vendor/verification/VerificationPendingScreen";
 import VendorDashboard from "./views/components/vendor/dashboard/DashBoardScreen";
 import VendorProfile from "./views/components/vendor/profile/VendorProfile";
+import ViewOrder from "./views/components/vendor/order/ViewOrder";
+
+
 import ProductContext from "./context/context.js";
+
 
 const Stack = createNativeStackNavigator();
 
@@ -104,6 +108,16 @@ export default function App() {
             component={RegisterVendor}
             options={{ headerShown: false }}
           />
+
+        
+   
+    
+        <Stack.Screen
+            name={"ViewOrder"}
+            component={ViewOrder}
+            options={{ headerShown: false }}
+        />
+
           <Stack.Screen
             name={"VerificationPendingScreen"}
             component={VerificationPendingScreen}
@@ -119,6 +133,7 @@ export default function App() {
             component={VendorProfile}
             options={{ headerShown: false }}
           />
+
           <Stack.Screen
             name="RegisterAdmin"
             component={RegisterAdmin}
@@ -303,6 +318,7 @@ export default function App() {
         </Stack.Navigator>
       </NavigationContainer>
     </ProductContext>
+
   );
 
 }

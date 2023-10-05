@@ -1,24 +1,31 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import VerificationPending from "../../../../styles/components/vendor/verification/VerificationPending";
 
+
 const VerificationPendingScreen = ({ navigation }) => {
+
+    // const [isVendorVerified, setIsVerifiedVendor] = useState(false)
+
     useEffect(() => {
-        const delayInMilliseconds = 15 * 1000; 
+        const delayInMilliseconds = 15 * 1000;
 
         const timer = setTimeout(async () => {
-        
-            const isVendorVerified = await AsyncStorage.getItem('isVendorVerified');
 
-            if (isVendorVerified === 'true') {
-               
+            // setIsVerifiedVendor(false)
+            // setIsVerifiedVendor(true)
+            // const isVendorVerified = await AsyncStorage.getItem('isVendorVerified');
+            // console.log("check now2",isVendorVerified===true)
+
+            // if (isVendorVerified === 'true') {
+
                 navigation.replace('VendorDashboard');
-            } else {
-            
-                console.log('Vendor verification pending.');
-            }
+            // } else {
+                console.log("Vendor Verification Pending")
+
+            // }
         }, delayInMilliseconds);
 
         return () => clearTimeout(timer);
@@ -27,6 +34,7 @@ const VerificationPendingScreen = ({ navigation }) => {
     return (
         <View style={VerificationPending.container}>
             <View style={VerificationPending.messageContainer}>
+                {/* Enclose the text within a <Text> component */}
                 <Text style={VerificationPending.message}>
                     Your account is under verification.
                     {'\n'}
