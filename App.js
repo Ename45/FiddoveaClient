@@ -27,6 +27,8 @@ import EditProfile from "./views/components/accounts/myAccount/profile/EditProfi
 import LiveChat from "./views/components/accounts/actions/liveChat/LiveChat.jsx";
 import Notification from "./views/components/accounts/myAccount/notification/Notification.jsx";
 import Logout from "./views/components/accounts/actions/logout/Logout.jsx";
+import Payment from "./views/components/payment/Payment.jsx";
+import PaymentPage from "./views/components/payment/PaymentPage.jsx";
 import ProductList from "./views/components/product/allProducts/ProductList.jsx";
 import ProductDetails from "./views/components/product/productDetails/ProductDetails.jsx";
 import Cake from './views/components/product/categories/cake/Cake.jsx'
@@ -288,6 +290,16 @@ export default function App() {
             component={NewRivals}
             options={{ headerShown: false }}
           />
+          <Stack.Screen
+            name="Payment"
+            component={Payment}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="PaymentPage"
+            component={PaymentPage}
+            options={{ headerShown: false }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </ProductContext>
@@ -296,11 +308,13 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        paddingTop: 20,
-    },
-    textStyle: {
-        fontFamily: "playFairRegular",
-        fontSize: 20,
-    },
+
+  container: {
+    paddingTop: 20,
+  },
+  textStyle: {
+    fontFamily: "playFairRegular",
+    fontSize: 20
+  }
 });
+  
