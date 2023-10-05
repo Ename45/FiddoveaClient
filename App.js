@@ -20,12 +20,15 @@ import Categories from "./views/components/product/categories/Categories.jsx";
 import Filter from "./views/components/product/filter/Filter.jsx";
 import Search from "./views/components/product/search/Search.jsx";
 import Cart from "./views/components/cart/Cart.jsx";
+import CheckoutConfirmation from "./views/components/cart/CheckoutConfirmation.jsx";
 import MySettings from "./views/components/accounts/yourSettings/MySettings.jsx";
 import Profile from "./views/components/accounts/myAccount/profile/Profile.jsx";
 import EditProfile from "./views/components/accounts/myAccount/profile/EditProfile.jsx";
 import LiveChat from "./views/components/accounts/actions/liveChat/LiveChat.jsx";
 import Notification from "./views/components/accounts/myAccount/notification/Notification.jsx";
 import Logout from "./views/components/accounts/actions/logout/Logout.jsx";
+import Payment from "./views/components/payment/Payment.jsx";
+import PaymentPage from "./views/components/payment/PaymentPage.jsx";
 import ProductList from "./views/components/product/allProducts/ProductList.jsx";
 import ProductDetails from "./views/components/product/productDetails/ProductDetails.jsx";
 import Cake from './views/components/product/categories/cake/Cake.jsx'
@@ -105,26 +108,32 @@ export default function App() {
             component={RegisterVendor}
             options={{ headerShown: false }}
           />
-         <Stack.Screen
-          name={"VerificationPendingScreen"}
-          component={VerificationPendingScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name={"VendorDashboard"}
-          component={VendorDashboard}
-          options={{ headerShown: false }}
-        />
-         <Stack.Screen
-          name={"VendorProfile"}
-          component={VendorProfile}
-          options={{ headerShown: false }}
-         />
+
+        
+   
+    
         <Stack.Screen
             name={"ViewOrder"}
             component={ViewOrder}
             options={{ headerShown: false }}
         />
+
+          <Stack.Screen
+            name={"VerificationPendingScreen"}
+            component={VerificationPendingScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name={"VendorDashboard"}
+            component={VendorDashboard}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name={"VendorProfile"}
+            component={VendorProfile}
+            options={{ headerShown: false }}
+          />
+
           <Stack.Screen
             name="RegisterAdmin"
             component={RegisterAdmin}
@@ -178,6 +187,11 @@ export default function App() {
           <Stack.Screen
             name="Cart"
             component={Cart}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="CheckoutConfirmation"
+            component={CheckoutConfirmation}
             options={{ headerShown: false }}
           />
           <Stack.Screen
@@ -291,6 +305,16 @@ export default function App() {
             component={NewRivals}
             options={{ headerShown: false }}
           />
+          <Stack.Screen
+            name="Payment"
+            component={Payment}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="PaymentPage"
+            component={PaymentPage}
+            options={{ headerShown: false }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </ProductContext>
@@ -300,11 +324,13 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        paddingTop: 20,
-    },
-    textStyle: {
-        fontFamily: "playFairRegular",
-        fontSize: 20,
-    },
+
+  container: {
+    paddingTop: 20,
+  },
+  textStyle: {
+    fontFamily: "playFairRegular",
+    fontSize: 20
+  }
 });
+  

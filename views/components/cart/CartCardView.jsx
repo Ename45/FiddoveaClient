@@ -1,10 +1,30 @@
 import { View, Text, SafeAreaView, ScrollView, Image, Pressable } from 'react-native'
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import cartCardView from '../../../styles/components/cart/cartCardView';
-import { Feather, Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons/build/Icons';
+import { Feather, Ionicons, MaterialCommunityIcons, MaterialIcons, SimpleLineIcons } from '@expo/vector-icons/build/Icons';
 import { COLORS, SIZES } from '../../../constants/theme';
 
-const CartCardView = ({product, handleRemoveFromCart, currentProductId }) => {
+const CartCardView = ({product, handleRemoveFromCart, currentProductId, onUpdateQuantity }) => {
+
+  const [productQuantity, setProductQuantity] = useState(1)
+  const [totalItemPrice, setTotalItemPrice] = useState(product.productPrice)
+
+   useEffect(() => {
+    setTotalItemPrice(product.productPrice * productQuantity);
+  }, [productQuantity]);
+
+  const increment = () => {
+    setProductQuantity(productQuantity + 1);
+    onUpdateQuantity(currentProductId, productQuantity + 1);
+  };
+
+  const decrement = () => {
+    if (productQuantity > 1) {
+      setProductQuantity(productQuantity - 1)      
+      onUpdateQuantity(currentProductId, productQuantity - 1);
+    }
+  };
+
   return (
     <ScrollView>
         <View style={cartCardView.cartItem}>
@@ -21,40 +41,30 @@ const CartCardView = ({product, handleRemoveFromCart, currentProductId }) => {
           >
             <MaterialIcons
               name="delete"
-              size={(5 / 100) * SIZES.width}
+              size={(7 / 100) * SIZES.width}
               color={COLORS.black}
               style={{ marginTop: 1, marginBottom: -3 }}
             />
           </Pressable>
               </View>
-              <Text style={cartCardView.cartItemPrice}>Price: ${product.productPrice}</Text>
+              <Text style={cartCardView.cartItemPrice}>N{product.productPrice}</Text>
               <View style={cartCardView.quantityContainer}>
-                <Pressable onPress={() => decreaseQuantity(product.productId)}>
-                  {({ pressed }) => (
-                    <Text
-                      style={[
-                        cartCardView.quantityButton,
-                        { backgroundColor: pressed ? 'gray' : 'transparent' },
-                      ]}
-                    >
-                      -
-                    </Text>
-                  )}
+                <Pressable
+                onPress={() => {
+                  decrement();
+                }}
+                 >
+                    <SimpleLineIcons name="minus" size={18} />
                 </Pressable>
-                <Text style={cartCardView.quantityText}>product qty</Text>
-                <Pressable onPress={() => increaseQuantity(product.productId)}>
-                  {({ pressed }) => (
-                    <Text
-                      style={[
-                        cartCardView.quantityButton,
-                        { backgroundColor: pressed ? 'gray' : 'transparent' },
-                      ]}
-                    >
-                      +
-                    </Text>
-                  )}
+                <Text style={cartCardView.quantityText}>{productQuantity}</Text>
+                <Pressable 
+                onPress={() => {
+                  increment();
+                }} >
+                    <SimpleLineIcons name="plus" size={18} />
                 </Pressable>
               </View>
+              <Text style={cartCardView.cartItemPrice}>total: N{totalItemPrice}</Text>
             </View>
           </View>
         </View>
@@ -63,3 +73,5 @@ const CartCardView = ({product, handleRemoveFromCart, currentProductId }) => {
 }
 
 export default CartCardView
+
+
