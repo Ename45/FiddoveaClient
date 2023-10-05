@@ -1,4 +1,4 @@
-import { View, Text, Pressable, Image, SafeAreaView } from "react-native";
+import { View, Text, Pressable, Image } from "react-native";
 import React, { useContext, useState } from "react";
 import allProductsCardView from "../../../../styles/components/product/allProductsCardView/allProductsCardView";
 import { Ionicons } from "@expo/vector-icons";
@@ -11,12 +11,12 @@ const AllProductsCardView = ({ product }) => {
 
   const [isFocused, setIsFocused] = useState(false);
 
-  const { addToWishList } = useContext(Context)
+  const { addToWishList, addToCart } = useContext(Context);
 
-  const navigateToProductDetails =(productId) => {
+  const navigateToProductDetails = (productId) => {
     // navigation.navigate('ProductDetails', { productId: productId })
-    navigation.navigate('ProductDetails', { productId })
-  }
+    navigation.navigate("ProductDetails", { productId });
+  };
 
   return (
     <Pressable
@@ -25,7 +25,6 @@ const AllProductsCardView = ({ product }) => {
       onPress={() => navigateToProductDetails(product.productId)}
       // onPress={() => navigation.navigate("ProductDetails", {item: product})}
     >
-      {/* product */}
       <View
         style={[
           allProductsCardView.container,
@@ -66,7 +65,10 @@ const AllProductsCardView = ({ product }) => {
               style={{ marginTop: 1, marginBottom: -3 }}
             />
           </Pressable>
-          <Pressable style={allProductsCardView.addBtn2}>
+          <Pressable 
+          style={allProductsCardView.addBtn2}
+          onPress={() => addToCart(product.productId)}
+          >
             <Ionicons
               name="cart-outline"
               size={(9 / 100) * SIZES.width}

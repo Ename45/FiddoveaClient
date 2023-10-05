@@ -13,13 +13,13 @@ const ProductContext = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [wishListItems, setWishListItems] = useState([]);
+  const [cartItems, setCartItems] = useState([])
 
 
 
-  
 
   const addToWishList = async (productId) => {
-    console.log(productId);
+    // console.log(productId);
     let copyOfWishListItems = [...wishListItems];
     const foundProduct = copyOfWishListItems.findIndex(
       (item) => item.productId == productId
@@ -37,7 +37,7 @@ const ProductContext = ({ children }) => {
           data
         );
 
-        console.log("this is the response", response.data);
+        // console.log("this is the response", response.data);
 
         if (response.status === 200) {
           setIsLoading(false);
@@ -54,6 +54,44 @@ const ProductContext = ({ children }) => {
 
   // console.log("wishListItems in context", wishListItems);
 
+
+
+
+  const addToCart = async (productId) => {
+    console.log(productId);
+    let copyOfCartItems = [...cartItems];
+    const foundProduct = copyOfCartItems.findIndex(
+      (item) => item.productId == productId
+    );
+
+    if (foundProduct === -1 && !cartItems.includes(productId)) {
+      const data = {
+        productId: productId,
+        customerId: "6519d0e1d7ee80377ef42653",
+      };
+
+      try {
+        const response = await axios.post(
+          `${ngrokBaseUrl}/${customerUrl}/addtocart`,
+          data
+        );
+
+        console.log("this is the response", response.data);
+
+        if (response.status === 200) {
+          setIsLoading(false);
+          setCartItems([...copyOfCartItems, response.data]);
+        }
+      } catch (error) {
+        console.log("Error adding to cart", error);
+        setError(error);
+      }
+    } else {
+      console.log("Item is already in the cart");
+    }
+  };
+
+  // console.log("wishListItems in context", wishListItems);
 
 
 
@@ -83,12 +121,45 @@ const ProductContext = ({ children }) => {
         setWishListItems(copyOfWishListItems);
       }
     } catch (error) {
-      console.log("Error adding to wishList", error);
+      console.log("Error removing from wishList", error);
       setError(error);
     }
   };
 
 
+
+
+  const handleRemoveFromCart = async (getCurrentId) => {
+    let copyOfCartItems = [...cartItems];
+
+    copyOfCartItems = copyOfCartItems.filter(
+      (item) => item.productId !== getCurrentId
+    );
+
+    const data = {
+      productId: getCurrentId,
+      userId: "6519d0e1d7ee80377ef42653",
+    };
+
+    try {
+      const response = await axios.post(
+        `${ngrokBaseUrl}/${customerUrl}/removefromcart`,
+        data
+      );
+
+      console.log("this is the response", response.data);
+
+      if (response.status === 200) {
+        setIsLoading(false);
+        setCartItems(copyOfCartItems);
+      }
+    } catch (error) {
+      console.log("Error removing from cart", error);
+      setError(error);
+    }
+  };
+
+  console.log("desperado cart items==>", cartItems);
 
 
 
@@ -114,6 +185,35 @@ const ProductContext = ({ children }) => {
 
 
 
+  //   useEffect(() => {
+  //     setIsLoading(true);
+  //     async function getWishlistUsingApi(productId) {
+  //       console.log("Get Wishlist ==> ", productId);
+  //       // const data = {
+  //       //   productId: productId,
+  //       //   customerId: "6519d0e1d7ee80377ef42653"
+  //       // }
+  //       try {
+  //         const response = await axios.get(
+  //           `${ngrokBaseUrl}/${customerUrl}/wishlist/${"6519d0e1d7ee80377ef42653"}`
+  //         );
+
+  //         console.log("this is the response", response.data);
+
+  //         if (response.status == 200) {
+  //           setIsLoading(false);
+  //           setGetWishList(response.data);
+  //         }
+  //       } catch (error) {
+  //         console.log("wishlist component error message", error);
+  //         setError(error);
+  //       }
+  //     }
+
+  //     getWishlistUsingApi();
+  //   }, []);
+
+  // console.log(getWishList);
 
   return (
     <Context.Provider
@@ -124,6 +224,9 @@ const ProductContext = ({ children }) => {
         wishListItems,
         addToWishList,
         handleRemoveFromWishList,
+        cartItems,
+        addToCart,
+        handleRemoveFromCart
       }}
     >
       {children}

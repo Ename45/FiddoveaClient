@@ -15,7 +15,7 @@ const WishList = () => {
 
   const { wishListItems, handleRemoveFromWishList } = useContext(Context)
 
-  console.log("from context wishlist component", wishListItems);
+  // console.log("from context wishlist component", wishListItems);
 
   if (!wishListItems) {
     return(
