@@ -1,6 +1,8 @@
 import { createContext, useEffect, useState } from "react";
 import { customerUrl, ngrokBaseUrl, productUrl } from "../api/Api";
 import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 
 // create context
 // provide context
@@ -25,15 +27,27 @@ const ProductContext = ({ children }) => {
     );
 
     if (foundProduct === -1 && !wishListItems.includes(productId)) {
+      // const data = {
+      //   productId: productId,
+      //   customerId: "6519d0e1d7ee80377ef42653",
+      // };
+      const tokenStore = await AsyncStorage.getItem("jwtToken");
+      console.log("Token Storage==>", tokenStore);
+
       const data = {
         productId: productId,
-        customerId: "6519d0e1d7ee80377ef42653",
       };
 
       try {
         const response = await axios.post(
           `${ngrokBaseUrl}/${customerUrl}/addtowishlist`,
-          data
+          data,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${tokenStore}`,
+            },
+          }
         );
 
         // console.log("this is the response", response.data);
@@ -63,26 +77,36 @@ const ProductContext = ({ children }) => {
       (item) => item.productId == productId
     );
 
+    console.log("i got here ")
+
+    
+    
+
     if (foundProduct === -1 && !cartItems.includes(productId)) {
+
+      const tokenStorage = await AsyncStorage.getItem("jwtToken");
+      console.log("Token Storage==>", tokenStorage);
+
       const data = {
-        productId: productId,
-        customerId: "6519d0e1d7ee80377ef42653",
-      };
+        productId: productId
+      }
 
       try {
         const response = await axios.post(
           `${ngrokBaseUrl}/${customerUrl}/addtocart`,
-          data
+          data,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${tokenStorage}`,
+            },
+          }
         );
 
         console.log("this is the response", response.data);
 
         if (response.status === 200) {
           setIsLoading(false);
-            // const productWithTotalPrice = {
-            //   ...response.data,
-            //   totalItemPrice: response.data.productPrice *1, 
-            // };
           setCartItems([...copyOfCartItems, response.data]);
         }
       } catch (error) {
@@ -106,15 +130,23 @@ const ProductContext = ({ children }) => {
       (item) => item.productId !== getCurrentId
     );
 
+    const tokenStorage = await AsyncStorage.getItem("jwtToken");
+    console.log("Token Storage==>", tokenStorage);
+
     const data = {
       productId: getCurrentId,
-      userId: "6519d0e1d7ee80377ef42653",
     };
 
     try {
       const response = await axios.post(
         `${ngrokBaseUrl}/${customerUrl}/removefromwishlist`,
-        data
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${tokenStorage}`,
+          },
+        }
       );
 
       console.log("this is the response", response.data);
@@ -139,15 +171,23 @@ const ProductContext = ({ children }) => {
       (item) => item.productId !== getCurrentId
     );
 
+    const tokenStorage = await AsyncStorage.getItem("jwtToken");
+    console.log("Token Storage==>", tokenStorage);
+
     const data = {
       productId: getCurrentId,
-      userId: "6519d0e1d7ee80377ef42653",
     };
 
     try {
       const response = await axios.post(
         `${ngrokBaseUrl}/${customerUrl}/removefromcart`,
-        data
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${tokenStorage}`,
+          },
+        }
       );
 
       console.log("this is the response", response.data);

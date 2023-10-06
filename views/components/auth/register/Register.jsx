@@ -12,12 +12,13 @@ import axios from "axios";
 import register from "../../../../styles/components/auth/register/register.js";
 import InputField from "../../reusable/inputField/InputField.jsx";
 import CustomButton from "../../reusable/button/CustomButton.jsx";
-import { COLORS } from "../../../../constants/theme.js";
+import { COLORS, SIZES } from "../../../../constants/theme.js";
 import {
   customerUrl,
   ngrokBaseUrl,
   registerUrl,
 } from "../../../../api/Api.jsx";
+import { Pressable } from "react-native";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -46,9 +47,10 @@ const Register = () => {
       try {
         const response = await axios.post(URL, customerData);
         if (response.status === 201) {
-          console.log("This is response,data", response.data.message);
-          // navigation.navigate("OtpConfirmation", {email: email});
-          navigation.navigate("Login",);
+          const token = response.data.jwtToken;
+          // console.log("token Storage==>{}", token);
+          await AsyncStorage.setItem("jwtToken", token);
+          navigation.navigate("BottomTabNav",);
         }
       } catch (error) {
         setError(error.response.data);
@@ -113,6 +115,15 @@ const Register = () => {
             onPress={handleSubmit} 
             style={{ backgroundColor: buttonClicked ? COLORS.gray3 : COLORS.silverGray}}
             />
+          </View>
+          <View style={{marginTop: 50, fontSize: 3/100*(SIZES.height)}}>
+            <Pressable 
+            onPress={()=>navigation.navigate("Login")}
+            >
+              <Text style={{marginTop: 50, fontSize: 2/100*(SIZES.height)}}>
+                Already have an account? Login
+              </Text>
+            </Pressable>
           </View>
         </View>
       </View>

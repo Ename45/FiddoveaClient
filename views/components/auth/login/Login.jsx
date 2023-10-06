@@ -6,7 +6,9 @@ import login from '../../../../styles/components/auth/login/login.js'
 import InputField from '../../reusable/inputField/InputField.jsx';
 import CustomButton from '../../reusable/button/CustomButton.jsx'
 import { customerUrl, ngrokBaseUrl } from '../../../../api/Api.jsx';
-import { COLORS } from '../../../../constants/theme.js';
+import { COLORS, SIZES } from '../../../../constants/theme.js';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Pressable } from 'react-native';
 
 
 const Login = () => {
@@ -38,9 +40,12 @@ const Login = () => {
       setInputError("");
       try {
         const response = await axios.post(URL, customerData);
-        if (response.status === 201) {
-          console.log("This is response,data", response.data.message);
-          // navigation.navigate("OtpConfirmation", {email: email});
+        // console.log("This is the login response", response.data)
+        if (response.status === 200) {
+          // console.log("This is response,data", response.data.message);
+          const token = response.data.jwtToken;
+          // console.log("token Storage==>{}", token);
+          await AsyncStorage.setItem("jwtToken", token);
           navigation.navigate("BottomTabNav",);
         }
       } catch (error) {
@@ -112,6 +117,15 @@ const Login = () => {
             Forgot your password?
           </Text>
         </View>
+      <View style={{marginTop: 50, fontSize: 3/100*(SIZES.height)}}>
+            <Pressable
+            onPress={()=>navigation.navigate("Register")}
+            >
+              <Text style={{marginTop: 50, fontSize: 2/100*(SIZES.height)}}>
+                Create an account
+              </Text>
+            </Pressable>
+          </View>
       </View>
       </View>
       </ImageBackground>

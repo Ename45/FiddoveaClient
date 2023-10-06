@@ -5,6 +5,7 @@ import axios from 'axios';
 import InputField from '../../reusable/inputField/InputField.jsx';
 import CustomButton from '../../reusable/button/CustomButton.jsx'
 import forgotPassword from '../../../../styles/components/auth/forgotPassword/forgotPassword.js';
+import { COLORS } from '../../../../constants/theme.js';
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
