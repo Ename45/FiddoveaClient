@@ -9,7 +9,8 @@ const ProductCardView = ( {item, navigation} ) => {
   const [isFocused, setIsFocused] = useState(false);
 
   const navigateToScreen = (screenName) => {
-    navigation.navigate(screenName);
+    // navigation.navigate(screenName);
+    console.log(`${screenName} is not ready`);
   };
 
   return (

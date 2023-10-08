@@ -17,9 +17,9 @@ const WishList = () => {
 
   // console.log("from context wishlist component", wishListItems);
 
-  if (!wishListItems) {
+  if (wishListItems.length == 0) {
     return(
-      <View style={{padding: 20, alignItems: "center", flex: 1}}>
+      <View style={{padding: 20, alignItems: "center", flex: 1, justifyContent: "center"}}>
         <Text style={{fontWeight: "bold", fontSize: 20, color: "black"}}>
           No Favorites Added
         </Text>

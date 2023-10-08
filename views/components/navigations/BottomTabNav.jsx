@@ -27,7 +27,7 @@ const screenOptions = {
     borderTopRightRadius: 18,
     borderTopLeftRadius: 18,
     top: 0,
-    height: (15 / 100) * SIZES.width,
+    height: (18 / 100) * SIZES.width,
   },
 };
 
@@ -77,7 +77,7 @@ const BottomTabNav = () => {
         }}
       />
       <Tab.Screen
-        name="WishList"
+        name="WishList"        
         component={WishList}
         options={{
           tabBarIcon: ({ focused }) => {
@@ -194,7 +194,7 @@ const BottomTabNav = () => {
                         : "poppinsLight300",
                     }}
                   >
-                    Settings
+                    Account
                   </Text>
                 </View>
               </View>

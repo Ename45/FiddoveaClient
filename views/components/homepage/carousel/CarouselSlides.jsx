@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Image } from 'react-native';
 import { COLORS, SIZES } from '../../../../constants/theme';
-// import { SliderBox } from 'react-native-image-slider-box';
+import { SliderBox } from 'react-native-image-slider-box';
 import carouselSlides from '../../../../styles/components/homepage/carousel/carouselSlides';
 
 const CarouselSlides = () => {
@@ -26,7 +26,7 @@ const CarouselSlides = () => {
 
   return (
     <View style={carouselSlides.outerContainer}>
-      {/* <SliderBox
+      <SliderBox
         images={slides.map((slide) => slide.image)}
         
         dotColor={COLORS.primary}
@@ -34,7 +34,7 @@ const CarouselSlides = () => {
         ImageComponentStyle={{ borderRadius: 20, width: (80 / 100) * SIZES.width, marginTop: 0 }}
         autoplay
         circleLoop
-      /> */}
+      />
     </View>
   );
 };

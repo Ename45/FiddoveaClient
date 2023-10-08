@@ -172,7 +172,7 @@ const ProductContext = ({ children }) => {
     );
 
     const tokenStorage = await AsyncStorage.getItem("jwtToken");
-    console.log("Token Storage==>", tokenStorage);
+      console.log("Token Storage==>", tokenStorage);
 
     const data = {
       productId: getCurrentId,

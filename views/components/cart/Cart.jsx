@@ -39,9 +39,9 @@ const Cart = () => {
   }, [cartItems]);
 
 
-    if (!cartItems) {
+    if (cartItems.length == 0) {
     return(
-      <View style={{padding: 20, alignItems: "center", flex: 1}}>
+      <View style={{padding: 20, alignItems: "center", flex: 1, justifyContent: "center"}}>
         <Text style={{fontWeight: "bold", fontSize: 20, color: "black"}}>
           Cart Empty
         </Text>
@@ -74,7 +74,11 @@ const Cart = () => {
       </View>
       <Pressable
         style={cart.checkoutButton}
-        onPress={()=> navigation.navigate("CheckoutConfirmation")}
+        onPress={()=> {
+          if (cartItems.length !== 0) {
+            navigation.navigate("CheckoutConfirmation")            
+          }
+        }}
       >
         <Text style={cart.checkoutButtonText}>Check out</Text>
       </Pressable>

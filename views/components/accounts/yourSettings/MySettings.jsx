@@ -9,6 +9,7 @@ import {
 import React from "react";
 import { COLORS, FONT, SIZES } from "../../../../constants/theme";
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
+import mySettings from "../../../../styles/components/accounts/yourSettings/mySettings";
 
 const MySettings = ({ navigation }) => {
   const navigateToEditProfile = () => {
@@ -153,7 +154,7 @@ const MySettings = ({ navigation }) => {
       <Text
         style={{
           marginLeft: 36,
-          fontWeight: 600,
+          fontFamily: "poppinsRegular400",
           fontSize: SIZES.medium,
         }}
       >
@@ -164,31 +165,16 @@ const MySettings = ({ navigation }) => {
 
   return (
     <SafeAreaView
-      style={{
-        flex: 1,
-        backgroundColor: COLORS.pageBackgroundBrown,
-        width: SIZES.width,
-        height: SIZES.height,
-        paddingTop: 20,
-        // alignContent: "center",
-      }}
+      style={mySettings.mainOuterContainer}
     >
       <ScrollView>
         <View
-        style={{
-          marginHorizontal: 12,
-          borderStyle: "solid",
-        }}
+        style={mySettings.scrollContainer}
       >
         <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            width: SIZES.width/2,
-            justifyContent: "space-between"
-          }}
+          style={mySettings.headerContainer}
         >
-          <View style={{ backgroundColor: COLORS.tabBarBrown, borderRadius: 50}}>
+          <View style={mySettings.headerIconContainer}>
             <Pressable>
             <MaterialIcons
               name="keyboard-arrow-left"
@@ -198,28 +184,21 @@ const MySettings = ({ navigation }) => {
           </Pressable>
           </View>
           <View >
-            <Text style={{ fontSize: SIZES.large, fontWeight: "bold" }}>
+            <Text style={mySettings.headerText}>
             Settings
           </Text>
           </View>
         </View>
 
         {/* AccountSettings */}
-        <View>
+        <View style={{ marginTop: -(2 / 100) * SIZES.height }}>
           <Text
-            style={{
-              fontSize: SIZES.large,
-              marginVertical: 5,
-              fontStyle: "italic",
-            }}
+            style={mySettings.sectionText}
           >
             Account
           </Text>
           <View
-            style={{
-              borderRadius: 12,
-              backgroundColor: COLORS.burlyWoodBrown,
-            }}
+            style={mySettings.sectionContent}
           >
             {accountItems.map((item, index) => (
               <React.Fragment key={index}>
@@ -233,19 +212,12 @@ const MySettings = ({ navigation }) => {
         {/* SupportAndAboutSettings */}
         <View>
           <Text
-            style={{
-              fontSize: SIZES.large,
-              marginVertical: 5,
-              fontStyle: "italic",
-            }}
+            style={mySettings.sectionText}
           >
             Support & About
           </Text>
           <View
-            style={{
-              borderRadius: 12,
-              backgroundColor: COLORS.burlyWoodBrown,
-            }}
+            style={mySettings.sectionContent}
           >
             {supportItems.map((item, index) => (
               <React.Fragment key={index}>
@@ -259,19 +231,12 @@ const MySettings = ({ navigation }) => {
         {/* CacheAndCellularSettings */}
         <View>
           <Text
-            style={{
-              fontSize: SIZES.large,
-              marginVertical: 5,
-              fontStyle: "italic",
-            }}
+            style={mySettings.sectionText}
           >
             Cache & cellular
           </Text>
           <View
-            style={{
-              borderRadius: 12,
-              backgroundColor: COLORS.burlyWoodBrown,
-            }}
+            style={mySettings.sectionContent}
           >
             {cacheAndCellularItems.map((item, index) => (
               <React.Fragment key={index}>
@@ -285,19 +250,12 @@ const MySettings = ({ navigation }) => {
         {/* ActionsSettings */}
         <View>
           <Text
-            style={{
-              fontSize: SIZES.large,
-              marginVertical: 5,
-              fontStyle: "italic",
-            }}
+            style={mySettings.sectionText}
           >
             Actions
           </Text>
           <View
-            style={{
-              borderRadius: 12,
-              backgroundColor: COLORS.burlyWoodBrown,
-            }}
+            style={mySettings.sectionContent}
           >
             {actionsItems.map((item, index) => (
               <React.Fragment key={index}>

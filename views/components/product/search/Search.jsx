@@ -7,6 +7,7 @@ import search from '../../../../styles/components/product/search/search.js'
 import axios from "axios";
 import { ngrokBaseUrl } from "../../../../api/Api.jsx";
 import useFetch from "../../../../hook/useFetch.js";
+import { Image } from "react-native";
 
 const Search = () => {
 
@@ -60,8 +61,10 @@ const Search = () => {
         </View>
       </View>
       {searchResults.length === 0 ? (
-        <View style={{ flex: 1 }}>
-          <Text>Product not found</Text>
+        <View style={{ flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: COLORS.pageBackgroundBrown, aspectRatio: 1, resizeMode: "cover"}}>
+          <Image
+          source={require("../../../../assets/images/jpg/searchImage.jpeg")}
+          />
         </View>
       ) : (
         <FlatList

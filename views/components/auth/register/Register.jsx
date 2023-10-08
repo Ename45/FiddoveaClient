@@ -50,10 +50,14 @@ const Register = () => {
           const token = response.data.jwtToken;
           // console.log("token Storage==>{}", token);
           await AsyncStorage.setItem("jwtToken", token);
-          navigation.navigate("BottomTabNav",);
+          navigation.navigate("BottomTabNav");
         }
       } catch (error) {
-        setError(error.response.data);
+        if (error.response && error.response.data) {
+          setError(error.response.data);
+        } else {
+          setError('An error occurred.');
+        }
       }
     } else {
       setInputError("All fields are required");
@@ -103,7 +107,7 @@ const Register = () => {
           />
 
           <View>
-            {error && <Text style={{ color: "red" }}>{error.data}</Text>}
+            {error && <Text style={{ color: "red" }}>{error}</Text>}
             {inputError !== "" && (
               <Text style={{ color: "red" }}>{inputError}</Text>
             )}

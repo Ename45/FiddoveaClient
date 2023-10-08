@@ -17,7 +17,6 @@ export default StyleSheet.create({
     width: SIZES.width - 44,
     zIndex: 999,
     // justifyContent: "space-between"
-    
   },
   image: {
     aspectRatio: 1,
@@ -44,10 +43,11 @@ export default StyleSheet.create({
     fontSize: SIZES.large,
   },
   priceWrapper: {
-    backgroundColor: COLORS.burlyWoodBrown,
-    borderRadius: SIZES.large,
+    backgroundColor: COLORS.gray2,
+    borderRadius: SIZES.medium,
+    elevation: 10
   },
-  price: {
+  productPrice: {
     paddingHorizontal: 10,
     fontFamily: "poppinsBold700",
     fontSize: SIZES.large,
@@ -60,25 +60,12 @@ export default StyleSheet.create({
     width: SIZES.width - 10,
     top: 5,
   },
-  ratingText: {
-    color: COLORS.gray3,
-    fontFamily: "poppinsMedium500",
-    paddingHorizontal: 5,
-  },
   rating: {
-    top: SIZES.large,
+    // top: SIZES.large,
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
     marginHorizontal: SIZES.large,
-  },
-  rating2: {
-    top: SIZES.large,
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center",
-    marginHorizontal: SIZES.large,
-    gap: 10,
   },
   descriptionWrapper: {
     marginTop: SIZES.large * 2,
@@ -112,8 +99,8 @@ export default StyleSheet.create({
   },
   cartButton: {
     width: SIZES.width * 0.7,
-    backgroundColor: COLORS.black,
-    padding: SIZES.small/2,
+    backgroundColor: COLORS.gray,
+    padding: SIZES.small / 2,
     borderRadius: SIZES.large,
     marginLeft: 12,
   },
@@ -121,15 +108,15 @@ export default StyleSheet.create({
     marginLeft: SIZES.small,
     fontFamily: "poppinsBold700",
     fontSize: SIZES.medium,
-    color: COLORS.lightWhite
+    color: COLORS.lightWhite,
   },
   addToCart: {
     width: 37,
     height: 37,
     borderRadius: 50,
     margin: SIZES.small,
-    backgroundColor: COLORS.black,
+    backgroundColor: COLORS.gray,
     alignItems: "center",
-    justifyContent: "center"
-  }
+    justifyContent: "center",
+  },
 });

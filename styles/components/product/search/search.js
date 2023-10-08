@@ -3,7 +3,7 @@ import { COLORS, SIZES } from "../../../../constants/theme";
 
 export default StyleSheet.create({
   mainContainer: {
-    paddingTop: 20,
+    paddingTop: (5 / 100) * SIZES.height,
     width: SIZES.width,
     height: SIZES.height,
     flex: 1,
@@ -19,12 +19,12 @@ export default StyleSheet.create({
     alignItems: "center",
     color: COLORS.gray3,
     borderRadius: 10,
-    marginVertical: 12,
+    marginVertical: (1.2 / 100) * SIZES.height,
     // marginHorizontal: 12,
     width: SIZES.width,
   },
   searchIcon: {
-    marginHorizontal: 6,
+    marginHorizontal: (2 / 100) * SIZES.width,
     color: COLORS.darkChocolateBrown,
     position: "absolute",
     top: (2 / 100) * SIZES.height,
@@ -44,15 +44,15 @@ export default StyleSheet.create({
     width: SIZES.width - 40,
     height: (8 / 100) * SIZES.height,
     paddingHorizontal: (10 / 100) * SIZES.width,
-    fontSize: (2.4 / 100) * SIZES.height,
-    fontFamily: "poppinsMedium",
+    fontSize: (2 / 100) * SIZES.height,
+    fontFamily: "poppinsMedium500",
     borderWidth: 0,
   },
   searchBtn: {
     marginHorizontal: (9 / 100) * SIZES.width - 20,
     color: COLORS.darkChocolateBrown,
     position: "absolute",
-    top: (1.5 / 100) * SIZES.height,
+    top: (2 / 100) * SIZES.height,
     left: (77 / 100) * SIZES.width,
   },
 });

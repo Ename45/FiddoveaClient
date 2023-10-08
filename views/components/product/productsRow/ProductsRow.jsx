@@ -51,31 +51,31 @@ const ProductsRow = ({navigation}) => {
       id: 7
     },
     {
-      categoryImage: "https://i.ibb.co/W29btXp/profile.jpg",
+      categoryImage: "http://res.cloudinary.com/di8higqd1/image/upload/v1695925241/promiscuous/users/profile%20images/f47dd56b-15aa-4294-83c8-b437102e3d1b.jpg",
       categoryName: "Chocolates",
       screen: "Chocolate",
       id: 8
     },
     {
-      categoryImage: "https://i.ibb.co/W29btXp/profile.jpg",
+      categoryImage: "http://res.cloudinary.com/di8higqd1/image/upload/v1695925241/promiscuous/users/profile%20images/f47dd56b-15aa-4294-83c8-b437102e3d1b.jpg",
       categoryName: "Candies",
       screen: "Candy",
       id: 9
     },
     {
-      categoryImage: "https://i.ibb.co/W29btXp/profile.jpg",
+      categoryImage: "http://res.cloudinary.com/di8higqd1/image/upload/v1695925241/promiscuous/users/profile%20images/f47dd56b-15aa-4294-83c8-b437102e3d1b.jpg",
       categoryName: "Desserts",
       screen: "Dessert",
       id: 10
     },
     {
-      categoryImage: "https://i.ibb.co/W29btXp/profile.jpg",
+      categoryImage: "http://res.cloudinary.com/di8higqd1/image/upload/v1695925241/promiscuous/users/profile%20images/f47dd56b-15aa-4294-83c8-b437102e3d1b.jpg",
       categoryName: "Bread",
       screen: "Bread",
       id: 11
     },
     {
-      categoryImage: "https://i.ibb.co/W29btXp/profile.jpg",
+      categoryImage: "http://res.cloudinary.com/di8higqd1/image/upload/v1695925241/promiscuous/users/profile%20images/f47dd56b-15aa-4294-83c8-b437102e3d1b.jpg",
       categoryName: "Drinks",
       screen: "Drink",
       id: 12

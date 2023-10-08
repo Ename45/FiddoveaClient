@@ -108,10 +108,6 @@ export default function App() {
             component={RegisterVendor}
             options={{ headerShown: false }}
           />
-
-        
-   
-    
         <Stack.Screen
             name={"ViewOrder"}
             component={ViewOrder}
