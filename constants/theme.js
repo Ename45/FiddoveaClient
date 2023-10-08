@@ -1,6 +1,4 @@
 import { Dimensions } from "react-native";
-// import { useFonts } from "expo-font";
-
 const { height, width } = Dimensions.get('window')
 
 export const COLORS = {

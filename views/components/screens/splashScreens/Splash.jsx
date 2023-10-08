@@ -5,8 +5,8 @@ import React, { useEffect } from 'react';
 const Splash = ({navigation}) => {
 useEffect(() => {
   const timer = setTimeout(() => {
-    navigation.replace("Splash2");
-  }, 1000);
+    navigation.replace("GetStarted");
+  }, 500);
   return () => clearTimeout(timer);
 }, [navigation]);
 
@@ -14,7 +14,7 @@ useEffect(() => {
 return (
   <View>
     <Image
-      source={require("../../../../assets/images/png/firstLogo.png")}
+      source={require("../../../../assets/images/png/systemSplash.png")}
       style={{
         width: "100%",
         height: "100%",

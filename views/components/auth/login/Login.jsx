@@ -61,7 +61,8 @@ const Login = () => {
     }
 
     return (
-      <ImageBackground source={require("../../../../assets/images/jpg/backgroundColour3.jpeg")} 
+      <ImageBackground 
+      source={require("../../../../assets/images/jpg/topImageOnboarding.jpg")} 
       style={login.backgroundColor}>
       <View style={login.logoContainer}>
     <Image

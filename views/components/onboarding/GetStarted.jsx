@@ -1,10 +1,10 @@
-import {Image, ImageBackground, View } from 'react-native'
+import {Image, ImageBackground, View, Text } from 'react-native'
 import React from 'react'
 import { useNavigation } from '@react-navigation/native';
 import getStarted from '../../../styles/components/onboarding/getStarted'
 import CustomButton from '../reusable/button/CustomButton.jsx';
 import { StyleSheet } from 'react-native';
-import { COLORS } from '../../../constants/theme';
+import { COLORS, SIZES } from '../../../constants/theme';
 
 const GetStarted = () => {
 
@@ -16,16 +16,22 @@ const GetStarted = () => {
 
 
   return (
-      <ImageBackground source={require("../../../assets/images/jpg/backgroundColour3.jpeg")}
+      <ImageBackground source={require("../../../assets/images/jpg/topImageOnboarding.jpg")}
       style={getStarted.backgroundImage}>
+        <View>
+        <Text style={getStarted.welcomeMessage}> Connecting You With Skilled Artisans
+        One Step At a Time </Text>
+      <Image
+        source={require("../../../assets/images/jpg/secondOnboarding.jpg")}
+        style={getStarted.Image}
+      />
+    </View>
       <View style={getStarted.getStartedContainer}>
-        {/*<Text style={getStarted.welcomeMessage}> Connecting You With Skilled Artisan*/}
-        {/*One Step At a Time </Text>*/}
-        <View style={[getStarted.buttonContainer,
-          getStarted.shadowBox]}>
+        <View style={getStarted.buttonContainer}>
           <CustomButton
           buttonName="Register As A Vendor"
           onPress={() => navigateToPage("RegisterVendor")}
+          style={getStarted.button}
           />
   
           <CustomButton

@@ -64,9 +64,10 @@ const Register = () => {
     }
   };
 
+  
   return (
     <ImageBackground
-      source={require("../../../../assets/images/jpg/backgroundColour3.jpeg")}
+      source={require("../../../../assets/images/jpg/topImageOnboarding.jpg")}
       style={register.backgroundColor}
     >
       <View style={register.logoContainer}>

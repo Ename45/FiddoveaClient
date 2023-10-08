@@ -5,7 +5,7 @@ import { Feather, Ionicons } from "@expo/vector-icons";
 import InputField from "../../reusable/inputField/InputField.jsx";
 import search from '../../../../styles/components/product/search/search.js'
 import axios from "axios";
-import { ngrokBaseUrl } from "../../../../api/Api.jsx";
+import { customerUrl, ngrokBaseUrl } from "../../../../api/Api.jsx";
 import useFetch from "../../../../hook/useFetch.js";
 import { Image } from "react-native";
 
@@ -17,18 +17,18 @@ const Search = () => {
   const [searchItem, setSearchItem] = useState("");  
   const [searchResults, setSearchResults ] = useState([]) 
 
-  // GET http://localhost:8080/api/v1/customer/product/search
 
   const handleSearch = async() => {
 
     try {
-      const response = await axios.get(`${ngrokBaseUrl}/api/v1/customer/product/search`, searchItem);
+      const response = await axios.get(`${ngrokBaseUrl}/${customerUrl}/product/search?query=${searchItem}`);
+      console.log("response==>{}", response.data)
       if (response.status === 200) {
         setSearchResults(response.data)
       }
     } catch (error) {
       setError(error.response.data);
-      console.log(error.response.data.data)
+      console.log(error.response.data)
     }
   }
 
@@ -48,7 +48,6 @@ const Search = () => {
             style={search.searchInput}
             value={searchItem}
             onChangeText={(text) => setSearchItem(text)}
-            onPress={() => {}}
             placeholder="what are you looking for"
           />
           <TouchableOpacity style={search.searchBtn} onPress={() => handleSearch()}>
@@ -61,9 +60,10 @@ const Search = () => {
         </View>
       </View>
       {searchResults.length === 0 ? (
-        <View style={{ flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: COLORS.pageBackgroundBrown, aspectRatio: 1, resizeMode: "cover"}}>
+        <View style={{ flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: COLORS.pageBackgroundBrown }}>
           <Image
           source={require("../../../../assets/images/jpg/searchImage.jpeg")}
+          style={{ flex: 1, aspectRatio: 0.6, resizeMode: "cover" }}
           />
         </View>
       ) : (

@@ -12,6 +12,7 @@ export default StyleSheet.create({
   },
   scrollContainer: {
     marginHorizontal: (4 / 100) * SIZES.width,
+    marginBottom: (4 / 100) * SIZES.height,
     borderStyle: "solid",
     gap: (2 / 100) * SIZES.height,
   },
@@ -37,6 +38,6 @@ export default StyleSheet.create({
   sectionContent: {
     borderRadius: 12,
     backgroundColor: COLORS.pageBackgroundBrown,
-    elevation: 10,
+    elevation: 7,
   },
 });

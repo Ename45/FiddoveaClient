@@ -4,12 +4,13 @@
     "slug": "Fiddovea",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/images/png/FiddoveaIcon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "image": "./assets/images/png/firstLogo.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#ffffff",
+      "aspectRatio": 1
     },
     "plugins": ["expo-router"],
     "assetBundlePatterns": ["**/*"],
@@ -18,7 +19,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/images/png/FiddoveaIcon.png",
         "backgroundColor": "#ffffff"
       }
     },

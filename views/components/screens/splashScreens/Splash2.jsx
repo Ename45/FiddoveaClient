@@ -5,16 +5,16 @@ const Splash2 = ({ navigation }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       navigation.replace("GetStarted");
-    }, 1500);
+    }, 500);
     return () => clearTimeout(timer);
   }, [navigation]);
   return (
     <View>
       <Image
-        source={require("../../../../assets/images/png/secondLogo.png")}
+        source={require("../../../../assets/images/png/FiddoveaIcon.png")}
         style={{
-          width: "100%",
-          height: "100%",
+          width: "50%",
+          height: "50%",
         }}
       />
     </View>
