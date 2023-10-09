@@ -4,7 +4,7 @@
     "slug": "Fiddovea",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/png/FiddoveaIcon.png",
+    "icon": "./assets/images/png/iconImage.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/images/png/firstLogo.png",
@@ -12,20 +12,34 @@
       "backgroundColor": "#ffffff",
       "aspectRatio": 1
     },
-    "plugins": ["expo-router"],
-    "assetBundlePatterns": ["**/*"],
+    "plugins": [
+      "expo-router"
+    ],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.fiddovea.Fiddovea"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/png/FiddoveaIcon.png",
+        "foregroundImage": "./assets/images/png/iconImage.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.fiddovea.Fiddovea"
     },
     "web": {
       "favicon": "./assets/favicon.png",
       "bundler": "metro"
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "cf4d8e7c-cd24-4591-b70d-cf6378240200"
+      }
     }
   }
 }

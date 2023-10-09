@@ -5,7 +5,7 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.pageBackgroundBrown,
-    marginTop: 20,
+    // marginTop: 20,
   },
   upperRow: {
     marginHorizontal: 20,

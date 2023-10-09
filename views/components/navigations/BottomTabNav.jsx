@@ -62,7 +62,7 @@ const BottomTabNav = () => {
                   <Text
                     style={{
                       color: focused ? COLORS.black : COLORS.burlyWoodBrown,
-                      fontSize: (3.5 / 100) * SIZES.width,
+                      fontSize: (3.2 / 100) * SIZES.width,
                       fontFamily: focused
                         ? "poppinsBold700"
                         : "poppinsLight300",
@@ -104,7 +104,7 @@ const BottomTabNav = () => {
                   <Text
                     style={{
                       color: focused ? COLORS.black : COLORS.burlyWoodBrown,
-                      fontSize: (3.5 / 100) * SIZES.width,
+                      fontSize: (3.2 / 100) * SIZES.width,
                       fontFamily: focused
                         ? "poppinsBold700"
                         : "poppinsLight300",
@@ -146,7 +146,7 @@ const BottomTabNav = () => {
                   <Text
                     style={{
                       color: focused ? COLORS.black : COLORS.burlyWoodBrown,
-                      fontSize: (3.5 / 100) * SIZES.width,
+                      fontSize: (3.2 / 100) * SIZES.width,
                       fontFamily: focused
                         ? "poppinsBold700"
                         : "poppinsLight300",
@@ -188,7 +188,7 @@ const BottomTabNav = () => {
                   <Text
                     style={{
                       color: focused ? COLORS.black : COLORS.burlyWoodBrown,
-                      fontSize: (3.5 / 100) * SIZES.width,
+                      fontSize: (3.2 / 100) * SIZES.width,
                       fontFamily: focused
                         ? "poppinsBold700"
                         : "poppinsLight300",

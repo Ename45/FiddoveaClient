@@ -5,7 +5,7 @@ export default StyleSheet.create({
   mainContainer: {
     flex: 1,
     backgroundColor: COLORS.pageBackgroundBrown,
-    paddingTop: (1.5 / 100) * SIZES.height,
+    // paddingTop: (1.5 / 100) * SIZES.height,
   },
   wrapper: {
     // flex: 1,

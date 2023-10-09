@@ -3,7 +3,7 @@ import { COLORS, SIZES } from "../../../constants/theme"
 
 export default StyleSheet.create({
   outerContainer: {
-    paddingTop: 20,
+    // paddingTop: 20,
     width: SIZES.width,
     height: SIZES.height,
     flex: 1,

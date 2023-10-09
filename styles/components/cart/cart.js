@@ -5,7 +5,7 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.pageBackgroundBrown,
-    marginTop: 5/100*(SIZES.height),
+    // marginTop: 5/100*(SIZES.height),
     paddingBottom: 5/100*(SIZES.height)
   },
   totalPriceContainer: {

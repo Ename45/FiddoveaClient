@@ -7,7 +7,7 @@ export default StyleSheet.create({
     backgroundColor: COLORS.pageBackgroundBrown,
     width: SIZES.width,
     height: SIZES.height,
-    paddingTop: (5 / 100) * SIZES.height,
+    // paddingTop: (5 / 100) * SIZES.height,
     paddingBottom: (3 / 100) * SIZES.height,
   },
   scrollContainer: {
