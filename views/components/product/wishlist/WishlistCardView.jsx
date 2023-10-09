@@ -9,10 +9,14 @@ import { Context } from "../../../../context/context";
 
 const WishlistCardView = ({product, handleRemoveFromWishList, currentProductId }) => {
 
+  const navigation = useNavigation()
+
     const [isFocused, setIsFocused] = useState(false);
 
   return (
-      <Pressable style={{backgroundColor: COLORS.pageBackgroundBrown}} 
+      <Pressable 
+      onPress={()=> navigation.navigate("ProductDetails", { productId: currentProductId })}
+      style={{backgroundColor: COLORS.pageBackgroundBrown}} 
       >
         <View style={[
           wishlistCardView.container,

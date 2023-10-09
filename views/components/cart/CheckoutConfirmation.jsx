@@ -5,7 +5,7 @@ import { Context } from '../../../context/context';
 
 const CheckoutConfirmation = ({ deliveryLocation, phoneNumber, paymentMethod, totalPrice,  }) => {
 
-    const { products, cartItems } = useContext(Context)
+    const { cartItems } = useContext(Context)
 
     return (
         <View style={styles.container}>
@@ -24,7 +24,7 @@ const CheckoutConfirmation = ({ deliveryLocation, phoneNumber, paymentMethod, to
 
             <View style={styles.section}>
                 <Text style={styles.sectionTitle}>Ordered Products</Text>
-                {products.map((product) => (
+                {cartItems.map((product) => (
                     <View key={product.productId} style={styles.productItem}>
                         <Text>{product.productName} x{product.quantity}</Text>
                         <Text>${product.productPrice * product.quantity}</Text>
@@ -33,7 +33,7 @@ const CheckoutConfirmation = ({ deliveryLocation, phoneNumber, paymentMethod, to
             </View>
 
             <View style={styles.totalPrice}>
-                <Text>Total Price: $1234</Text>
+                <Text>Total Price: N{totalPrice}</Text>
             </View>
         </View>
     );
