@@ -75,11 +75,7 @@ const ProductContext = ({ children }) => {
     let copyOfCartItems = [...cartItems];
     const foundProduct = copyOfCartItems.findIndex(
       (item) => item.productId == productId
-    );
-
-    console.log("i got here ")
-
-    
+    );  
     
 
     if (foundProduct === -1 && !cartItems.includes(productId)) {
@@ -103,7 +99,7 @@ const ProductContext = ({ children }) => {
           }
         );
 
-        console.log("this is the response", response.data);
+        // console.log("this is the response", response.data);
 
         if (response.status === 200) {
           setIsLoading(false);
@@ -190,7 +186,7 @@ const ProductContext = ({ children }) => {
         }
       );
 
-      console.log("this is the response", response.data);
+      // console.log("this is the response", response.data);
 
       if (response.status === 200) {
         setIsLoading(false);
@@ -202,7 +198,7 @@ const ProductContext = ({ children }) => {
     }
   };
 
-  console.log("desperado cart items==>", cartItems);
+  // console.log("cart items==>", cartItems);
 
 
 

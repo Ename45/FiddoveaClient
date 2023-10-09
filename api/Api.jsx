@@ -1,5 +1,5 @@
 
-export const ngrokBaseUrl = "https://8c1f-102-89-22-101.ngrok-free.app"
+export const ngrokBaseUrl = "https://13ec-102-88-62-167.ngrok-free.app"
 
 export const customerUrl = 'api/v1/customer'
 export const vendorUrl = 'api/v1/vendor'
