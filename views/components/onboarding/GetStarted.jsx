@@ -29,7 +29,10 @@ const GetStarted = () => {
     </View>
       <View style={getStarted.getStartedContainer}>
         <View style={getStarted.buttonContainer}>
-          <Pressable style={getStarted.button}>
+          <Pressable 
+          style={getStarted.button}
+          onPress={() => navigateToPage("Login")}
+          >
             <Text style={getStarted.buttonText}>
               Get Started
             </Text>

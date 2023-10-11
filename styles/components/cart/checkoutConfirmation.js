@@ -79,7 +79,7 @@ export default StyleSheet.create({
     fontSize: (3.2 / 100) * SIZES.width,
   },
   calcs: {
-    marginTop: (5 / 100) * SIZES.height,
+    marginTop: (3 / 100) * SIZES.height,
   },
   totalRow: {
     flexDirection: "row",
@@ -97,13 +97,19 @@ export default StyleSheet.create({
   voucher: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: COLORS.gold,
-    padding: (1 / 100) * SIZES.width,
-    marginBottom: (1 / 100) * SIZES.height,
+    backgroundColor: COLORS.metallicGold,
+    padding: (3 / 100) * SIZES.width,
+    marginBottom: (4 / 100) * SIZES.height,
+    marginTop: (4 / 100) * SIZES.height,
+    width: "100%",
   },
   voucherText: {
     flex: 1,
-    marginLeft: (2 / 100) * SIZES.width,
+    marginLeft: (5 / 100) * SIZES.width,
+    fontFamily: "poppinsSemiBold600",
+    fontSize: (3.8 / 100) * SIZES.width,
+    alignItems: "center",
+    justifyContent: "center"
   },
   placeOrderButton: {
     backgroundColor: COLORS.tabBarBrown,

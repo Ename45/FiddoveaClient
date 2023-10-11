@@ -6,9 +6,6 @@ import { COLORS, SIZES } from '../../../constants/theme';
 import { Context } from '../../../context/context';
 
 const CartCardView = ({product, handleRemoveFromCart, currentProductId, onUpdateQuantity, }) => {
-
-  // const [productQuantity, setProductQuantity] = useState(1)
-  // const [totalItemPrice, setTotalItemPrice] = useState(product.productPrice)
   
   const { productQuantity, setProductQuantity, totalItemPrice, setTotalItemPrice } = useContext(Context);
 
@@ -17,8 +14,6 @@ const CartCardView = ({product, handleRemoveFromCart, currentProductId, onUpdate
   }, [productQuantity, product.productPrice]);
 
   const increment = () => {
-    // setProductQuantity(productQuantity + 1);
-    // onUpdateQuantity(currentProductId, productQuantity + 1);
     const newQuantity = productQuantity + 1;
     setProductQuantity(newQuantity);
     onUpdateQuantity(currentProductId, newQuantity);
@@ -26,8 +21,6 @@ const CartCardView = ({product, handleRemoveFromCart, currentProductId, onUpdate
 
   const decrement = () => {
     if (productQuantity > 1) {
-      // setProductQuantity(productQuantity - 1)      
-      // onUpdateQuantity(currentProductId, productQuantity - 1);
       const newQuantity = productQuantity - 1;
       setProductQuantity(newQuantity);
       onUpdateQuantity(currentProductId, newQuantity);
@@ -62,7 +55,7 @@ const CartCardView = ({product, handleRemoveFromCart, currentProductId, onUpdate
                 onPress={() => {
                   decrement();
                 }}
-                 >
+                >
                     <SimpleLineIcons name="minus" size={18} />
                 </Pressable>
                 <Text style={cartCardView.quantityText}>{productQuantity}</Text>
