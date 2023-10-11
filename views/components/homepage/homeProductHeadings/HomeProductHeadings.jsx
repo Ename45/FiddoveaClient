@@ -16,18 +16,27 @@ const HomeProductHeadings = () => {
   return (
     <View style={homeProductHeadings.container}>
       <View style={homeProductHeadings.header}>
-        <Text style={homeProductHeadings.headerTitle}>
+        <View  style={{flexDirection: "row", alignItems: "center", justifyContent: "center"}}>
+          <Text style={homeProductHeadings.headerTitle}>
           Explore By Categories
-        </Text>
+        </Text >
+        <Ionicons
+            name='triangle'
+            size={(3 / 100) * SIZES.width}
+            color={COLORS.black}            
+            onPress={navigateToAllProducts}
+            style={{ transform: [{ rotate: '180deg' }], marginTop: (3.7 / 100) * SIZES.height }}
+            />
+        </View>
         <View>
-          <TouchableOpacity>
+          <TouchableOpacity style={{alignItems: "center", justifyContent: "center", gap: 5}}>
             <Ionicons
             name='ios-grid'
             size={(7 / 100) * SIZES.width}
             color={COLORS.black}
             onPress={navigateToAllProducts}
             />
-            {/* <Text style={{fontSize: 12, marginTop: -5}}>All Products</Text> */}
+            <Text style={{fontSize: (1.8 / 100) * SIZES.height, marginTop: -5, fontFamily: "poppinsMedium500",}}>View Products</Text>
           </TouchableOpacity>
         </View>
       </View>
