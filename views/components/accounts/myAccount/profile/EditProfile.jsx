@@ -44,7 +44,7 @@ const EditProfile = ({ navigation }) => {
       aspect: [4, 4],
       quality: 1,
     });
-    console.log(result);
+    // console.log(result);
 
     if (!result.canceled) {
       setSelectedImage(result.assets[0].uri);

@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
-import { customerUrl, ngrokBaseUrl } from '../../../../api/Api';
+import { customerUrl, baseUrl } from '../../../../api/Api';
 import axios from 'axios';
 import WishlistCardView from './WishlistCardView';
 import { Context } from '../../../../context/context';

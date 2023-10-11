@@ -45,28 +45,28 @@ export default StyleSheet.create({
   priceWrapper: {
     backgroundColor: COLORS.gray2,
     borderRadius: SIZES.medium,
-    elevation: 10
+    elevation: 10,
   },
   productPrice: {
     paddingHorizontal: 10,
     fontFamily: "poppinsBold700",
     fontSize: SIZES.large,
   },
-  ratingRow: {
-    paddingBottom: 5,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    width: SIZES.width - 10,
-    top: 5,
-  },
-  rating: {
-    // top: SIZES.large,
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center",
-    marginHorizontal: SIZES.large,
-  },
+  // ratingRow: {
+  //   paddingBottom: 5,
+  //   flexDirection: "row",
+  //   justifyContent: "space-between",
+  //   alignItems: "center",
+  //   width: SIZES.width - 10,
+  //   top: 5,
+  // },
+  // rating: {
+  //   // top: SIZES.large,
+  //   flexDirection: "row",
+  //   justifyContent: "flex-start",
+  //   alignItems: "center",
+  //   marginHorizontal: SIZES.large,
+  // },
   descriptionWrapper: {
     marginTop: SIZES.large * 2,
     marginHorizontal: SIZES.large,
@@ -118,5 +118,55 @@ export default StyleSheet.create({
     backgroundColor: COLORS.gray,
     alignItems: "center",
     justifyContent: "center",
+  },
+  reviewsContainer: {
+    backgroundColor: COLORS.lightWhite,
+    padding: SIZES.large,
+    borderRadius: SIZES.small,
+    marginTop: SIZES.medium,
+  },
+  reviewsTitle: {
+    fontFamily: "poppinsBold700",
+    fontSize: SIZES.large,
+    marginBottom: SIZES.small,
+  },
+  reviewContainer: {
+    marginBottom: SIZES.small,
+    borderColor: COLORS.gray2,
+    borderWidth: 1,
+    padding: SIZES.small,
+    borderRadius: SIZES.small,
+  },
+  reviewHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: SIZES.small,
+  },
+  reviewUser: {
+    fontFamily: "poppinsRegular400",
+    fontSize: SIZES.medium,
+  },
+  reviewText: {
+    fontFamily: "poppinsRegular400",
+    fontSize: SIZES.small,
+  },
+  leaveReviewContainer: {
+    marginTop: SIZES.medium,
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  leaveReviewInput: {
+    flex: 1,
+    marginRight: SIZES.small,
+    padding: SIZES.small,
+    borderColor: COLORS.gray2,
+    borderWidth: 1,
+    borderRadius: SIZES.small,
+  },
+  leaveReviewButton: {
+    fontFamily: "poppinsRegular400",
+    fontSize: SIZES.medium,
+    color: COLORS.primary,
   },
 });

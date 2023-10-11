@@ -1,72 +1,63 @@
 import React, { useContext } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import Cart from "./Cart";
+import { View, Text, StyleSheet, Pressable } from 'react-native';
 import { Context } from '../../../context/context';
+import checkoutConfirmation from '../../../styles/components/cart/checkoutConfirmation';
+import { MaterialIcons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import { COLORS } from '../../../constants/theme';
+import { useRoute } from "@react-navigation/native";
 
-const CheckoutConfirmation = ({ deliveryLocation, phoneNumber, paymentMethod, totalPrice,  }) => {
+const CheckoutConfirmation = () => {
 
-    const { cartItems } = useContext(Context)
+    // const { cartItems } = useContext(Context)
+    const navigation = useNavigation()
+    const route = useRoute();
+
+    const { cartItems, grandTotal } = route.params;
+
+    const { productQuantity,  totalItemPrice,} = useContext(Context)
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.header}>Order Confirmation</Text>
+        <View style={checkoutConfirmation.container}>
+            <View style={checkoutConfirmation.innerContainer}>
+                <View style={checkoutConfirmation.headerBackIcon}>
+                    <Pressable onPress={() => {navigation.goBack()}}>
+                        <MaterialIcons
+                        name="keyboard-arrow-left"
+                        size={24}
+                        color={COLORS.white}
+                        />
+                    </Pressable>
+            </View>
+                <Text style={checkoutConfirmation.header}>Order Confirmation</Text>
+            </View>
 
-            <View style={styles.section}>
-                <Text style={styles.sectionTitle}>Delivery Information</Text>
+            <View style={checkoutConfirmation.section}>
+                <Text style={checkoutConfirmation.sectionTitle}>Delivery Information</Text>
                 <Text>Delivery Location: </Text>
                 <Text>Phone Number: </Text>
             </View>
 
-            <View style={styles.section}>
-                <Text style={styles.sectionTitle}>Payment Method</Text>
+            <View style={checkoutConfirmation.section}>
+                <Text style={checkoutConfirmation.sectionTitle}>Payment Method</Text>
                 <Text>paymentMethod function</Text>
             </View>
 
-            <View style={styles.section}>
-                <Text style={styles.sectionTitle}>Ordered Products</Text>
+            <View style={checkoutConfirmation.section}>
+                <Text style={checkoutConfirmation.sectionTitle}>Ordered Products</Text>
                 {cartItems.map((product) => (
-                    <View key={product.productId} style={styles.productItem}>
-                        <Text>{product.productName} x{product.quantity}</Text>
-                        <Text>${product.productPrice * product.quantity}</Text>
+                    <View key={product.productId} style={checkoutConfirmation.productItem}>
+                        <Text>x{productQuantity}      {product.productName}</Text>
+                        <Text>N{totalItemPrice}</Text>
                     </View>
                 ))}
             </View>
 
-            <View style={styles.totalPrice}>
-                <Text>Total Price: N{totalPrice}</Text>
+            <View style={checkoutConfirmation.totalPrice}>
+                <Text>Total Price: N{grandTotal}</Text>
             </View>
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 16,
-    },
-    header: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginBottom: 16,
-        textAlign: 'center',
-    },
-    section: {
-        marginBottom: 16,
-    },
-    sectionTitle: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        marginBottom: 8,
-    },
-    productItem: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginBottom: 8,
-    },
-    totalPrice: {
-        marginTop: 16,
-        alignItems: 'flex-end',
-    },
-});
 
 export default CheckoutConfirmation;

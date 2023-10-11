@@ -5,10 +5,11 @@ import axios from 'axios';
 import login from '../../../../styles/components/auth/login/login.js'
 import InputField from '../../reusable/inputField/InputField.jsx';
 import CustomButton from '../../reusable/button/CustomButton.jsx'
-import { customerUrl, ngrokBaseUrl } from '../../../../api/Api.jsx';
+import { customerUrl, baseUrl } from '../../../../api/Api.jsx';
 import { COLORS, SIZES } from '../../../../constants/theme.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Pressable } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 
 const Login = () => {
@@ -19,6 +20,7 @@ const Login = () => {
     const [error, setError] = useState(null);
   const [inputError, setInputError] = useState("");
   const [networkError, setNetworkError] = useState("");
+  
 
   const navigation = useNavigation()
 
@@ -29,7 +31,7 @@ const Login = () => {
   const handleSubmit = async(e)=>{  
     e.preventDefault();
     setButtonClicked(true)
-    const URL = `${ngrokBaseUrl}/${customerUrl}/login`
+    const URL = `${baseUrl}/${customerUrl}/login`
     
     let customerData = {
       email,

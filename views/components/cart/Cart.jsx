@@ -21,6 +21,7 @@ const Cart = () => {
     }));
   };
 
+  
   const calculateGrandTotal = () => {
     let grandTotal = 0;
     cartItems.forEach((item) => {
@@ -37,6 +38,14 @@ const Cart = () => {
     });
     setProductQuantities(initialQuantities);
   }, [cartItems]);
+
+
+  // const onProductChange = (productQuantity, totalItemPrice) =>{
+  //   return {
+  //     productQuantity,
+  //     totalItemPrice
+  //   }
+  // }
 
 
     if (cartItems.length == 0) {
@@ -76,7 +85,10 @@ const Cart = () => {
         style={cart.checkoutButton}
         onPress={()=> {
           if (cartItems.length !== 0) {
-            navigation.navigate("CheckoutConfirmation")            
+            navigation.navigate("CheckoutConfirmation", {
+              cartItems: cartItems, 
+              grandTotal: calculateGrandTotal(), 
+            })            
           }
         }}
       >

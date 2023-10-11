@@ -7,7 +7,7 @@ import otp from "../../../../styles/components/auth/register/otp.js";
 import InputField from "../../reusable/inputField/InputField.jsx";
 import CustomButton from "../../reusable/button/CustomButton.jsx";
 import { COLORS } from "../../../../constants/theme.js";
-import { customerUrl, ngrokBaseUrl } from "../../../../api/Api.jsx";
+import { customerUrl, baseUrl } from "../../../../api/Api.jsx";
 
 
 const OtpConfirmation = () => {
@@ -48,7 +48,7 @@ const OtpConfirmation = () => {
     if (codeOne !== "" && codeTwo !== "" && codeThree!== "" && codeFour !== "" && codeFive !== "") {
       setInputError("");
       try {
-        const response = await axios.post(`${ngrokBaseUrl}/${customerUrl}/verifyotp/${email}`, {otp});
+        const response = await axios.post(`${baseUrl}/${customerUrl}/verifyotp/${email}`, {otp});
         console.log(response)
         if (response.status === 201) {
           console.log("This is response,data", response.data);

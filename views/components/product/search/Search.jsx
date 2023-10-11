@@ -11,7 +11,7 @@ import { Feather, Ionicons } from "@expo/vector-icons";
 import InputField from "../../reusable/inputField/InputField.jsx";
 import search from "../../../../styles/components/product/search/search.js";
 import axios from "axios";
-import { customerUrl, ngrokBaseUrl } from "../../../../api/Api.jsx";
+import { customerUrl, baseUrl } from "../../../../api/Api.jsx";
 import useFetch from "../../../../hook/useFetch.js";
 import { Image } from "react-native";
 import SearchCardView from "./SearchCardView.jsx";
@@ -26,7 +26,7 @@ const Search = () => {
   const handleSearch = async () => {
     try {
       const response = await axios.get(
-        `${ngrokBaseUrl}/${customerUrl}/product/search`,
+        `${baseUrl}/${customerUrl}/product/search`,
         {
           params: {
             query: searchItem,

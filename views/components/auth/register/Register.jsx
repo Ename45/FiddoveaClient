@@ -15,7 +15,7 @@ import CustomButton from "../../reusable/button/CustomButton.jsx";
 import { COLORS, SIZES } from "../../../../constants/theme.js";
 import {
   customerUrl,
-  ngrokBaseUrl,
+  baseUrl,
   registerUrl,
 } from "../../../../api/Api.jsx";
 import { Pressable } from "react-native";
@@ -35,7 +35,7 @@ const Register = () => {
     
     setButtonClicked(true);
 
-    const URL = `${ngrokBaseUrl}/${customerUrl}`;
+    const URL = `${baseUrl}/${customerUrl}`;
 
     let customerData = {
       email,

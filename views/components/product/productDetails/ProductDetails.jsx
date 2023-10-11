@@ -5,6 +5,8 @@ import {
   Image,
   ScrollView,
   ActivityIndicator,
+  Pressable,
+  TextInput,
 } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import productDetails from "../../../../styles/components/product/productDetails/productDetails";
@@ -16,8 +18,10 @@ import {
 import { COLORS, SIZES } from "../../../../constants/theme";
 import { useRoute } from "@react-navigation/native";
 import axios from "axios";
-import { ngrokBaseUrl, productUrl } from "../../../../api/Api";
+import { baseUrl, customerUrl, productUrl } from "../../../../api/Api";
 import { Context } from "../../../../context/context";
+import StarRating from "react-native-star-rating";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const ProductDetails = ({ navigation }) => {
   const route = useRoute();
@@ -26,16 +30,65 @@ const ProductDetails = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [productDetailsData, setProductDetailsData] = useState(null);
-
+  const [rating, setRating] = useState(0.0);
+  const [review, setReview] = useState("");
   const [isFocused, setIsFocused] = useState(false);
+  const [responseMessage, setResponseMessage] = useState("");
 
   const { addToWishList, addToCart } = useContext(Context);
+
+  const handleRatingChange = (rating) => {
+    setRating(rating);
+    // Send a request to the backend to update the rating for the product
+    // You'll need to implement this API endpoint on the backend.
+  };
+
+  const handleReviewSubmit = async () => {
+    const tokenStorage = await AsyncStorage.getItem("jwtToken");
+
+    const data = {
+      productRatings: rating,
+      reviewContent: review,
+    };
+
+    try {
+      const response = await axios.post(
+        `${baseUrl}/${customerUrl}/review/${productId}`,
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${tokenStorage}`,
+          },
+        }
+      );
+
+      console.log("Api URL==>", `${baseUrl}/${customerUrl}/review/${productId}`)
+
+      console.log("this is the reviews response", response.data);
+
+      if (response.status === 200) {
+        setResponseMessage(response.data);
+        setTimeout(() => {
+          setResponseMessage(""); // Clear the response message after 4 seconds
+        }, 4000);
+
+        // Fetch updated product details after submitting a review
+        getProductDetailsDataFromApi();
+      }
+    } catch (error) {
+      setResponseMessage(error);
+      // setResponseMessage("Error submitting review. Please try again.");
+      console.log("Error submitting review", error);
+    }
+    // Include the review text, user information, and product ID.
+  };
 
   useEffect(() => {
     async function getProductDetailsDataFromApi() {
       try {
         const response = await axios.get(
-          `${ngrokBaseUrl}/${productUrl}/findproduct/${productId}`
+          `${baseUrl}/${productUrl}/findproduct/${productId}`
         );
 
         // console.log("this is the response", response.data);
@@ -60,7 +113,6 @@ const ProductDetails = ({ navigation }) => {
       <ActivityIndicator size={SIZES.xxLarge} color={COLORS.tabBarBrown} />
     );
   }
-
 
   return (
     <ScrollView>
@@ -88,7 +140,7 @@ const ProductDetails = ({ navigation }) => {
                 elevation: 10,
                 borderRadius: 50,
                 backgroundColor: COLORS.white,
-                paddingTop: 2
+                paddingTop: 2,
               }}
               // onPressOut={() => setIsFocused(false)}
             >
@@ -100,7 +152,7 @@ const ProductDetails = ({ navigation }) => {
             </TouchableOpacity>
           </View>
           <Image
-            source={{ uri: productDetailsData?.productImageUrl }} // optional chaining
+            source={{ uri: productDetailsData?.productImageUrl }}
             style={productDetails.image}
           />
         </View>
@@ -115,7 +167,7 @@ const ProductDetails = ({ navigation }) => {
                 N{productDetailsData?.productPrice}
               </Text>
             </View>
-          </View>          
+          </View>
 
           <View style={productDetails.descriptionWrapper}>
             <Text style={productDetails.description}>Description</Text>
@@ -124,15 +176,50 @@ const ProductDetails = ({ navigation }) => {
             </Text>
           </View>
 
-          <View style={productDetails.ratingRow}>
-            <View style={productDetails.rating}>
-              {[1, 2, 3, 4, 5].map((index) => (
-                <Ionicons key={index} name="star" size={24} color={COLORS.metallicGold} />
-              ))}
-
-              <Text style={productDetails.ratingText}>..(4.9)</Text>
+          <View style={productDetails.reviewsContainer}>
+            <Text style={productDetails.reviewsTitle}>Reviews</Text>
+            {productDetailsData?.reviews &&
+            productDetailsData.reviews.length > 0 ? (
+              productDetailsData.reviews.map((review, index) => (
+                <View key={index} style={productDetails.reviewContainer}>
+                  <View style={productDetails.reviewHeader}>
+                    <Text style={productDetails.reviewUser}>
+                      {review.userFullName}
+                    </Text>
+                    <StarRating
+                      disabled={true}
+                      maxStars={5}
+                      rating={review.rating}
+                      starSize={22}
+                      emptyStarColor={COLORS.tabBarBrown}
+                      fullStarColor={COLORS.goldenrod}
+                    />
+                  </View>
+                  <Text style={productDetails.reviewText}>{review.text}</Text>
+                </View>
+              ))
+            ) : (
+              <Text>No reviews available.</Text>
+            )}
+            <View style={productDetails.leaveReviewContainer}>
+              <TextInput
+                placeholder="Leave a review..."
+                value={review}
+                onChangeText={(text) => setReview(text)}
+                style={productDetails.leaveReviewInput}
+              />
+              <Pressable onPress={handleReviewSubmit}>
+                <Text style={productDetails.leaveReviewButton}>
+                  Submit Review
+                </Text>
+              </Pressable>
             </View>
           </View>
+          {responseMessage ? (
+            <Text style={productDetails.responseMessage}>
+              {JSON.stringify(responseMessage)}
+            </Text>
+          ) : null}
 
           <View style={productDetails.cartRow}>
             <TouchableOpacity
@@ -141,9 +228,9 @@ const ProductDetails = ({ navigation }) => {
             >
               <Text style={productDetails.cartTitle}>BUY NOW</Text>
             </TouchableOpacity>
-            <TouchableOpacity 
-            style={productDetails.addToCart}
-            onPress={() => addToCart(productId)}
+            <TouchableOpacity
+              style={productDetails.addToCart}
+              onPress={() => addToCart(productId)}
             >
               <MaterialCommunityIcons
                 name="cart"

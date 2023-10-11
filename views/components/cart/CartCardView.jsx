@@ -1,33 +1,42 @@
 import { View, Text, SafeAreaView, ScrollView, Image, Pressable } from 'react-native'
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import cartCardView from '../../../styles/components/cart/cartCardView';
 import { Feather, Ionicons, MaterialCommunityIcons, MaterialIcons, SimpleLineIcons } from '@expo/vector-icons/build/Icons';
 import { COLORS, SIZES } from '../../../constants/theme';
+import { Context } from '../../../context/context';
 
-const CartCardView = ({product, handleRemoveFromCart, currentProductId, onUpdateQuantity }) => {
+const CartCardView = ({product, handleRemoveFromCart, currentProductId, onUpdateQuantity, }) => {
 
-  const [productQuantity, setProductQuantity] = useState(1)
-  const [totalItemPrice, setTotalItemPrice] = useState(product.productPrice)
+  // const [productQuantity, setProductQuantity] = useState(1)
+  // const [totalItemPrice, setTotalItemPrice] = useState(product.productPrice)
+  
+  const { productQuantity, setProductQuantity, totalItemPrice, setTotalItemPrice } = useContext(Context);
 
    useEffect(() => {
     setTotalItemPrice(product.productPrice * productQuantity);
-  }, [productQuantity]);
+  }, [productQuantity, product.productPrice]);
 
   const increment = () => {
-    setProductQuantity(productQuantity + 1);
-    onUpdateQuantity(currentProductId, productQuantity + 1);
+    // setProductQuantity(productQuantity + 1);
+    // onUpdateQuantity(currentProductId, productQuantity + 1);
+    const newQuantity = productQuantity + 1;
+    setProductQuantity(newQuantity);
+    onUpdateQuantity(currentProductId, newQuantity);
   };
 
   const decrement = () => {
     if (productQuantity > 1) {
-      setProductQuantity(productQuantity - 1)      
-      onUpdateQuantity(currentProductId, productQuantity - 1);
+      // setProductQuantity(productQuantity - 1)      
+      // onUpdateQuantity(currentProductId, productQuantity - 1);
+      const newQuantity = productQuantity - 1;
+      setProductQuantity(newQuantity);
+      onUpdateQuantity(currentProductId, newQuantity);
     }
   };
 
   return (
     <ScrollView>
-        <View style={cartCardView.cartItem}>
+        <View style={cartCardView.cartItem} >
           <View style={cartCardView.itemContent}>
             <Image
               source={{ uri: product.productImageUrl }}

@@ -1,8 +1,7 @@
-import { createContext, useEffect, useState } from "react";
-import { customerUrl, ngrokBaseUrl, productUrl } from "../api/Api";
+import { createContext, useEffect, useState, useCallback } from "react";
+import { customerUrl, baseUrl, productUrl } from "../api/Api";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
 
 // create context
 // provide context
@@ -15,58 +14,67 @@ const ProductContext = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [wishListItems, setWishListItems] = useState([]);
-  const [cartItems, setCartItems] = useState([])
+  const [cartItems, setCartItems] = useState([]);
+  const [productQuantity, setProductQuantity] = useState(1);
+  const [totalItemPrice, setTotalItemPrice] = useState(0);
+  const [getCart, setGetCart] = useState([]);
 
+  console.log("cartItems ==> ", cartItems);
 
-
-  const addToWishList = async (productId) => {
-    // console.log(productId);
-    let copyOfWishListItems = [...wishListItems];
-    const foundProduct = copyOfWishListItems.findIndex(
-      (item) => item.productId == productId
-    );
-
-    if (foundProduct === -1 && !wishListItems.includes(productId)) {
-      // const data = {
-      //   productId: productId,
-      //   customerId: "6519d0e1d7ee80377ef42653",
-      // };
-      const tokenStore = await AsyncStorage.getItem("jwtToken");
-      console.log("Token Storage==>", tokenStore);
-
-      const data = {
-        productId: productId,
-      };
-
-      try {
-        const response = await axios.post(
-          `${ngrokBaseUrl}/${customerUrl}/addtowishlist`,
-          data,
-          {
-            headers: {
-              "Content-Type": "application/json",
-              "Authorization": `Bearer ${tokenStore}`,
-            },
-          }
-        );
-
-        // console.log("this is the response", response.data);
-
-        if (response.status === 200) {
-          setIsLoading(false);
-          setWishListItems([...copyOfWishListItems, response.data]);
-        }
-      } catch (error) {
-        console.log("Error adding to wishList", error);
-        setError(error);
+  const fetchAndStoreCartItems = async () => {
+    const tokenStorage = await AsyncStorage.getItem("jwtToken");
+    try {
+      const response = await axios.get(`${baseUrl}/${customerUrl}/viewcart`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${tokenStorage}`,
+        },
+      });
+      if (response.status === 200) {
+        const cartItemsData = response.data;
+        setCartItems(cartItemsData);
+        storeCartItems(cartItemsData);
       }
-    } else {
-      console.log("Item is already in the wishlist");
+    } catch (error) {
+      console.log("Error fetching cart items from server:", error);
     }
   };
 
-  // console.log("wishListItems in context", wishListItems);
 
+  const storeCartItems = async (cartItems) => {
+    try {
+      await AsyncStorage.setItem("cartItems", JSON.stringify(cartItems));
+    } catch (error) {
+      console.error("Error storing cart items:", error);
+    }
+  };
+
+  const getCartItems = async () => {
+    try {
+      const storedCartItems = await AsyncStorage.getItem("cartItems");
+      return storedCartItems ? JSON.parse(storedCartItems) : [];
+    } catch (error) {
+      console.error("Error retrieving cart items:", error);
+      return [];
+    }
+  };
+
+  useEffect(() => {
+    const fetchCartItems = async () => {
+      const tokenStorage = await AsyncStorage.getItem("jwtToken");
+      if (tokenStorage) {
+        fetchAndStoreCartItems(tokenStorage);
+        const storedCartItems = await getCartItems();
+        setCartItems(storedCartItems);
+      }
+    };
+
+    fetchCartItems();
+  }, []);
+
+  useEffect(() => {
+    storeCartItems(cartItems);
+  }, [cartItems]);
 
 
 
@@ -75,31 +83,26 @@ const ProductContext = ({ children }) => {
     let copyOfCartItems = [...cartItems];
     const foundProduct = copyOfCartItems.findIndex(
       (item) => item.productId == productId
-    );  
-    
+    );
 
     if (foundProduct === -1 && !cartItems.includes(productId)) {
-
       const tokenStorage = await AsyncStorage.getItem("jwtToken");
-      console.log("Token Storage==>", tokenStorage);
 
       const data = {
-        productId: productId
-      }
+        productId: productId,
+      };
 
       try {
         const response = await axios.post(
-          `${ngrokBaseUrl}/${customerUrl}/addtocart`,
+          `${baseUrl}/${customerUrl}/addtocart`,
           data,
           {
             headers: {
               "Content-Type": "application/json",
-              "Authorization": `Bearer ${tokenStorage}`,
+              Authorization: `Bearer ${tokenStorage}`,
             },
           }
         );
-
-        // console.log("this is the response", response.data);
 
         if (response.status === 200) {
           setIsLoading(false);
@@ -114,8 +117,102 @@ const ProductContext = ({ children }) => {
     }
   };
 
-  // console.log("wishListItems in context", wishListItems);
 
+
+    const fetchAndStoreWishListItems = async (tokenStorage) => {
+    try {
+      const response = await axios.get(`${baseUrl}/${customerUrl}/wishlist`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${tokenStorage}`,
+        },
+      });
+
+      if (response.status === 200) {
+        const wishListItemsData = response.data;
+        setWishListItems(wishListItemsData);
+        storeWishListItems(wishListItemsData); // Store in local storage
+      }
+    } catch (error) {
+      console.log("Error fetching wishlist items from server:", error);
+    }
+  };
+
+  // Storing wishlist items when a user logs in
+  const storeWishListItems = async (wishListItems) => {
+    try {
+      await AsyncStorage.setItem("wishListItems", JSON.stringify(wishListItems));
+    } catch (error) {
+      console.error("Error storing wishlist items:", error);
+    }
+  };
+
+  const getWishListItems = async () => {
+    try {
+      const storedWishListItems = await AsyncStorage.getItem("wishListItems");
+      return storedWishListItems ? JSON.parse(storedWishListItems) : [];
+    } catch (error) {
+      console.error("Error retrieving wishlist items:", error);
+      return [];
+    }
+  };
+
+  useEffect(() => {
+    const fetchWishListItems = async () => {
+      const tokenStorage = await AsyncStorage.getItem("jwtToken");
+      if (tokenStorage) {
+        fetchAndStoreWishListItems(tokenStorage);
+        const storedWishListItems = await getWishListItems();
+        setWishListItems(storedWishListItems);
+      }
+    };
+
+    fetchWishListItems();
+  }, []);
+
+  useEffect(() => {
+    storeWishListItems(wishListItems);
+  }, [wishListItems]);
+
+
+
+  const addToWishList = async (productId) => {
+    let copyOfWishListItems = [...wishListItems];
+    const foundProduct = copyOfWishListItems.findIndex(
+      (item) => item.productId == productId
+    );
+
+    if (foundProduct === -1 && !wishListItems.includes(productId)) {
+      const tokenStore = await AsyncStorage.getItem("jwtToken");
+
+      const data = {
+        productId: productId,
+      };
+
+      try {
+        const response = await axios.post(
+          `${baseUrl}/${customerUrl}/addtowishlist`,
+          data,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${tokenStore}`,
+            },
+          }
+        );
+
+        if (response.status === 200) {
+          setIsLoading(false);
+          setWishListItems([...copyOfWishListItems, response.data]);
+        }
+      } catch (error) {
+        console.log("Error adding to wishList", error);
+        setError(error);
+      }
+    } else {
+      console.log("Item is already in the wishlist");
+    }
+  };
 
 
 
@@ -127,7 +224,7 @@ const ProductContext = ({ children }) => {
     );
 
     const tokenStorage = await AsyncStorage.getItem("jwtToken");
-    console.log("Token Storage==>", tokenStorage);
+    // console.log("Token Storage==>", tokenStorage);
 
     const data = {
       productId: getCurrentId,
@@ -135,7 +232,7 @@ const ProductContext = ({ children }) => {
 
     try {
       const response = await axios.post(
-        `${ngrokBaseUrl}/${customerUrl}/removefromwishlist`,
+        `${baseUrl}/${customerUrl}/removefromwishlist`,
         data,
         {
           headers: {
@@ -157,9 +254,6 @@ const ProductContext = ({ children }) => {
     }
   };
 
-
-
-
   const handleRemoveFromCart = async (getCurrentId) => {
     let copyOfCartItems = [...cartItems];
 
@@ -168,7 +262,7 @@ const ProductContext = ({ children }) => {
     );
 
     const tokenStorage = await AsyncStorage.getItem("jwtToken");
-      console.log("Token Storage==>", tokenStorage);
+    // console.log("Token Storage==>", tokenStorage);
 
     const data = {
       productId: getCurrentId,
@@ -176,7 +270,7 @@ const ProductContext = ({ children }) => {
 
     try {
       const response = await axios.post(
-        `${ngrokBaseUrl}/${customerUrl}/removefromcart`,
+        `${baseUrl}/${customerUrl}/removefromcart`,
         data,
         {
           headers: {
@@ -198,61 +292,31 @@ const ProductContext = ({ children }) => {
     }
   };
 
-  // console.log("cart items==>", cartItems);
-
-
 
   useEffect(() => {
-    setIsLoading(true);
-    async function getProductFromApi() {
+    const fetchData = async () => {
       try {
-        const response = await axios.get(`${ngrokBaseUrl}/${productUrl}`);
-
-        if (response.status == 200) {
+        const response = await axios.get(`${baseUrl}/${productUrl}`);
+        if (response.status === 200) {
           setIsLoading(false);
           setProducts(response.data);
         }
       } catch (error) {
-        console.log("this is the error message", error);
+        console.log("Error fetching products", error);
         setError(error);
       }
-    }
+    };
 
-    getProductFromApi();
+    fetchData();
+
+    const fetchInterval = setInterval(() => {
+      fetchData();
+    }, 10000);
+
+    return () => clearInterval(fetchInterval);
   }, []);
 
 
-
-
-  //   useEffect(() => {
-  //     setIsLoading(true);
-  //     async function getWishlistUsingApi(productId) {
-  //       console.log("Get Wishlist ==> ", productId);
-  //       // const data = {
-  //       //   productId: productId,
-  //       //   customerId: "6519d0e1d7ee80377ef42653"
-  //       // }
-  //       try {
-  //         const response = await axios.get(
-  //           `${ngrokBaseUrl}/${customerUrl}/wishlist/${"6519d0e1d7ee80377ef42653"}`
-  //         );
-
-  //         console.log("this is the response", response.data);
-
-  //         if (response.status == 200) {
-  //           setIsLoading(false);
-  //           setGetWishList(response.data);
-  //         }
-  //       } catch (error) {
-  //         console.log("wishlist component error message", error);
-  //         setError(error);
-  //       }
-  //     }
-
-  //     getWishlistUsingApi();
-  //   }, []);
-
-  // console.log(getWishList);
 
   return (
     <Context.Provider
@@ -266,6 +330,11 @@ const ProductContext = ({ children }) => {
         cartItems,
         addToCart,
         handleRemoveFromCart,
+        productQuantity, // Add productQuantity to the context
+        totalItemPrice, // Add totalItemPrice to the context
+        setProductQuantity, // Function to update productQuantity
+        setTotalItemPrice, // Function to update totalItemPrice
+        getCart,
       }}
     >
       {children}

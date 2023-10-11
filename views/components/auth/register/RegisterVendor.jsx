@@ -10,7 +10,7 @@ import CustomButton from '../../reusable/button/CustomButton.jsx';
 import registerVendor from '../../../../styles/components/auth/register/registerVendor.js';
 
 
-import { ngrokBaseUrl, vendorUrl } from '../../../../api/Api.jsx';
+import { baseUrl, vendorUrl } from '../../../../api/Api.jsx';
 
 
 const RegisterVendor = () => {
@@ -30,7 +30,7 @@ const RegisterVendor = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const URL = `${ngrokBaseUrl}/${vendorUrl}`;
+    const URL = `${baseUrl}/${vendorUrl}`;
 
     let vendorData = {
       email,
