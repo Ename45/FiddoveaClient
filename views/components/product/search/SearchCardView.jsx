@@ -11,9 +11,19 @@ const SearchCardView = ({ productFound }) => {
 
   const { addToWishList } = useContext(Context);
 
+  const truncateText = (text) => {
+    const maxLength = 13
+    if (text.length > maxLength) {
+      return text.substring(0, maxLength+2) + '...';
+    }
+    return text;
+  };
+
   return (
-    <ScrollView style={searchCardView.scrollContainer}>
-          <Pressable onPress={()=> {}}>
+          <Pressable 
+          onPress={()=> {}} 
+          style={searchCardView.mainContainer}
+          >
         <View style={searchCardView.searchItem}>
             <View style={searchCardView.itemContent}>
             <Image
@@ -24,7 +34,7 @@ const SearchCardView = ({ productFound }) => {
             <View style={searchCardView.detailContainer}>
               <View style={searchCardView.itemDetails}>
               <View style={{flexDirection: "row", justifyContent: "space-between" }}>
-              <Text style={{fontFamily: "poppinsSemiBold600",}}>{productFound.productName}</Text>
+              <Text style={{fontFamily: "poppinsSemiBold600"}}>{truncateText(productFound.productName)}</Text>
               </View>
               <Text style={searchCardView.cartItemPrice}>N{productFound.productPrice}</Text>
             </View>
@@ -35,7 +45,7 @@ const SearchCardView = ({ productFound }) => {
           >
             <Ionicons
               name="heart"
-              size={(7 / 100) * SIZES.width}
+              size={(10 / 100) * SIZES.width}
               color={COLORS.metallicGold}
               style={{ marginTop: 1, marginBottom: -3 }}
             />
@@ -44,7 +54,6 @@ const SearchCardView = ({ productFound }) => {
             </View>
         </View>
           </Pressable>
-    </ScrollView>
   )
 }
 
