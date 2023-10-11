@@ -28,7 +28,7 @@ const Cart = () => {
       const quantity = productQuantities[item.productId] || 1;
       grandTotal += item.productPrice * quantity;
     });
-    return grandTotal;
+    return (grandTotal).toFixed(2);
   };
 
   useEffect(() => {
