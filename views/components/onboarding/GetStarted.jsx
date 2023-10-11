@@ -5,6 +5,7 @@ import getStarted from '../../../styles/components/onboarding/getStarted'
 import CustomButton from '../reusable/button/CustomButton.jsx';
 import { StyleSheet } from 'react-native';
 import { COLORS, SIZES } from '../../../constants/theme';
+import { Pressable } from 'react-native';
 
 const GetStarted = () => {
 
@@ -28,18 +29,21 @@ const GetStarted = () => {
     </View>
       <View style={getStarted.getStartedContainer}>
         <View style={getStarted.buttonContainer}>
-          <CustomButton
-          buttonName="Register As A Vendor"
-          onPress={() => navigateToPage("RegisterVendor")}
-          style={getStarted.button}
-          />
-  
-          <CustomButton
-          buttonName="Get Started"
-          onPress={() => navigateToPage("Register")}
-          style={getStarted.button}
-          />
+          <Pressable style={getStarted.button}>
+            <Text style={getStarted.buttonText}>
+              Get Started
+            </Text>
+          </Pressable>
         </View>
+        <View style={{marginTop: 50, fontSize: 3/100*(SIZES.height)}}>
+            <Pressable
+            onPress={() => navigateToPage("RegisterVendor")}
+            >
+              <Text style={{marginTop: 20, fontSize: 2/100*(SIZES.height)}}>
+                Are you a vendor? Register here
+              </Text>
+            </Pressable>
+          </View>
       </View>
     </ImageBackground>
   )

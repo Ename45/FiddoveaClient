@@ -15,8 +15,6 @@ const ProductContext = ({ children }) => {
   const [error, setError] = useState(null);
   const [wishListItems, setWishListItems] = useState([]);
   const [cartItems, setCartItems] = useState([]);
-  const [productQuantity, setProductQuantity] = useState(1);
-  const [totalItemPrice, setTotalItemPrice] = useState(0);
   const [getCart, setGetCart] = useState([]);
 
   console.log("cartItems ==> ", cartItems);
@@ -131,14 +129,14 @@ const ProductContext = ({ children }) => {
       if (response.status === 200) {
         const wishListItemsData = response.data;
         setWishListItems(wishListItemsData);
-        storeWishListItems(wishListItemsData); // Store in local storage
+        storeWishListItems(wishListItemsData);
       }
     } catch (error) {
       console.log("Error fetching wishlist items from server:", error);
     }
   };
 
-  // Storing wishlist items when a user logs in
+
   const storeWishListItems = async (wishListItems) => {
     try {
       await AsyncStorage.setItem("wishListItems", JSON.stringify(wishListItems));
@@ -280,8 +278,6 @@ const ProductContext = ({ children }) => {
         }
       );
 
-      // console.log("this is the response", response.data);
-
       if (response.status === 200) {
         setIsLoading(false);
         setCartItems(copyOfCartItems);
@@ -330,10 +326,6 @@ const ProductContext = ({ children }) => {
         cartItems,
         addToCart,
         handleRemoveFromCart,
-        productQuantity, // Add productQuantity to the context
-        totalItemPrice, // Add totalItemPrice to the context
-        setProductQuantity, // Function to update productQuantity
-        setTotalItemPrice, // Function to update totalItemPrice
         getCart,
       }}
     >

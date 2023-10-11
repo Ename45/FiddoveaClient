@@ -13,18 +13,23 @@ export default StyleSheet.create({
   },
 
   buttonContainer: {
-    width: "85%",
+    width: SIZES.width - 100,
+    height: SIZES.height / 11,
     alignItems: "center",
     justifyContent: "center",
-    gap: 5,
-    color: COLORS.white,
-    fontFamily: "poppinsMedium500",
   },
   button: {
+    width: "100%",
+    height: 50,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 10,
     backgroundColor: COLORS.tabBarBrown,
-    elevation: 7,
+    marginLeft: 10,
+  },
+  buttonText: {
+    fontSize: SIZES.large,
     color: COLORS.white,
-    fontFamily: "poppinsMedium500",
   },
   getStartedContainer: {
     flex: 1,
