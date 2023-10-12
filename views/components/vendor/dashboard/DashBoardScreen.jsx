@@ -7,7 +7,6 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 //     FontAwesome,
 //     SimpleLineIcons,
 // } from '@expo/vector-icons';
-// import {Tabs} from "expo-router";
 import {
     SimpleLineIcons,
     MaterialCommunityIcons,

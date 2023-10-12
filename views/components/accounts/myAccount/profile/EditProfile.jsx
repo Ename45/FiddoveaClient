@@ -8,7 +8,7 @@ import {
   Image,
   TextInput,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { COLORS, SIZES } from "../../../../../constants/theme";
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 import { Picker } from "@react-native-picker/picker";
@@ -18,18 +18,25 @@ import * as ImagePicker from "expo-image-picker";
 import InputField from "../../../reusable/inputField/InputField";
 import editProfile from "../../../../../styles/components/accounts/myAccount/profile/editProfile.js";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { AuthenticationContext } from "../../../../../context/authContext";
 // import { useNavigation } from "@react-navigation/native";
 
 const EditProfile = ({ navigation }) => {
+  const { userEmail, userFirstName, userPhoneNumber, userLastName,  } = useContext(AuthenticationContext)
+
+
   const [selectedImage, setSelectedImage] = useState(imagesDataUrl[0]);
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState(userFirstName);
+  const [lastName, setLastName] = useState(userLastName);
+  const [phoneNumber, setPhoneNumber] = useState(userPhoneNumber);
+  const [email, setEmail] = useState(userEmail);
   // const [gender, setGender] = useState();
 
     const [error, setError] = useState(null);
   const [inputError, setInputError] = useState("");
+
+
+  // console.log("userEmail in EditPro =================================================================> ", userEmail)
 
   // const navigation = useNavigation();
 
@@ -49,16 +56,17 @@ const EditProfile = ({ navigation }) => {
     if (firstName !== "" && lastName !== "" && phoneNumber !== "" && email !== "") {
       setInputError("");
       const tokenStorage = await AsyncStorage.getItem("jwtToken");
-      console.log("token in store=>", tokenStorage)
-      console.log("customer update --> ", customerUpdateData)
+      // console.log("token in store=>", tokenStorage)
+      // console.log("customer update --> ", customerUpdateData)
+
       try {
         console.log("i got here")
-        const response = await axios.get(`${baseUrl}/${customerUrl}/update`, 
+        const response = await axios.put(`${baseUrl}/${customerUrl}/update`, 
         customerUpdateData,
         {
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${tokenStorage}`,
+          Authorization: `Bearer ${tokenStorage}`,
         },
       });
         console.log("This is the update response", response.data)

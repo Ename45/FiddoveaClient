@@ -1,36 +1,35 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
-import paymentPage from '../../../styles/components/payment/paymentPage';
+import React from 'react';
+import  { Paystack }  from 'react-native-paystack-webview';
+import { View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-const PaymentPage = () => {
-  const [selectedOption, setSelectedOption] = useState('');
+function PaymentPage() {
 
-  
-    const navigation = useNavigation()
-    const navigateTo = (pageName) => {
-        navigation.navigate(pageName)
-
-
-  };
+  const navigation = useNavigation();
 
   return (
-    <View style={paymentPage.container}>
-      <Text style={paymentPage.title}>Select Payment Method</Text>
-
-      <TouchableOpacity
-        style={[
-          paymentPage.optionButton,
-          selectedOption === 'Pay Now' && paymentPage.selectedOption,
-        ]}
-        onPress={() => navigateTo('Payment')}
-      >
-        <Text style={paymentPage.optionText}>Pay Now</Text>
-      </TouchableOpacity>
-
+    <View style={{ flex: 1 }}>
+      <Paystack  
+        buttonText="Pay Now"
+        showPayButton={true}
+        paystackKey="pk_test_6735ae16a356e2063998cf919ed01969249e1383"
+        paystackSecretKey="sk_test_bf38960616f3bade6091d7a08515ba61547e5223"
+        amount={'25000.00'}
+        billingEmail="enamesit12@gmail.com"
+        activityIndicatorColor="green"
+        onCancel={(e) => {
+          alert(e)
+        }}
+        onSuccess={(res) => {
+          alert(res.data.event)
+          navigation.navigate("BottomTabNav")
+        }}
+        autoStart={true}
+      />
     </View>
   );
-};
+}
+
 
 
 export default PaymentPage;

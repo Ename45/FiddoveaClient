@@ -48,7 +48,12 @@ const Login = () => {
           const token = response.data.jwtToken;
           // console.log("token Storage==>{}", token);
           await AsyncStorage.setItem("jwtToken", token);
-          navigation.navigate("BottomTabNav",);
+          // await AsyncStorage.setItem("email", email);
+          // await AsyncStorage.setItem("phoneNumber", phoneNumber);
+          // await AsyncStorage.setItem("firstName", firstName);
+          // await AsyncStorage.setItem("lastName", lastName);
+          // await AsyncStorage.setItem("gender", gender);
+          navigation.navigate("BottomTabNav");
         }
       } catch (error) {
         if (error.response && error.response.data) {

@@ -7,9 +7,6 @@ import { useRoute } from "@react-navigation/native";
 import { useState } from "react";
 import InputField from "../reusable/inputField/InputField";
 import CustomButton from "../reusable/button/CustomButton";
-import axios from "axios";
-import { baseUrl, paymentUrl } from "../../../api/Api";
-import { Linking } from "react-native";
 
 
 const CheckoutConfirmation = () => {
@@ -57,32 +54,10 @@ const CheckoutConfirmation = () => {
         }
     }
 
-    // const payStackAmount = parseFloat(grandOrderTotalVatIncluded() + "00")
-    // console.log("this is the payStackAmount==> ", payStackAmount);
-
-
     const handleInitiatePayment = async() => {
-        const userData = {
-            email: "enamesit12@gmail.com",
-            amount: 554400.00
-        }
-
-        const URL = `${baseUrl}/${paymentUrl}/initiate-payment`
-
-        try {
-            const response = await axios.post( URL, userData )
-            // console.log("this is the response from payStack==> ", response)
-
-            if (response.status === 200) {
-                const payStackAuthUrl = response.data.data.authorization_url;
-                Linking.openURL(payStackAuthUrl)
-            }
-        } catch (error) {
-            console.log(error);
-        }
+        navigation.navigate("PaymentPage")
     }
     
-
 
     const vat = () => {
         const vatPrice = ((7 / 100) * grandTotal).toFixed(2);
