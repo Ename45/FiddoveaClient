@@ -31,7 +31,7 @@ const GetStarted = () => {
         <View style={getStarted.buttonContainer}>
           <Pressable 
           style={getStarted.button}
-          onPress={() => navigateToPage("Login")}
+          onPress={() => navigateToPage("Register")}
           >
             <Text style={getStarted.buttonText}>
               Get Started

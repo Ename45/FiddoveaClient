@@ -21,10 +21,13 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AuthenticationContext } from "../../../../../context/authContext";
 import axios from "axios";
 import { baseUrl, customerUrl } from "../../../../../api/Api";
+import qs from "qs";
 // import { useNavigation } from "@react-navigation/native";
 
 const EditProfile = ({ navigation }) => {
   const { userEmail, userFirstName, userPhoneNumber, userLastName,  } = useContext(AuthenticationContext)
+
+  console.log("userFirstName", userFirstName);
 
 
   const [selectedImage, setSelectedImage] = useState(imagesDataUrl[0]);
@@ -58,19 +61,20 @@ const handleUpdate = async (e) => {
     const tokenStorage = await AsyncStorage.getItem("jwtToken");
 
     try {
-      console.log("Updating profile...");
-      console.log("Customer Update Data:", customerUpdateData);
-      console.log("Token in storage:", tokenStorage);
+      // console.log("Updating profile...");
+      // console.log("Customer Update Data:", customerUpdateData);
+      // console.log("Token in storage:", tokenStorage);
 
-      const response = await axios.put(`${baseUrl}/${customerUrl}/update`, customerUpdateData, {
+      const response = await axios.put(`${baseUrl}/${customerUrl}/update`, qs.stringify(customerUpdateData), 
+      {
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/x-www-form-urlencoded",
           Authorization: `Bearer ${tokenStorage}`,
         },
       });
 
-      console.log("Update Response Status:", response.status);
-      console.log("Update Response Data:", response.data);
+      // console.log("Update Response Status:", response.status);
+      // console.log("Update Response Data:", response.data);
 
       if (response.status === 200) {
         alert("Profile Updated");

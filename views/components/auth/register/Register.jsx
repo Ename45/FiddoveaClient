@@ -13,11 +13,7 @@ import register from "../../../../styles/components/auth/register/register.js";
 import InputField from "../../reusable/inputField/InputField.jsx";
 import CustomButton from "../../reusable/button/CustomButton.jsx";
 import { COLORS, SIZES } from "../../../../constants/theme.js";
-import {
-  customerUrl,
-  baseUrl,
-  registerUrl,
-} from "../../../../api/Api.jsx";
+import { customerUrl, baseUrl, registerUrl } from "../../../../api/Api.jsx";
 import { Pressable } from "react-native";
 
 const Register = () => {
@@ -32,7 +28,7 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     setButtonClicked(true);
 
     const URL = `${baseUrl}/${customerUrl}`;
@@ -48,7 +44,7 @@ const Register = () => {
         const response = await axios.post(URL, customerData);
         if (response.status === 201) {
           const token = response.data.jwtToken;
-          // console.log("token Storage==>{}", token);
+          console.log("token Storage==>{}", token);
           await AsyncStorage.setItem("jwtToken", token);
           navigation.navigate("BottomTabNav");
         }
@@ -56,7 +52,7 @@ const Register = () => {
         if (error.response && error.response.data) {
           setError(error.response.data);
         } else {
-          setError('An error occurred.');
+          setError("An error occurred.");
         }
       }
     } else {
@@ -64,7 +60,6 @@ const Register = () => {
     }
   };
 
-  
   return (
     <ImageBackground
       source={require("../../../../assets/images/jpg/topImageOnboarding.jpg")}
@@ -107,25 +102,39 @@ const Register = () => {
             secureTextEntry
           />
 
-          <View>
+          {/* <View>
             {error && <Text style={{ color: "red" }}>{error}</Text>}
+            {inputError !== "" && (
+              <Text style={{ color: "red" }}>{inputError}</Text>
+            )}
+          </View> */}
+          <View>
+            {error && (
+              <Text style={{ color: "red" }}>
+                {error.response ? error.response.data : "An error occurred."}
+              </Text>
+            )}
             {inputError !== "" && (
               <Text style={{ color: "red" }}>{inputError}</Text>
             )}
           </View>
 
           <View style={{ marginTop: 20 }}>
-            <CustomButton 
-            buttonName="Register" 
-            onPress={handleSubmit} 
-            style={{ backgroundColor: buttonClicked ? COLORS.gray3 : COLORS.silverGray}}
+            <CustomButton
+              buttonName="Register"
+              onPress={handleSubmit}
+              style={{
+                backgroundColor: buttonClicked
+                  ? COLORS.gray3
+                  : COLORS.silverGray,
+              }}
             />
           </View>
-          <View style={{marginTop: 50, fontSize: 3/100*(SIZES.height)}}>
-            <Pressable 
-            onPress={()=>navigation.navigate("Login")}
-            >
-              <Text style={{marginTop: 50, fontSize: 2/100*(SIZES.height)}}>
+          <View style={{ marginTop: 50, fontSize: (3 / 100) * SIZES.height }}>
+            <Pressable onPress={() => navigation.navigate("Login")}>
+              <Text
+                style={{ marginTop: 50, fontSize: (2 / 100) * SIZES.height }}
+              >
                 Already have an account? Login
               </Text>
             </Pressable>

@@ -61,7 +61,11 @@ const CheckoutConfirmation = () => {
     }
 
     const handleInitiatePayment = async() => {
-        navigation.navigate("PaymentPage", { email: userEmail, amount: grandOrderTotalVatIncluded()})
+        if (phoneNumber && houseNumber && street && lga && state) {
+            navigation.navigate("PaymentPage", { email: userEmail, amount: grandOrderTotalVatIncluded()})
+        } else {
+            alert("Important!!! Provide Your Delivery Location and Phone Number")
+        }
     }
     
 
