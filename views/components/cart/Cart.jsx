@@ -106,7 +106,7 @@ const Cart = () => {
           justifyContent: "center",
         }}
       >
-        <Text style={{ fontWeight: "bold", fontSize: 20, color: "black" }}>
+        <Text style={cart.emptyCartText}>
           Cart Empty
         </Text>
       </View>

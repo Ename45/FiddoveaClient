@@ -10,14 +10,13 @@ export default StyleSheet.create({
     backgroundColor: COLORS.pageBackgroundBrown,
     borderRadius: 12,
     overflow: "hidden",
-    elevation: 10
+    elevation: 10,
   },
   imageContainer: {
     width: "100%",
     height: "100%",
     borderRadius: 20,
     overflow: "hidden",
-    
   },
   image: {
     width: "100%",
@@ -25,12 +24,12 @@ export default StyleSheet.create({
   },
   details: {
     backgroundColor: "rgba(0, 0, 0, 0.7)",
-    padding: 2/100*(SIZES.width),
+    padding: (2 / 100) * SIZES.width,
     // padding: SIZES.xxxSmall,
     position: "absolute",
     // bottom: SIZES.padding,
     left: 0,
-    bottom: 20,
+    bottom: (3 / 100) * SIZES.height,
     flexDirection: "row",
     width: "50%",
     borderTopRightRadius: 20,
@@ -40,8 +39,8 @@ export default StyleSheet.create({
   },
   nameText: {
     fontFamily: "poppinsMedium500",
-    fontSize: 4.5/100*(SIZES.width),
-    lineHeight: 36,
+    fontSize: (4.5 / 100) * SIZES.width,
+    lineHeight: (5 / 100) * SIZES.height,
     color: COLORS.white,
     flex: 1,
   },

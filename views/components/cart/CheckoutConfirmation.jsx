@@ -4,14 +4,18 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { COLORS } from "../../../constants/theme";
 import { useRoute } from "@react-navigation/native";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import InputField from "../reusable/inputField/InputField";
 import CustomButton from "../reusable/button/CustomButton";
+import { AuthenticationContext } from "../../../context/authContext";
 
 
-const CheckoutConfirmation = () => {
+const CheckoutConfirmation = () => {    
+    const { userEmail, userPhoneNumber  } = useContext(AuthenticationContext)
+
     const navigation = useNavigation();
     const route = useRoute();
+
     const { checkoutDataStringified, grandTotal } = route.params;
 
     const checkoutData = JSON.parse(checkoutDataStringified)
@@ -24,13 +28,15 @@ const CheckoutConfirmation = () => {
     const [street, setStreet] = useState("");
     const [lga, setLga] = useState("");
     const [state, setState] = useState("");
-    const [phoneNumber, setPhoneNumber] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState(userPhoneNumber);
 
 
     const [isAddressPressed, setIsAddressPressed] = useState(false);
     const [isPhonePressed, setIsPhonePressed] = useState(false);
     const [addressToSend, setAddressToSend] = useState("Enter your address")
     const [phoneNumberToSend, setPhoneNumberToSend] = useState("Enter the delivery number")
+
+
 
 
     const handleAddressSubmit = () => {
@@ -55,7 +61,7 @@ const CheckoutConfirmation = () => {
     }
 
     const handleInitiatePayment = async() => {
-        navigation.navigate("PaymentPage")
+        navigation.navigate("PaymentPage", { email: userEmail, amount: grandOrderTotalVatIncluded()})
     }
     
 

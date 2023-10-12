@@ -7,12 +7,13 @@ export default StyleSheet.create({
     backgroundColor: COLORS.pageBackgroundBrown,
     width: SIZES.width,
     height: SIZES.height,
-    paddingTop: 20,
+    // paddingTop: 20,
   },
   outerWrapper: {
     paddingHorizontal: (4 / 100) * SIZES.width,
     width: "100%",
     height: "100%",
+    paddingBottom: (5 / 100) * SIZES.height,
   },
   headerContainer: {
     flexDirection: "row",
@@ -62,12 +63,12 @@ export default StyleSheet.create({
   inputContainer: {
     height: (12 / 100) * SIZES.height,
     marginBottom: (32 / 100) * SIZES.height,
-    gap: 8,
+    gap: (1 / 100) * SIZES.height,
   },
   inputContainer2: {
     height: (12 / 100) * SIZES.height,
     marginBottom: (6 / 100) * SIZES.height,
-    gap: 8,
+    gap: (1 / 100) * SIZES.height,
   },
   inputText: {
     marginBottom: (1 / 100) * SIZES.width,

@@ -5,7 +5,7 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.pageBackgroundBrown,
-    padding: 16,
+    padding: (2.3 / 100) * SIZES.height,
   },
   emptyCartContainer: {
     flex: 1,
@@ -13,20 +13,22 @@ export default StyleSheet.create({
     justifyContent: "center",
   },
   emptyCartText: {
-    fontWeight: "bold",
-    fontSize: 20,
+    fontFamily: "poppinsBold700",
+    fontSize: (2.5 / 100) * SIZES.height,
     color: COLORS.black,
   },
-  cartItem: {
-    backgroundColor: "white",
-    marginBottom: 16,
-    borderRadius: 8,
-    elevation: 3,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 5 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-  },
+  // cartItem: {
+  //   backgroundColor: "white",
+  //   marginBottom: 16,
+  //   borderRadius: 8,
+  //   elevation: 3,
+  //   shadowColor: "#000",
+  //   shadowOffset: { width: 0, height: 5 },
+  //   shadowOpacity: 0.2,
+  //   shadowRadius: 4,
+  //   borderWidth: 3,
+  //   borderColor: 'red'
+  // },
   itemContent: {
     flexDirection: "row",
     alignItems: "center",
@@ -63,68 +65,28 @@ export default StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginTop: 16,
-    paddingHorizontal: 16,
+    // marginTop: 16,
+    paddingHorizontal: (1.8 / 100) * SIZES.width,
   },
   totalPriceLabel: {
-    fontSize: 18,
+    fontSize: (2.5 / 100) * SIZES.height,
     fontWeight: "bold",
   },
   totalPriceAmount: {
-    fontSize: 18,
+    fontSize: (2.5 / 100) * SIZES.height,
     fontWeight: "bold",
   },
   checkoutButton: {
     backgroundColor: "brown",
-    paddingVertical: 16,
+    paddingVertical: (2.3 / 100) * SIZES.height,
     borderRadius: 4,
     alignSelf: "center",
-    marginTop: 16,
+    marginTop: (2.3 / 100) * SIZES.height,
     width: "80%",
   },
   checkoutButtonText: {
     color: "white",
-    fontSize: 16,
+    fontSize: (2.3 / 100) * SIZES.height,
     textAlign: "center",
   },
 });
-
-// import { StyleSheet } from "react-native";
-// import { COLORS, SIZES } from "../../../constants/theme";
-
-// export default StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: COLORS.pageBackgroundBrown,
-//     // marginTop: 5/100*(SIZES.height),
-//     paddingBottom: 5/100*(SIZES.height)
-//   },
-//   totalPriceContainer: {
-//     flexDirection: "row",
-//     justifyContent: "space-between",
-//     alignItems: "center",
-//     marginTop: 16,
-//     paddingHorizontal: 16,
-//   },
-//   totalPriceLabel: {
-//     fontSize: 18,
-//     fontWeight: "bold",
-//   },
-//   totalPriceAmount: {
-//     fontSize: 18,
-//     fontWeight: "bold",
-//   },
-//   checkoutButton: {
-//     backgroundColor: "brown",
-//     paddingVertical: 16,
-//     borderRadius: 4,
-//     alignSelf: "center",
-//     marginTop: 16,
-//     width: "80%",
-//   },
-//   checkoutButtonText: {
-//     color: "white",
-//     fontSize: 16,
-//     textAlign: "center",
-//   },
-// });
