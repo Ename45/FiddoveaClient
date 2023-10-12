@@ -5,24 +5,91 @@ import { useNavigation } from "@react-navigation/native";
 import { COLORS } from "../../../constants/theme";
 import { useRoute } from "@react-navigation/native";
 import { useState } from "react";
+import InputField from "../reusable/inputField/InputField";
+import CustomButton from "../reusable/button/CustomButton";
+import axios from "axios";
+import { baseUrl, paymentUrl } from "../../../api/Api";
+import { Linking } from "react-native";
+
 
 const CheckoutConfirmation = () => {
     const navigation = useNavigation();
     const route = useRoute();
-    const { checkoutData, grandTotal } = route.params;
+    const { checkoutDataStringified, grandTotal } = route.params;
+
+    const checkoutData = JSON.parse(checkoutDataStringified)
 
     const [serviceFee, setServiceFee] = useState(50);
     const [deliveryFee, setDeliveryFee] = useState(1000);
-
     const formattedServiceFee = serviceFee.toFixed(2);
-const formattedDeliveryFee = deliveryFee.toFixed(2);
+    const formattedDeliveryFee = deliveryFee.toFixed(2);    
+    const [houseNumber, setHouseNumber] = useState("");
+    const [street, setStreet] = useState("");
+    const [lga, setLga] = useState("");
+    const [state, setState] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState("");
+
+
+    const [isAddressPressed, setIsAddressPressed] = useState(false);
+    const [isPhonePressed, setIsPhonePressed] = useState(false);
+    const [addressToSend, setAddressToSend] = useState("Enter your address")
+    const [phoneNumberToSend, setPhoneNumberToSend] = useState("Enter the delivery number")
+
+
+    const handleAddressSubmit = () => {
+        if (houseNumber && street && lga && state) {
+        setIsAddressPressed(false)
+        let addressToDeliver = `${houseNumber} ${street}, ${lga}. ${state}`
+        setAddressToSend(addressToDeliver)
+    }else {
+        alert("all fields required")
+    }
+        
+    }
+
+    const handlePhoneNumberSubmit = () => {
+        if (phoneNumber) {
+            setIsPhonePressed(false)
+            let phoneNumberToDeliver = `${phoneNumber}`
+            setPhoneNumberToSend(phoneNumberToDeliver)
+        } else {
+            alert("Phone number required")
+        }
+    }
+
+    // const payStackAmount = parseFloat(grandOrderTotalVatIncluded() + "00")
+    // console.log("this is the payStackAmount==> ", payStackAmount);
+
+
+    const handleInitiatePayment = async() => {
+        const userData = {
+            email: "enamesit12@gmail.com",
+            amount: 554400.00
+        }
+
+        const URL = `${baseUrl}/${paymentUrl}/initiate-payment`
+
+        try {
+            const response = await axios.post( URL, userData )
+            // console.log("this is the response from payStack==> ", response)
+
+            if (response.status === 200) {
+                const payStackAuthUrl = response.data.data.authorization_url;
+                Linking.openURL(payStackAuthUrl)
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    
+
 
     const vat = () => {
         const vatPrice = ((7 / 100) * grandTotal).toFixed(2);
         return vatPrice;
     };
 
-    const GrandOrderTotalVatIncluded = () => {
+    const grandOrderTotalVatIncluded = () => {
         const vatPrice = ((7 / 100) * grandTotal).toFixed(2);
         const allItemsTotal = parseFloat(grandTotal) + parseFloat(formattedServiceFee) + parseFloat(formattedDeliveryFee) + parseFloat(vatPrice);
         return (allItemsTotal.toFixed(2));
@@ -64,7 +131,7 @@ const formattedDeliveryFee = deliveryFee.toFixed(2);
                         Delivery Location
                     </Text>
                     <Text style={checkoutConfirmation.deliveryMainText}>
-                        Address To Deliver
+                        {addressToSend}
                     </Text>
                     </View>
                     <View>
@@ -72,11 +139,49 @@ const formattedDeliveryFee = deliveryFee.toFixed(2);
                         name="edit"
                         size={24}
                         color={COLORS.tabBarBrown}
+                        onPress={() => {
+                        setIsAddressPressed(true);
+                    }}
                     />
                     </View>
                 </View>
                 </View>
 
+                {isAddressPressed && (
+                <View style={checkoutConfirmation.inputContainer}>
+                <InputField
+                    style={checkoutConfirmation.inputField}
+                    value={houseNumber}
+                    onChangeText={(text) => setHouseNumber(text)}
+                    placeholder="Enter your house number"
+                    />
+                    <InputField
+                    style={checkoutConfirmation.inputField}
+                    value={street}
+                    onChangeText={(text) => setStreet(text)}
+                    placeholder="Enter your street number"
+                    />
+                    <InputField
+                    style={checkoutConfirmation.inputField}
+                    value={lga}
+                    onChangeText={(text) => setLga(text)}
+                    placeholder="Enter your local government area"
+                    />
+                    <InputField
+                    style={checkoutConfirmation.inputField}
+                    value={state}
+                    onChangeText={(text) => setState(text)}
+                    placeholder="Enter your state"
+                    />
+                    
+                    <CustomButton
+                    buttonName="Submit"
+                    onPress={handleAddressSubmit}
+                    style={checkoutConfirmation.buttonStyle}
+                    />
+                </View>
+                )}
+                
                 <View style={checkoutConfirmation.deliveryContainer}>
                 <MaterialIcons name="phone" size={24} color={COLORS.goldenrod} />
                 <View style={checkoutConfirmation.deliveryInnerContent}>
@@ -85,7 +190,7 @@ const formattedDeliveryFee = deliveryFee.toFixed(2);
                         Phone Number
                     </Text>
                     <Text style={checkoutConfirmation.deliveryMainText}>
-                        Delivery Phone Number
+                        {phoneNumberToSend}
                     </Text>
                     </View>
                     <View>
@@ -93,10 +198,30 @@ const formattedDeliveryFee = deliveryFee.toFixed(2);
                         name="edit"
                         size={24}
                         color={COLORS.tabBarBrown}
+                        // onPress={() => {
+                        // navigation.navigate("EditProfile");
+                        // }}
+                        onPress={()=> setIsPhonePressed(true)}
                     />
                     </View>
                 </View>
                 </View>
+                {isPhonePressed && (
+              <View  style={checkoutConfirmation.inputContainer2}>
+                <InputField
+                    style={checkoutConfirmation.inputField}
+                    value={phoneNumber}
+                    onChangeText={(text) => setPhoneNumber(text)}
+                    placeholder="Enter your Phone number"
+                    />
+                    
+                    <CustomButton
+                    buttonName="Submit"
+                    onPress={handlePhoneNumberSubmit}
+                    style={checkoutConfirmation.buttonStyle}
+                    />
+                </View>
+                )}
 
                 <View style={checkoutConfirmation.deliveryContainer}>
                 <MaterialIcons
@@ -127,9 +252,9 @@ const formattedDeliveryFee = deliveryFee.toFixed(2);
             <View style={checkoutConfirmation.section}>
                 <Text style={checkoutConfirmation.sectionTitle}>Items</Text>
                 <View>
-                {checkoutData.map((item, index) => (
+                {checkoutData.map((item) => (
                     <View
-                    key={item.productId} // Use a unique key here
+                    key={item.productId}
                     style={checkoutConfirmation.productItem}
                     >
                     <Text style={checkoutConfirmation.productItemText}>
@@ -176,11 +301,14 @@ const formattedDeliveryFee = deliveryFee.toFixed(2);
                 <Text style={checkoutConfirmation.totalLabel}>
                 Total (Incl. VAT)
                 </Text>
-                <Text style={checkoutConfirmation.totalAmount}>
-                N {GrandOrderTotalVatIncluded()}
+                <Text style={checkoutConfirmation.totalAmount2}>
+                N {grandOrderTotalVatIncluded()}
                 </Text>
             </View>
-            <Pressable style={checkoutConfirmation.placeOrderButton}>
+            <Pressable 
+            onPress={handleInitiatePayment}
+            style={checkoutConfirmation.placeOrderButton}
+            >
                 <Text style={checkoutConfirmation.placeOrderButtonText}>
                 PLACE ORDER
                 </Text>

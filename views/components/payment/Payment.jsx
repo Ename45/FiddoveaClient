@@ -3,9 +3,15 @@ import { View, Text, SafeAreaView, ImageBackground, Pressable, Image } from 'rea
 import { CardField, useStripe } from '@stripe/stripe-react-native';
 import payment from "../../../styles/components/payment/payment"
 import { COLORS } from '../../../constants/theme';
+import { useNavigation } from "@react-navigation/native";
+import { MaterialIcons } from '@expo/vector-icons';
 
 const Payment = () => {
+
+  const navigation = useNavigation();
+
   const { confirmPayment } = useStripe()
+
   const [cardDetails, setCardDetails] = useState({
     cardNumber: '',
     expMonth: '',
@@ -37,7 +43,24 @@ const Payment = () => {
   return (
         
       <SafeAreaView style={{flex: 1, backgroundColor: COLORS.pageBackgroundBrown}}>
-      <Text style={payment.textTiltle}>Payment Details</Text> 
+      <View style={payment.headerContainer}>
+            <View style={payment.headerBackIcon}>
+                <Pressable
+                onPress={() => {
+                    navigation.goBack();
+                }}
+                >
+                <MaterialIcons
+                    name="keyboard-arrow-left"
+                    size={24}
+                    color={COLORS.black}
+                />
+                </Pressable>
+            </View>
+            <View>
+                <Text style={payment.header}>Payment Details</Text>
+            </View>
+            </View>
         <View style={payment.cardDetailLabel}>
         
           <Text style={payment.cardDetailLabels}>All Cards</Text>

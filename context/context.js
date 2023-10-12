@@ -17,7 +17,7 @@ const ProductContext = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [getCart, setGetCart] = useState([]);
 
-  console.log("cartItems ==> ", cartItems);
+  // console.log("cartItems ==> ", cartItems);
 
   const fetchAndStoreCartItems = async () => {
     const tokenStorage = await AsyncStorage.getItem("jwtToken");

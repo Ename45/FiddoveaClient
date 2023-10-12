@@ -4,6 +4,7 @@ import homeProductHeadings from '../../../../styles/components/homepage/homeProd
 import { Ionicons } from '@expo/vector-icons'
 import { COLORS, SIZES } from '../../../../constants/theme'
 import { useNavigation } from '@react-navigation/native'
+import { Pressable } from 'react-native'
 
 const HomeProductHeadings = () => {
 
@@ -16,18 +17,21 @@ const HomeProductHeadings = () => {
   return (
     <View style={homeProductHeadings.container}>
       <View style={homeProductHeadings.header}>
-        <View  style={{flexDirection: "row", alignItems: "center", justifyContent: "center"}}>
+        <Pressable            
+            onPress={navigateToAllProducts}
+        >
+          <View  style={{flexDirection: "row", alignItems: "center", justifyContent: "center"}}>
           <Text style={homeProductHeadings.headerTitle}>
           Explore By Categories
         </Text >
         <Ionicons
             name='triangle'
             size={(3 / 100) * SIZES.width}
-            color={COLORS.black}            
-            onPress={navigateToAllProducts}
+            color={COLORS.black}
             style={{ transform: [{ rotate: '180deg' }], marginTop: (3.7 / 100) * SIZES.height }}
             />
         </View>
+        </Pressable>
         <View>
           <TouchableOpacity style={{alignItems: "center", justifyContent: "center", gap: 5}}>
             <Ionicons

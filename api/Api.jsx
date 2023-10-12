@@ -7,6 +7,7 @@ export const vendorUrl = 'api/v1/vendor'
 export const adminUrl = 'api/v1/admin'
 export const productUrl = 'api/v1/product'
 export const orderUrl = 'api/v1/myorder/vendorId'
+export const paymentUrl = 'api/v1/payment'
 
 // export const Url = `${baseUrl}/${customerUrl}`;
 

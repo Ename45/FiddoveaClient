@@ -17,6 +17,7 @@ export default StyleSheet.create({
     justifyContent: "center",
     alignItems: "flex-start",
     gap: 3
+    
   },
   welcomeText: (color, top) => ({
     fontFamily: "poppinsBold700",

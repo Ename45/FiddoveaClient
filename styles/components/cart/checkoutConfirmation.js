@@ -59,6 +59,25 @@ export default StyleSheet.create({
     fontFamily: "poppinsRegular400",
     fontSize: (3.7 / 100) * SIZES.width,
   },
+  inputContainer: {
+    height: (12 / 100) * SIZES.height,
+    marginBottom: (32 / 100) * SIZES.height,
+    gap: 8,
+  },
+  inputContainer2: {
+    height: (12 / 100) * SIZES.height,
+    marginBottom: (6 / 100) * SIZES.height,
+    gap: 8,
+  },
+  inputText: {
+    marginBottom: (1 / 100) * SIZES.width,
+    color: COLORS.gray3,
+    fontSize: SIZES.mid,
+    paddingLeft: (1 / 100) * SIZES.width,
+  },
+  inputField: {
+    width: "100%",
+  },
   sectionTitle: {
     fontSize: (4 / 100) * SIZES.width,
     fontFamily: "poppinsSemiBold600",
@@ -109,54 +128,26 @@ export default StyleSheet.create({
     fontFamily: "poppinsSemiBold600",
     fontSize: (3.8 / 100) * SIZES.width,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+  },
+  totalAmount2: {
+    fontFamily: "poppinsBold700",
+    fontSize: (4 / 100) * SIZES.width,
   },
   placeOrderButton: {
-    backgroundColor: COLORS.tabBarBrown,
+    backgroundColor: COLORS.silverGray,
     padding: (2 / 100) * SIZES.width,
     borderRadius: 50,
     justifyContent: "center",
     alignItems: "center",
+    marginTop: (3 / 100) * SIZES.height,
   },
   placeOrderButtonText: {
-    color: COLORS.white,
+    color: COLORS.black,
     fontSize: (5 / 100) * SIZES.width,
     fontFamily: "poppinsSemiBold600",
   },
-  // container: {
-  //   flex: 1,
-  //   padding: 16,
-  // },
-  // innerContainer: {
-  //   flexDirection: "row",
-  //   gap: 40
-  // },
-  // headerBackIcon: {
-  //   backgroundColor: COLORS.tabBarBrown,
-  //   borderRadius: 50,
-  //   height: 3.5/100*(SIZES.height)
-  // },
-  // header: {
-  //   fontSize: 24,
-  //   fontWeight: "bold",
-  //   marginBottom: 16,
-  //   textAlign: "center",
-  // },
-  // section: {
-  //   marginBottom: 16,
-  // },
-  // sectionTitle: {
-  //   fontSize: 18,
-  //   fontWeight: "bold",
-  //   marginBottom: 8,
-  // },
-  // productItem: {
-  //   flexDirection: "row",
-  //   justifyContent: "space-between",
-  //   marginBottom: 8,
-  // },
-  // totalPrice: {
-  //   marginTop: 16,
-  //   alignItems: "flex-end",
-  // },
+  buttonStyle: {
+    marginLeft: (20 / 100) * SIZES.width,
+  },
 });

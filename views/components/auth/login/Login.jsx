@@ -52,7 +52,7 @@ const Login = () => {
         }
       } catch (error) {
         if (error.response && error.response.data) {
-          setError(error.response.data);
+          setError("server issue... try again");
         } else {
           setError('An error occurred.');
         }

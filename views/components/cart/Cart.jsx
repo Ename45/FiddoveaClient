@@ -112,7 +112,7 @@ const Cart = () => {
       </View>
     );
   }
-  console.log("cart Items in cart component==> ", cartItems);
+  // console.log("cart Items in cart component==> ", cartItems);
 
   return (
     <View style={cart.container}>
@@ -144,7 +144,7 @@ const Cart = () => {
               });
 
               navigation.navigate("CheckoutConfirmation", {
-                checkoutData: checkoutData,
+                checkoutDataStringified: JSON.stringify(checkoutData),
                 grandTotal: calculateGrandTotal(),
               });
             }

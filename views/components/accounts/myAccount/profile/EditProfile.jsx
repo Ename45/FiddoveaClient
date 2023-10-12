@@ -17,7 +17,8 @@ import { imagesDataUrl, photos } from "../../../../../constants/data";
 import * as ImagePicker from "expo-image-picker";
 import InputField from "../../../reusable/inputField/InputField";
 import editProfile from "../../../../../styles/components/accounts/myAccount/profile/editProfile.js";
-import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+// import { useNavigation } from "@react-navigation/native";
 
 const EditProfile = ({ navigation }) => {
   const [selectedImage, setSelectedImage] = useState(imagesDataUrl[0]);
@@ -25,16 +26,56 @@ const EditProfile = ({ navigation }) => {
   const [lastName, setLastName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
-  const [houseNumber, setHouseNumber] = useState("");
-  const [street, setStreet] = useState("");
-  const [lga, setLga] = useState("");
-  const [state, setState] = useState("");
-  const [gender, setGender] = useState();
+  // const [gender, setGender] = useState();
+
+    const [error, setError] = useState(null);
+  const [inputError, setInputError] = useState("");
 
   // const navigation = useNavigation();
 
-  const handleUpdate = () => {
-    navigation.navigate("Settings");
+  const handleUpdate = async(e) => {
+    setError("")
+    e.preventDefault()
+
+    // const URL = `${baseUrl}/${customerUrl}/update`
+    
+    let customerUpdateData = {
+      firstName: firstName,
+      lastName: lastName,
+      phoneNumber: phoneNumber,
+      email: email,
+    };
+
+    if (firstName !== "" && lastName !== "" && phoneNumber !== "" && email !== "") {
+      setInputError("");
+      const tokenStorage = await AsyncStorage.getItem("jwtToken");
+      console.log("token in store=>", tokenStorage)
+      console.log("customer update --> ", customerUpdateData)
+      try {
+        console.log("i got here")
+        const response = await axios.get(`${baseUrl}/${customerUrl}/update`, 
+        customerUpdateData,
+        {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${tokenStorage}`,
+        },
+      });
+        console.log("This is the update response", response.data)
+        if (response.status === 200) {
+          alert("Profile Updated")
+          navigation.goBack()
+        }
+      } catch (error) {
+        if (error.response && error.response.data) {
+          setError("server issue... try again");
+        } else {
+          setError('An error occurred.');
+        }
+      }
+    } else {
+      setInputError("All fields are required");
+    }
   };
 
   const handleImageSelection = async () => {
@@ -50,6 +91,7 @@ const EditProfile = ({ navigation }) => {
       setSelectedImage(result.assets[0].uri);
     }
   };
+
 
   return (
     <SafeAreaView style={editProfile.mainContainer}>
@@ -129,7 +171,7 @@ const EditProfile = ({ navigation }) => {
                   onChangeText={(text) => setEmail(text)}
                 />
               </View>
-              <View style={editProfile.dropdownInput}>
+              {/* <View style={editProfile.dropdownInput}>
                 <Picker
                   onValueChange={(text) => setGender(text)}
                   selectedValue={gender}
@@ -139,7 +181,13 @@ const EditProfile = ({ navigation }) => {
                   <Picker.Item label="Male" value="MALE" />
                   <Picker.Item label="Others" value="OTHERS" />
                 </Picker>
-              </View>
+              </View> */}
+              <View>
+            {error && <Text style={{ color: "red" }}>{error}</Text>}
+            {inputError !== "" && (
+              <Text style={{ color: "red" }}>{inputError}</Text>
+            )}
+          </View>
             </View>
             <CustomButton
               buttonName="Update Profile"
