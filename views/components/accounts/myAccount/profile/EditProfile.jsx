@@ -19,6 +19,8 @@ import InputField from "../../../reusable/inputField/InputField";
 import editProfile from "../../../../../styles/components/accounts/myAccount/profile/editProfile.js";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AuthenticationContext } from "../../../../../context/authContext";
+import axios from "axios";
+import { baseUrl, customerUrl } from "../../../../../api/Api";
 // import { useNavigation } from "@react-navigation/native";
 
 const EditProfile = ({ navigation }) => {
@@ -40,51 +42,54 @@ const EditProfile = ({ navigation }) => {
 
   // const navigation = useNavigation();
 
-  const handleUpdate = async(e) => {
-    setError("")
-    e.preventDefault()
+const handleUpdate = async (e) => {
+  setError("");
+  e.preventDefault();
 
-    // const URL = `${baseUrl}/${customerUrl}/update`
-    
-    let customerUpdateData = {
-      firstName: firstName,
-      lastName: lastName,
-      phoneNumber: phoneNumber,
-      email: email,
-    };
+  let customerUpdateData = {
+    firstName: firstName,
+    lastName: lastName,
+    phoneNumber: phoneNumber,
+    email: email,
+  };
 
-    if (firstName !== "" && lastName !== "" && phoneNumber !== "" && email !== "") {
-      setInputError("");
-      const tokenStorage = await AsyncStorage.getItem("jwtToken");
-      // console.log("token in store=>", tokenStorage)
-      // console.log("customer update --> ", customerUpdateData)
+  if (firstName !== "" && lastName !== "" && phoneNumber !== "" && email !== "") {
+    setInputError("");
+    const tokenStorage = await AsyncStorage.getItem("jwtToken");
 
-      try {
-        console.log("i got here")
-        const response = await axios.put(`${baseUrl}/${customerUrl}/update`, 
-        customerUpdateData,
-        {
+    try {
+      console.log("Updating profile...");
+      console.log("Customer Update Data:", customerUpdateData);
+      console.log("Token in storage:", tokenStorage);
+
+      const response = await axios.put(`${baseUrl}/${customerUrl}/update`, customerUpdateData, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${tokenStorage}`,
         },
       });
-        console.log("This is the update response", response.data)
-        if (response.status === 200) {
-          alert("Profile Updated")
-          navigation.goBack()
-        }
-      } catch (error) {
-        if (error.response && error.response.data) {
-          setError("server issue... try again");
-        } else {
-          setError('An error occurred.');
-        }
+
+      console.log("Update Response Status:", response.status);
+      console.log("Update Response Data:", response.data);
+
+      if (response.status === 200) {
+        alert("Profile Updated");
+        navigation.goBack();
       }
-    } else {
-      setInputError("All fields are required");
+    } catch (error) {
+      console.error("Update Error:", error);
+      if (error.response && error.response.data) {
+        console.error("Server Response Data:", error.response.data);
+        setError("Server issue... try again");
+      } else {
+        setError("An error occurred.");
+      }
     }
-  };
+  } else {
+    setInputError("All fields are required");
+  }
+};
+
 
   const handleImageSelection = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
