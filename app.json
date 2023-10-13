@@ -4,7 +4,7 @@
     "slug": "Fiddovea",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/png/iconImage3.png",
+    "icon": "",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/images/png/firstLogo.png",
@@ -23,7 +23,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/png/iconImage3.png",
+        "foregroundImage": "",
         "backgroundColor": "#ffffff"
       },
       "package": "com.fiddovea.Fiddovea"

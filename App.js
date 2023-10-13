@@ -27,7 +27,6 @@ import EditProfile from "./views/components/accounts/myAccount/profile/EditProfi
 import LiveChat from "./views/components/accounts/actions/liveChat/LiveChat.jsx";
 import Notification from "./views/components/accounts/myAccount/notification/Notification.jsx";
 import Logout from "./views/components/accounts/actions/logout/Logout.jsx";
-import Payment from "./views/components/payment/Payment.jsx";
 import PaymentPage from "./views/components/payment/PaymentPage.jsx";
 import ProductList from "./views/components/product/allProducts/ProductList.jsx";
 import ProductDetails from "./views/components/product/productDetails/ProductDetails.jsx";
@@ -301,11 +300,6 @@ AuthContext
             <Stack.Screen
               name="NewRivals"
               component={NewRivals}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="Payment"
-              component={Payment}
               options={{ headerShown: false }}
             />
             <Stack.Screen
