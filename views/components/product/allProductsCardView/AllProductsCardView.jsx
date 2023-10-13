@@ -5,11 +5,14 @@ import { Ionicons } from "@expo/vector-icons";
 import { COLORS, SIZES } from "../../../../constants/theme";
 import { useNavigation } from "@react-navigation/native";
 import { Context } from "../../../../context/context";
+import { SafeAreaView } from "react-native";
 
 const AllProductsCardView = ({ product }) => {
   const navigation = useNavigation();
 
   const [isFocused, setIsFocused] = useState(false);
+  const [isFocused1, setIsFocused1] = useState(false);
+  const [isFocused2, setIsFocused2] = useState(false);
 
   const { addToWishList, addToCart } = useContext(Context);
 
@@ -19,7 +22,8 @@ const AllProductsCardView = ({ product }) => {
   };
 
   return (
-    <Pressable
+    <SafeAreaView>
+      <Pressable
       onPressIn={() => setIsFocused(true)}
       onPressOut={() => setIsFocused(false)}
       onPress={() => navigateToProductDetails(product.productId)}
@@ -52,32 +56,42 @@ const AllProductsCardView = ({ product }) => {
               N{product.productPrice}
             </Text>
           </View>
-        </View>
-        <View style={allProductsCardView.buttonsContainer}>
+        </View>        
+      </View>
+    </Pressable>
+    <View style={allProductsCardView.buttonsContainer}>
           <Pressable
             style={allProductsCardView.addBtn}
             onPress={() => addToWishList(product.productId)}
+            
+              onPressIn={() => {
+                setIsFocused1(true)
+              }}
+              onPressOut={() => setIsFocused1(false)}
           >
             <Ionicons
-              name="heart-outline"
               size={(9 / 100) * SIZES.width}
-              color={COLORS.black}
-              style={{ marginTop: 1, marginBottom: -3 }}
+              name={isFocused1 ? "heart" : "heart-outline"}
+              color={isFocused1 ? COLORS.tabBarBrown : COLORS.black}
+              style={{ marginTop: 1, marginBottom: -3, }}
             />
           </Pressable>
           <Pressable 
           style={allProductsCardView.addBtn2}
           onPress={() => addToCart(product.productId)}
+          onPressIn={() => {
+                setIsFocused2(true)
+              }}
+              onPressOut={() => setIsFocused2(false)}
           >
             <Ionicons
-              name="cart-outline"
+              name={isFocused2 ? "cart" : "cart-outline"}
               size={(9 / 100) * SIZES.width}
-              color={COLORS.goldenrod}
+              color={isFocused2 ? COLORS.tabBarBrown : COLORS.goldenrod}
             />
           </Pressable>
         </View>
-      </View>
-    </Pressable>
+    </SafeAreaView>
   );
 };
 

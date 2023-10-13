@@ -45,12 +45,13 @@ export default StyleSheet.create({
   },
   buttonsContainer: {
     alignItems: "center",
-    paddingHorizontal: 8,
+    // paddingHorizontal: 8,
     position: "absolute",
     flexDirection: "row",
     gap: (19 / 100) * SIZES.width,
     justifyContent: "center",
-    bottom: 5,
+    bottom: (2.7 / 100) * SIZES.height,
+    zIndex: 999
   },
   addBtn: {
     borderRadius: 50,

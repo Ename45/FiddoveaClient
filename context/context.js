@@ -313,11 +313,28 @@ const ProductContext = ({ children }) => {
   }, []);
 
 
+  const refreshProducts = async () => {
+    setIsLoading(true);
+    try {
+      const response = await axios.get(`${baseUrl}/${productUrl}`);
+      if (response.status === 200) {
+        setIsLoading(false);
+        setProducts(response.data);
+      }
+    } catch (error) {
+      console.log("Error fetching products", error);
+      setError(error);
+    }
+  };
+
+
+
 
   return (
     <Context.Provider
       value={{
         products,
+        refreshProducts,
         isLoading,
         error,
         wishListItems,
