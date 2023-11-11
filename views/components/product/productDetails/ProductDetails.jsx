@@ -39,8 +39,6 @@ const ProductDetails = ({ navigation }) => {
 
   const handleRatingChange = (rating) => {
     setRating(rating);
-    // Send a request to the backend to update the rating for the product
-    // You'll need to implement this API endpoint on the backend.
   };
 
   const handleReviewSubmit = async () => {
@@ -70,10 +68,10 @@ const ProductDetails = ({ navigation }) => {
       if (response.status === 200) {
         setResponseMessage(response.data);
         setTimeout(() => {
-          setResponseMessage(""); // Clear the response message after 4 seconds
+          setResponseMessage("");
         }, 4000);
 
-        // Fetch updated product details after submitting a review
+        
         getProductDetailsDataFromApi();
       }
     } catch (error) {
@@ -81,7 +79,7 @@ const ProductDetails = ({ navigation }) => {
       // setResponseMessage("Error submitting review. Please try again.");
       console.log("Error submitting review", error);
     }
-    // Include the review text, user information, and product ID.
+    
   };
 
   useEffect(() => {
