@@ -16,7 +16,7 @@ export const AuthContext = ({ children }) => {
   const [userGender, setUserGender] = useState(null);
 
   console.log("This is the email in the authContext=======================================================================================================================> ", userEmail)
-  console.log("This is the firstName in the authContext========================================================================================================================> ", userFirstName)
+  // console.log("This is the firstName in the authContext========================================================================================================================> ", userFirstName)
 
   useEffect(() => {
     loadUserData();
@@ -31,6 +31,8 @@ export const AuthContext = ({ children }) => {
       const storedLastName = await AsyncStorage.getItem("lastName");
       const storedGender = await AsyncStorage.getItem("gender");
 
+      // console.log("stored email in context", storedEmail)
+
       setJwtToken(token);
       setUserEmail(storedEmail);
       setUserPhoneNumber(storedPhoneNumber);
@@ -42,18 +44,18 @@ export const AuthContext = ({ children }) => {
     }
   };
 
-  const storeUserData = async (data) => {
-    try {
-      await AsyncStorage.setItem("jwtToken", data.jwtToken);
-      await AsyncStorage.setItem("email", data.email);
-      await AsyncStorage.setItem("phoneNumber", data.phoneNumber);
-      await AsyncStorage.setItem("firstName", data.firstName);
-      await AsyncStorage.setItem("lastName", data.lastName);
-      await AsyncStorage.setItem("gender", data.gender);
-    } catch (error) {
-      console.error("Error storing user data:", error);
-    }
-  };
+  // const storeUserData = async (data) => {
+  //   try {
+  //     await AsyncStorage.setItem("jwtToken", data.jwtToken);
+  //     await AsyncStorage.setItem("email", data.email);
+  //     await AsyncStorage.setItem("phoneNumber", data.phoneNumber);
+  //     await AsyncStorage.setItem("firstName", data.firstName);
+  //     await AsyncStorage.setItem("lastName", data.lastName);
+  //     await AsyncStorage.setItem("gender", data.gender);
+  //   } catch (error) {
+  //     console.error("Error storing user data:", error);
+  //   }
+  // };
 
   const logout = async () => {
     try {
@@ -76,7 +78,7 @@ export const AuthContext = ({ children }) => {
     userFirstName,
     userLastName,
     userGender,
-    storeUserData,
+    // storeUserData,
     logout,
   };
 

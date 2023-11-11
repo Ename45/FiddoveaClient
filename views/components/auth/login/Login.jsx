@@ -42,13 +42,14 @@ const Login = () => {
       setInputError("");
       try {
         const response = await axios.post(URL, customerData);
-        console.log("This is the login response", response.data)
+        // console.log("This is the login response", response.data)
         if (response.status === 200) {
           // console.log("This is response,data", response.data.message);
           const token = response.data.jwtToken;
           // console.log("token Storage==>{}", token);
           await AsyncStorage.setItem("jwtToken", token);
-          // await AsyncStorage.setItem("email", email);
+          await AsyncStorage.setItem("email", email);
+          // console.log("email entered =================>{}", email)
           // await AsyncStorage.setItem("phoneNumber", phoneNumber);
           // await AsyncStorage.setItem("firstName", firstName);
           // await AsyncStorage.setItem("lastName", lastName);

@@ -43,10 +43,7 @@ const Register = () => {
       try {
         const response = await axios.post(URL, customerData);
         if (response.status === 201) {
-          const token = response.data.jwtToken;
-          console.log("token Storage==>{}", token);
-          await AsyncStorage.setItem("jwtToken", token);
-          navigation.navigate("BottomTabNav");
+          navigation.navigate("Login");
         }
       } catch (error) {
         if (error.response && error.response.data) {

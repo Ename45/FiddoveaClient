@@ -8,7 +8,7 @@ import {
   Image,
   TextInput,
 } from "react-native";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { COLORS, SIZES } from "../../../../../constants/theme";
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 import { Picker } from "@react-native-picker/picker";
@@ -27,72 +27,113 @@ import qs from "qs";
 const EditProfile = ({ navigation }) => {
   const { userEmail, userFirstName, userPhoneNumber, userLastName,  } = useContext(AuthenticationContext)
 
-  console.log("userFirstName", userFirstName);
+
+    const updatedPhoneNumber = phoneNumber
+        const updatedFirstName = firstName
+        const updatedLastName =  lastName
 
 
   const [selectedImage, setSelectedImage] = useState(imagesDataUrl[0]);
-  const [firstName, setFirstName] = useState(userFirstName);
-  const [lastName, setLastName] = useState(userLastName);
-  const [phoneNumber, setPhoneNumber] = useState(userPhoneNumber);
+  const [firstName, setFirstName] = useState(updatedFirstName);
+  const [lastName, setLastName] = useState(updatedLastName);
+  const [phoneNumber, setPhoneNumber] = useState(updatedPhoneNumber);
   const [email, setEmail] = useState(userEmail);
+  
   // const [gender, setGender] = useState();
+
+  
+  console.log("userFirstName ===============================> ", firstName);
+  console.log("userLastName =================================> ", lastName);
+  console.log("userPhoneNumber ===================================> ", phoneNumber);
+
 
     const [error, setError] = useState(null);
   const [inputError, setInputError] = useState("");
 
+  useEffect(() => {
+    loadUserData();
+  }, []);
 
-  // console.log("userEmail in EditPro =================================================================> ", userEmail)
 
-  // const navigation = useNavigation();
+  const loadUserData = async () => {
+    try {
+      const storedFirstName = await AsyncStorage.getItem('firstName');
+      const storedLastName = await AsyncStorage.getItem('lastName');
+      const storedPhoneNumber = await AsyncStorage.getItem('phoneNumber');
 
-const handleUpdate = async (e) => {
-  setError("");
-  e.preventDefault();
+      if (storedFirstName) {
+        setFirstName(storedFirstName);
+      }
+      if (storedLastName) {
+        setLastName(storedLastName);
+      }
+      if (storedPhoneNumber) {
+        setPhoneNumber(storedPhoneNumber);
+      }
 
-  let customerUpdateData = {
-    firstName: firstName,
-    lastName: lastName,
-    phoneNumber: phoneNumber,
-    email: email,
+    } catch (error) {
+      console.error('Error loading user data:', error);
+    }
   };
 
-  if (firstName !== "" && lastName !== "" && phoneNumber !== "" && email !== "") {
-    setInputError("");
-    const tokenStorage = await AsyncStorage.getItem("jwtToken");
 
+  const saveUserData = async () => {
     try {
-      // console.log("Updating profile...");
-      // console.log("Customer Update Data:", customerUpdateData);
-      // console.log("Token in storage:", tokenStorage);
+      await AsyncStorage.setItem('firstName', firstName);
+      await AsyncStorage.setItem('lastName', lastName);
+      await AsyncStorage.setItem('phoneNumber', phoneNumber);
 
-      const response = await axios.put(`${baseUrl}/${customerUrl}/update`, qs.stringify(customerUpdateData), 
-      {
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-          Authorization: `Bearer ${tokenStorage}`,
-        },
-      });
-
-      // console.log("Update Response Status:", response.status);
-      // console.log("Update Response Data:", response.data);
-
-      if (response.status === 200) {
-        alert("Profile Updated");
-        navigation.goBack();
-      }
     } catch (error) {
-      console.error("Update Error:", error);
-      if (error.response && error.response.data) {
-        console.error("Server Response Data:", error.response.data);
-        setError("Server issue... try again");
-      } else {
-        setError("An error occurred.");
-      }
+      console.error('Error saving user data:', error);
     }
-  } else {
-    setInputError("All fields are required");
-  }
-};
+  };
+
+
+  const handleUpdate = async (e) => {
+    setError('');
+    e.preventDefault();
+
+    let customerUpdateData = {
+      firstName: firstName,
+      lastName: lastName,
+      phoneNumber: phoneNumber,
+      email: email,
+    };
+
+    if (firstName !== '' && lastName !== '' && phoneNumber !== '' && email !== '') {
+      setInputError('');
+      const tokenStorage = await AsyncStorage.getItem('jwtToken');
+
+      try {
+        const response = await axios.put(
+          `${baseUrl}/${customerUrl}/update`,
+          qs.stringify(customerUpdateData),
+          {
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+              Authorization: `Bearer ${tokenStorage}`,
+            },
+          }
+        );
+
+        if (response.status === 200) {
+          alert('Profile Updated');
+          saveUserData();
+          navigation.goBack();
+        }
+      } catch (error) {
+        console.error('Update Error:', error);
+        if (error.response && error.response.data) {
+          console.error('Server Response Data:', error.response.data);
+          setError('Server issue... try again');
+        } else {
+          setError('An error occurred.');
+        }
+      }
+    } else {
+      setInputError('All fields are required');
+    }
+  };
 
 
   const handleImageSelection = async () => {
