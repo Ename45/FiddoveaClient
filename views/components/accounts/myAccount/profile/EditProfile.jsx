@@ -6,14 +6,12 @@ import {
   ScrollView,
   TouchableOpacity,
   Image,
-  TextInput,
 } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
-import { COLORS, SIZES } from "../../../../../constants/theme";
-import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
-import { Picker } from "@react-native-picker/picker";
+import { COLORS } from "../../../../../constants/theme";
+import { MaterialIcons } from "@expo/vector-icons";
 import CustomButton from "../../../reusable/button/CustomButton";
-import { imagesDataUrl, photos } from "../../../../../constants/data";
+import { imagesDataUrl } from "../../../../../constants/data";
 import * as ImagePicker from "expo-image-picker";
 import InputField from "../../../reusable/inputField/InputField";
 import editProfile from "../../../../../styles/components/accounts/myAccount/profile/editProfile.js";
@@ -25,7 +23,7 @@ import qs from "qs";
 // import { useNavigation } from "@react-navigation/native";
 
 const EditProfile = ({ navigation }) => {
-  const { userEmail, userFirstName, userPhoneNumber, userLastName,  } = useContext(AuthenticationContext)
+  const { userEmail } = useContext(AuthenticationContext)
 
 
     const updatedPhoneNumber = phoneNumber

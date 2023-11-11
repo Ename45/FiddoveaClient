@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, SafeAreaView, ImageBackground, Image } from 'react-native'
+import { View, Text, ImageBackground, Image } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 import login from '../../../../styles/components/auth/login/login.js'
@@ -9,7 +9,6 @@ import { customerUrl, baseUrl } from '../../../../api/Api.jsx';
 import { COLORS, SIZES } from '../../../../constants/theme.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Pressable } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 
 
 const Login = () => {
@@ -49,11 +48,6 @@ const Login = () => {
           // console.log("token Storage==>{}", token);
           await AsyncStorage.setItem("jwtToken", token);
           await AsyncStorage.setItem("email", email);
-          // console.log("email entered =================>{}", email)
-          // await AsyncStorage.setItem("phoneNumber", phoneNumber);
-          // await AsyncStorage.setItem("firstName", firstName);
-          // await AsyncStorage.setItem("lastName", lastName);
-          // await AsyncStorage.setItem("gender", gender);
           navigation.navigate("BottomTabNav");
         }
       } catch (error) {

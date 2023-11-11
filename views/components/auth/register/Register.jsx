@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import {
   View,
   Text,
-  SafeAreaView,
-  styles,
   Image,
   ImageBackground,
 } from "react-native";
@@ -13,7 +11,7 @@ import register from "../../../../styles/components/auth/register/register.js";
 import InputField from "../../reusable/inputField/InputField.jsx";
 import CustomButton from "../../reusable/button/CustomButton.jsx";
 import { COLORS, SIZES } from "../../../../constants/theme.js";
-import { customerUrl, baseUrl, registerUrl } from "../../../../api/Api.jsx";
+import { customerUrl, baseUrl } from "../../../../api/Api.jsx";
 import { Pressable } from "react-native";
 
 const Register = () => {

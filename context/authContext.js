@@ -1,11 +1,8 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const AuthenticationContext = createContext(null);
 
-// export const useAuth = () => {
-//   return useContext(AuthenticationContext);
-// };
 
 export const AuthContext = ({ children }) => {
   const [jwtToken, setJwtToken] = useState(null);
@@ -15,7 +12,7 @@ export const AuthContext = ({ children }) => {
   const [userLastName, setUserLastName] = useState(null);
   const [userGender, setUserGender] = useState(null);
 
-  console.log("This is the email in the authContext=======================================================================================================================> ", userEmail)
+  // console.log("This is the email in the authContext=======================================================================================================================> ", userEmail)
   // console.log("This is the firstName in the authContext========================================================================================================================> ", userFirstName)
 
   useEffect(() => {
